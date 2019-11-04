@@ -1,0 +1,40 @@
+.btn-group.theme_switch__button-group {
+    float: right;
+}
+
+.btn.theme_switch__button {
+
+    border: 1px solid darken($bgc-light, 10%);
+
+    &.mood {
+        background-color: $bgc-todo-mood;
+        border: 1px solid darken($bgc-todo-mood, 10%);
+        fill: $text-color-mood;
+    }
+
+    &.dark {
+        background-color: $bgc-todo-dark;
+        border: 1px solid darken($bgc-todo-dark, 10%);
+        fill: $text-color-dark;
+    }
+
+    &.active {
+        &.mood {
+            background-color: lighten($bgc-todo-mood, 5%);
+        }
+
+        &.dark {
+            background-color: lighten($bgc-todo-dark, 10%);
+            border: 1px solid $bgc-todo-dark;
+        }
+    }
+
+    &.focus {
+        box-shadow: none;
+    }
+}
+
+.theme_switch {
+    width: 100%;
+    display: inline-block;
+}

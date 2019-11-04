@@ -1,0 +1,38 @@
+body,
+html,
+#root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+
+}
+
+.main {
+    transition: color, background-color 1.2s ease;
+
+    * {
+        transition: background-color 1.2s ease;
+    }
+
+    font-family: sans-serif;
+    min-height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: $bgc-light;
+    box-sizing: border-box;
+
+    &.mood {
+        background-color: $bgc-mood;
+    }
+
+    &.dark {
+        background-color: $bgc-dark;
+    }
+
+    &__wrapper {
+        width: 600px;
+        padding: 50px;
+    }
+
+}

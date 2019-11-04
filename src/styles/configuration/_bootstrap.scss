@@ -1,0 +1,58 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+// https://github.com/twbs/bootstrap/blob/master/scss/_variables.scss
+
+// Fonts:
+// $font-family-sans-serif: "Roboto",
+// $font-family-sans-serif;
+// $font-family-monospace: "Roboto Mono",
+// $font-family-monospace;
+// $font-family-base: $font-family-sans-serif;
+
+$primary-light: #ec407a;
+$primary-mood: #f4511e;
+$primary-dark: #ffea00;
+
+$bgc-light: #eceff1;
+$bgc-mood: #b0bec5;
+$bgc-dark: #212121; //#263238;
+
+$bgc-todo-mood: #d8e9f1;
+$bgc-todo-dark: #424242; //#37474f;
+
+$bgc-todo-header-mood: #96a2a8;
+$bgc-todo-header-dark: #2e2e2e; //#37474f;
+
+$text-color-mood: #314047;
+$text-color-dark: #cecccc;
+
+$primary: $primary-light;
+
+$theme-colors: ("primary": $primary,
+    "secondary": #c1b290,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": #ff504e,
+    "light": $light,
+    // "dark": #111111,
+    "black": #000000);
+
+// Forms
+
+$input-border-width: 0;
+
+$btn-padding-y: 10px;
+$btn-padding-x: $btn-padding-y;
+
+$btn-line-height: 1;
+
+// .input-group {
+// border-bottom: 1px solid $input-border-color;
+// }
+
+.btn {
+    cursor: pointer;
+}
