@@ -1,8 +1,9 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import Media from 'react-bootstrap/Media';
 
 
-const Post: React.FC = () => {
+const PostCard: React.FC = () => {
 
     return (
         <Card
@@ -12,7 +13,24 @@ const Post: React.FC = () => {
             }
             }
         >
-            <Card.Header>Featured</Card.Header>
+            <Card.Header>
+                <Media>
+                    <img
+                        width={64}
+                        height={64}
+                        className="mr-3"
+                        src="http://via.placeholder.com/64"
+                        alt="placeholder"
+                    />
+                    <Media.Body>
+                        <h4>Lorem ipsum</h4>
+                        <em>
+                            Lorem, ipsum dolor.
+    </em>
+                    </Media.Body>
+                </Media>
+                {/* <p className="justify-content-end">+</p> */}
+            </Card.Header>
             <Card.Body>
                 {/* <Card.Title>Special title treatment</Card.Title> */}
                 {/* <Card.Text> */}
@@ -26,4 +44,4 @@ const Post: React.FC = () => {
 
 };
 
-export default Post;
+export default PostCard;

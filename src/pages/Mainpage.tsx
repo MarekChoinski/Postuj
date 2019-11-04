@@ -2,13 +2,13 @@
 
 import React from 'react';
 
-import Post from '../components/Post';
+import PostCard from '../components/PostCard';
 
 const Mainpage: React.FC = () => {
     return (
         <>
 
-            <Post />
+            <PostCard />
 
         </>
     );
