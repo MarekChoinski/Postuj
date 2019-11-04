@@ -10,7 +10,7 @@ export const EDIT_TITLE = "todo_app/TOGGLE_TITLE";
 export type Todo = Readonly<{
     text: string,
     done: boolean,
-    id: string,
+    id?: string,
 }>;
 
 export interface TodosState {

@@ -5,3 +5,4 @@
 // export default {
 //     someAction
 // };
+export const a = 'a';

@@ -1,20 +1,20 @@
 import * as types from "./types";
-import uuid from "uuid";
+// import uuid from "uuid";
 
 const initialState: types.TodosState = {
     title: "TODO",
     todos: [{
-        id: uuid.v1(),
+        // id: uuid.v1(),
         text: "Sprawdzam cos tam",
         done: false,
     },
     {
-        id: uuid.v1(),
+        // id: uuid.v1(),
         text: "Inny task jbc",
         done: false,
     },
     {
-        id: uuid.v1(),
+        // id: uuid.v1(),
         text: "Kolejny task",
         done: true,
     }],
@@ -32,7 +32,7 @@ const reducer = (
                 todos: [
                     ...state.todos,
                     {
-                        id: uuid.v1(),
+                        // id: uuid.v1(),
                         done: false,
                         ...action.payload,
                     }
