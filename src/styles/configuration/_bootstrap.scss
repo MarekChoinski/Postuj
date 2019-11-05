@@ -42,7 +42,7 @@ $theme-colors: ("primary": $primary,
 
 // Forms
 
-$input-border-width: 0;
+// $input-border-width: 0;
 
 $btn-padding-y: 10px;
 $btn-padding-x: $btn-padding-y;
@@ -55,4 +55,9 @@ $btn-line-height: 1;
 
 .btn {
     cursor: pointer;
+}
+
+.invalid-feedback,
+.valid-feedback {
+    display: block !important;
 }
