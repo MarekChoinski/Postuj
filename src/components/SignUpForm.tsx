@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Media from 'react-bootstrap/Media';
 
 
-const PostCard: React.FC = () => {
+const SignUpForm: React.FC = () => {
 
     return (
         <Card
@@ -44,4 +44,4 @@ const PostCard: React.FC = () => {
 
 };
 
-export default PostCard;
+export default SignUpForm;

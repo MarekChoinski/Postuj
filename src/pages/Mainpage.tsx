@@ -9,6 +9,7 @@ const Mainpage: React.FC = () => {
         <>
 
             <PostCard />
+            <PostCard />
 
         </>
     );

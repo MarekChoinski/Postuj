@@ -12,6 +12,7 @@ import {
   Route,
   // Link
 } from "react-router-dom";
+import PostPage from './pages/PostPage';
 
 const App: React.FC = () => {
   return (
@@ -23,6 +24,7 @@ const App: React.FC = () => {
         <Route exact path="/">
           <Mainpage />
         </Route>
+        <Route path="/post/:id" component={PostPage} />
         <Route path="*">
           <Page404 />
         </Route>
