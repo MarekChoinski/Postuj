@@ -1,8 +1,9 @@
-// import {
-//     someAction
-// } from "./actions";
+import {
+    addPost,
+    deletePost,
+} from "./actions";
 
-// export default {
-//     someAction
-// };
-export const a = 'a';
+export default {
+    addPost,
+    deletePost,
+};

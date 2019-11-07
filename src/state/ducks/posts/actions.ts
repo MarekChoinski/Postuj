@@ -1,38 +1,23 @@
 import * as types from "./types";
 
-export const addTodo = (text: string): types.TodoActionTypes => ({
-    type: types.ADD_TODO,
+export const addPost = (
+    text: string,
+    user: string,
+    date: string
+): types.PostActionTypes => ({
+    type: types.ADD_POST,
     payload: {
         text,
+        user,
+        date,
     },
 });
 
-export const deleteTodo = (id: string): types.TodoActionTypes => ({
-    type: types.DELETE_TODO,
+export const deletePost = (
+    id: string
+): types.PostActionTypes => ({
+    type: types.DELETE_POST,
     payload: {
         id,
     },
 });
-
-export const toggleTodo = (id: string): types.TodoActionTypes => ({
-    type: types.TOGGLE_TODO,
-    payload: {
-        id,
-    },
-});
-
-export const editTodo = (id: string, text: string): types.TodoActionTypes => ({
-    type: types.EDIT_TODO,
-    payload: {
-        id,
-        text,
-    },
-});
-
-export const editTitle = (title: string): types.TitleActionTypes => ({
-    type: types.EDIT_TITLE,
-    payload: {
-        title,
-    },
-});
-

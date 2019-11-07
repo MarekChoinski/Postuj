@@ -1,59 +1,44 @@
-export const ADD_TODO = "todo_app/ADD_TODO";
-export const DELETE_TODO = "todo_app/DELETE_TODO";
-export const TOGGLE_TODO = "todo_app/TOGGLE_TODO";
-export const EDIT_TODO = "todo_app/EDIT_TODO";
+export const ADD_POST = "bloggy/posts/ADD_POST";
+export const DELETE_POST = "bloggy/posts/DELETE_POST";
+// export const TOGGLE_TODO = "todo_app/TOGGLE_TODO";
+// export const EDIT_TODO = "todo_app/EDIT_TODO";
 
-export const EDIT_TITLE = "todo_app/TOGGLE_TITLE";
+// export const EDIT_TITLE = "todo_app/TOGGLE_TITLE";
 
 
-
-export type Todo = Readonly<{
+export type Post = Readonly<{
     text: string,
-    done: boolean,
-    id?: string,
+    user: string,
+    date: string,
+    id: string,
 }>;
 
-export interface TodosState {
-    readonly title: string,
-    readonly todos: ReadonlyArray<Todo>,
+export interface PostsState {
+    // readonly title: string,
+    readonly posts: ReadonlyArray<Post>,
 }
 
 
-
-
-
-interface AddTodoAction {
-    type: typeof ADD_TODO;
-    payload: Pick<Todo, 'text'>;
+interface AddPostAction {
+    type: typeof ADD_POST;
+    payload: Pick<Post, 'text' | "user" | "date">;
 }
 
-interface DeleteTodoAction {
-    type: typeof DELETE_TODO;
-    payload: Pick<Todo, 'id'>;
+interface DeletePostAction {
+    type: typeof DELETE_POST;
+    payload: Pick<Post, 'id'>;
 }
 
-interface ToggleTodoAction {
-    type: typeof TOGGLE_TODO;
-    payload: Pick<Todo, 'id'>;
-}
-
-interface EditTodoAction {
-    type: typeof EDIT_TODO;
-    payload: Pick<Todo, 'id' | 'text'>;
-}
-
-interface EditTitleAction {
-    type: typeof EDIT_TITLE;
-    payload: {
-        title: string,
-    }
-}
+// interface EditTitleAction {
+//     type: typeof EDIT_TITLE;
+//     payload: {
+//         title: string,
+//     }
+// }
 
 
-export type TodoActionTypes =
-    AddTodoAction |
-    DeleteTodoAction |
-    ToggleTodoAction |
-    EditTodoAction;
+export type PostActionTypes =
+    AddPostAction |
+    DeletePostAction;
 
-export type TitleActionTypes = EditTitleAction;
+// export type TitleActionTypes = EditTitleAction;

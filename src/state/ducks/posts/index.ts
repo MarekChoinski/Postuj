@@ -5,12 +5,13 @@ import * as postsTypes from "./types";
 //     default as postsSelectors
 // }
 //     from "./selectors";
-// export {
-//     default as postsOperations
-// }
-//     from "./operations";
-// export {
-//     postsTypes
-// };
+export {
+    default as postsOperations
+}
+    from "./operations";
+
+export {
+    postsTypes
+};
 
 export default postsReducer;
