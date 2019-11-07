@@ -1,5 +1,4 @@
 import React, { createContext, useState } from 'react';
-import PropTypes from 'prop-types';
 
 type themeTypes = "light" | "mood" | "dark";
 type UpdateType = React.Dispatch<React.SetStateAction<themeTypes>>;

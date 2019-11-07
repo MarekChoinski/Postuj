@@ -13,6 +13,8 @@ import {
   // Link
 } from "react-router-dom";
 import PostPage from './pages/PostPage';
+import SignUpPage from './pages/SignUpPage';
+import LoginPage from './pages/LoginPage';
 
 const App: React.FC = () => {
   return (
@@ -21,13 +23,11 @@ const App: React.FC = () => {
       <ThemeSwitch />
 
       <Switch>
-        <Route exact path="/">
-          <Mainpage />
-        </Route>
+        <Route exact path="/" component={Mainpage} />
+        <Route exact path="/signup" component={SignUpPage} />
+        <Route exact path="/login" component={LoginPage} />
         <Route path="/post/:id" component={PostPage} />
-        <Route path="*">
-          <Page404 />
-        </Route>
+        <Route path="*" component={Page404} />
       </Switch>
 
     </Router>

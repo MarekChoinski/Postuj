@@ -5,14 +5,23 @@ import Card from 'react-bootstrap/Card';
 import { Formik, Form as FormikForm, useField } from 'formik';
 import * as Yup from 'yup';
 
-const MyTextInput = ({ label, ...props }) => {
+type textInputType = {
+    label: string,
+    id?: string,
+    name: string,
+    type: string,
+    placeholder: string,
+};
+
+const MyTextInput: React.FC<textInputType> = (props) => {
+
     // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
     // which we can spread on <input> and alse replace ErrorMessage entirely.
     const [field, meta] = useField(props);
     return (
         <Form.Group>
-            <Form.Label htmlFor={props.id || props.name}>{label}</Form.Label>
-            <Form.Control className="text-input" {...field} {...props} />
+            <Form.Label htmlFor={props.id || props.name}>{props.label}</Form.Label>
+            {/* <Form.Control className="text-input" {...field} {...props} /> */}
 
             {meta.touched ? (
                 meta.error ?
@@ -28,7 +37,14 @@ const MyTextInput = ({ label, ...props }) => {
     );
 };
 
-const MyCheckbox = ({ children, ...props }) => {
+type checkBoxType = {
+    children: React.ReactNode,
+    name: string,
+    id: string,
+    value: string,
+};
+
+const MyCheckbox: React.FC<checkBoxType> = ({ children, ...props }) => {
     // We need to tell useField what type of input this is
     // since React treats radios and checkboxes differently
     // than inputs/select/textarea.
@@ -41,7 +57,7 @@ const MyCheckbox = ({ children, ...props }) => {
 
 
         <Form.Group>
-            <Form.Check type="checkbox" {...field} {...props}>
+            <Form.Check type="checkbox"  {...field} {...props}>
                 <Form.Check.Input type="checkbox" />
                 <Form.Check.Label>{children}</Form.Check.Label>
                 {meta.touched ? (
@@ -130,6 +146,7 @@ const SignUpForm = () => {
                     <MyCheckbox
                         name="acceptedTerms"
                         id="acceptedTerms"
+                        value="test"
                     >
                         I accept the terms and conditions
                     </MyCheckbox>
