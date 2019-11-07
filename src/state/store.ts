@@ -13,5 +13,9 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 export default function configureStore() {
-    return createStore(combineReducers(reducers), middleware)
+    return createStore(
+        combineReducers(reducers),
+        // (window as any).REDUX_INITIAL_DATA,
+        middleware
+    )
 }

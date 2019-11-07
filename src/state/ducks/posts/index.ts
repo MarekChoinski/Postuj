@@ -1,10 +1,10 @@
 import postsReducer from "./reducers";
 import * as postsTypes from "./types";
 
-// export {
-//     default as postsSelectors
-// }
-//     from "./selectors";
+export {
+    default as postsSelectors
+}
+    from "./selectors";
 export {
     default as postsOperations
 }
