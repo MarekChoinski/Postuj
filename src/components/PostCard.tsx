@@ -2,8 +2,16 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Media from 'react-bootstrap/Media';
 
+interface PostProps {
+    author: string,
+    date: string,
+    text: string,
 
-const PostCard: React.FC = () => {
+};
+
+const PostCard: React.FC<PostProps> = (props) => {
+
+    const { author, date, text } = props;
 
     return (
         <Card
@@ -23,7 +31,7 @@ const PostCard: React.FC = () => {
                         alt="placeholder"
                     />
                     <Media.Body>
-                        <h4>Lorem ipsum</h4>
+                        <h4>{author}</h4>
                         <em>
                             Lorem, ipsum dolor.
     </em>
@@ -34,10 +42,10 @@ const PostCard: React.FC = () => {
             <Card.Body>
                 {/* <Card.Title>Special title treatment</Card.Title> */}
                 {/* <Card.Text> */}
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, minima sint adipisci repellendus quod autem delectus corrupti? Pariatur dolorum optio qui perferendis nesciunt iste velit corrupti nemo unde! Minus ullam officia id atque praesentium asperiores. Aliquam, exercitationem minima? Vero repellat dicta rem culpa doloribus perferendis earum adipisci sed modi quis.
-    {/* </Card.Text> */}
+                {text}
+                {/* </Card.Text> */}
             </Card.Body>
-            <Card.Footer className="text-muted">2 days ago</Card.Footer>
+            <Card.Footer className="text-muted">{date}</Card.Footer>
         </Card >
     );
 

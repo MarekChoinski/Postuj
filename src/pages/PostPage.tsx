@@ -20,7 +20,7 @@ const PostPage: React.FC<Props> = (props) => {
     return (
         <>
             {props.match.params.id}
-            < PostCard />
+            {/* < PostCard /> */}
         </>
     );
 }

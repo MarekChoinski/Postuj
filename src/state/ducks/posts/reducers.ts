@@ -26,10 +26,17 @@ const initialState: types.PostsState = {
 };
 
 
+
+
+
 const reducer = (
     state = initialState,
     action: types.PostActionTypes// | types.TitleActionTypes
 ): types.PostsState => {
+
+
+
+
     switch (action.type) {
         case types.ADD_POST:
             return {
@@ -53,6 +60,7 @@ const reducer = (
             }
 
         default:
+            // console.log("state", state);
             return state;
     }
 };
