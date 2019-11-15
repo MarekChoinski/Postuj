@@ -7,17 +7,22 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Card from 'react-bootstrap/Card';
 import Media from 'react-bootstrap/Media';
 
+import { ReactComponent as IconCamera } from '../assets/add_post_form_camera.svg';
+import { ReactComponent as IconBold } from '../assets/add_post_form_bold.svg';
+import { ReactComponent as IconItalic } from '../assets/add_post_form_italic.svg';
+
+
 
 const schema = Yup.object({
     text: Yup.string()
         // .email('Invalid email ')
-        .required('Required'),
+        .required('Required')
+        .max(30, 'Must be less than 15 characters')
+        .min(3, 'Password is too short - should be 8 chars minimum.'),
     // password: Yup.string()
     //     .required('No password provided.')
-    //     .min(8, 'Password is too short - should be 8 chars minimum.')
     //     .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
     // firstName: Yup.string()
-    //     .max(15, 'Must be less than 15 characters')
     //     .required('Required'),
     // lastName: Yup.string()
     //     .max(20, 'Must be less than 20 characters')
@@ -95,10 +100,18 @@ const InnerForm = (props: FormikProps<FormValues>) => {
                             <Form.Control as="textarea" rows="3" />
                         </Form.Group>
                         <ButtonToolbar>
-                            <Button variant="light">B</Button>
-                            <Button variant="light">I</Button>
-                            <Button variant="light">A</Button>
-                            <Button variant="light">XD</Button>
+                            <Button variant="light">
+                                <IconBold />
+                            </Button>
+                            <Button variant="light">
+                                <IconItalic />
+                            </Button>
+                            <Button variant="light">
+                                <IconCamera />
+                            </Button>
+                            {/* <Button variant="light">
+                                <IconCamera />
+                            </Button> */}
                             <Button disabled={isSubmitting} type="submit" className="ml-auto">Submit</Button>
                         </ButtonToolbar>
                     </Media.Body>
