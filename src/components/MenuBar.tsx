@@ -10,14 +10,18 @@ import {
 
 const MenuBar: React.FC = () => {
 
+
+
     return (
         <Navbar expand="lg" bg="primary" variant="light" fixed="top">
-            <Navbar.Brand href="#home" > React - Bootstrap</Navbar.Brand >
+            <Navbar.Brand as={NavLink} to="/" > React - Bootstrap</Navbar.Brand >
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                 <Nav>
-                    <NavLink to="/">Home</NavLink>
-                    <NavLink to="/404">404</NavLink>
+                    {/* <Nav.Link as={NavLink} to="/" exact>Home</Nav.Link> */}
+                    <Nav.Link as={NavLink} to="/404">404</Nav.Link>
+                    <Nav.Link as={NavLink} to="/signup">signup</Nav.Link>
+                    <Nav.Link as={NavLink} to="/login">login</Nav.Link>
                     <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
