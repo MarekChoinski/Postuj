@@ -16,10 +16,9 @@ const PostCard: React.FC<PostProps> = (props) => {
     return (
         <Card
             style={{
-                width: "600px",
+                width: "900px",
                 margin: "50px auto"
-            }
-            }
+            }}
         >
             <Card.Header>
                 <Media>
