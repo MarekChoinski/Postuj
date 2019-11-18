@@ -14,63 +14,16 @@ import { ReactComponent as IconItalic } from '../assets/add_post_form_italic.svg
 
 
 const schema = Yup.object({
-    text: Yup.string()
-        // .email('Invalid email ')
+    postContent: Yup.string()
         .required('Required')
         .max(30, 'Must be less than 15 characters')
-        .min(3, 'Password is too short - should be 8 chars minimum.'),
-    // password: Yup.string()
-    //     .required('No password provided.')
-    //     .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
-    // firstName: Yup.string()
-    //     .required('Required'),
-    // lastName: Yup.string()
-    //     .max(20, 'Must be less than 20 characters')
-    //     .required('Required'),
-    // acceptedTerms: Yup.boolean()
-    //     .required('Required')
-    //     .oneOf([true], 'You must accept the terms and conditions.'),
+        .min(3, 'Too short - should be 8 chars minimum.'),
 });
 
-// interface FormProps {
-//     touched: boolean | undefined,
-//     errors: string | undefined,
-//     label: string,
-//     name: string,
-//     validLabel?: string,
-//     type?: string,
-//     placeholder?: string,
-// };
-
-// const TextField: React.FC<FormProps> = (props) => {
-//     const { touched, errors, label, validLabel = "Seems good", placeholder = "", ...field } = props;
-//     return (
-//         <Form.Group>
-//             <Form.Label>{label}</Form.Label>
-//             <Field
-//                 as={Form.Control}
-//                 placeholder={placeholder}
-//                 {...field}
-//             />
-//             {touched ? (
-//                 errors ?
-//                     <Form.Control.Feedback type="invalid">
-//                         {errors}
-//                     </Form.Control.Feedback>
-//                     :
-//                     <Form.Control.Feedback type="valid">
-//                         {validLabel}
-//                     </Form.Control.Feedback>
-//             ) : null}
-//         </Form.Group>
-//     )
-// };
 
 
-
-// Shape of form values
 interface FormValues {
-    text: string,
+    postContent: string,
 }
 
 const InnerForm = (props: FormikProps<FormValues>) => {
@@ -96,8 +49,23 @@ const InnerForm = (props: FormikProps<FormValues>) => {
                         alt="placeholder"
                     />
                     <Media.Body>
-                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                            <Form.Control as="textarea" rows="3" />
+                        <Form.Group
+                            controlId="exampleForm.ControlTextarea1"
+                        >
+                            <Field
+                                as="textarea"
+                                class="form-control"
+                                rows="3"
+                                name="postContent"
+                                placeholder="Type post text..."
+                            />
+
+                            {touched.postContent && errors.postContent ?
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.postContent}
+                                </Form.Control.Feedback>
+                                : null}
+
                         </Form.Group>
                         <ButtonToolbar>
                             <Button variant="light">
@@ -126,21 +94,21 @@ const InnerForm = (props: FormikProps<FormValues>) => {
     );
 };
 
-
 interface AddPostFormProps {
-    text?: string,
+    postContent?: string,
 }
-
 
 const AddPostForm = withFormik<AddPostFormProps, FormValues>({
 
     mapPropsToValues: props => {
         return {
-            text: "",
+            postContent: "",
         };
     },
 
     validationSchema: schema,
+    validateOnChange: false,
+    validateOnBlur: false,
 
     handleSubmit: (values, { setSubmitting }) => {
 

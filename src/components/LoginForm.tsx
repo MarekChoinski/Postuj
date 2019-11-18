@@ -1,6 +1,11 @@
 import React from 'react';
 import * as Yup from 'yup';
-import { withFormik, FormikProps, /*FormikErrors,*/ Form as FormikForm, Field } from 'formik';
+import {
+    withFormik,
+    FormikProps, /*FormikErrors,*/
+    Form as FormikForm,
+    Field
+} from 'formik';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
