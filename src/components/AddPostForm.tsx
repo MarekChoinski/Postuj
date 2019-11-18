@@ -10,6 +10,10 @@ import Media from 'react-bootstrap/Media';
 import { ReactComponent as IconCamera } from '../assets/add_post_form_camera.svg';
 import { ReactComponent as IconBold } from '../assets/add_post_form_bold.svg';
 import { ReactComponent as IconItalic } from '../assets/add_post_form_italic.svg';
+import { addPost } from '../state/ducks/posts/operations';
+
+import { useDispatch } from 'react-redux';
+
 
 
 
@@ -28,7 +32,10 @@ interface FormValues {
 
 const InnerForm = (props: FormikProps<FormValues>) => {
 
+    const dispatch = useDispatch();
     const { touched, errors, isSubmitting } = props;
+
+    dispatch(addPost("Jakis kontent", "nazwa autora"));
 
     return (
         <Card
@@ -54,7 +61,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
                         >
                             <Field
                                 as="textarea"
-                                class="form-control"
+                                className="form-control"
                                 rows="3"
                                 name="postContent"
                                 placeholder="Type post text..."
@@ -96,6 +103,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
 
 interface AddPostFormProps {
     postContent?: string,
+
 }
 
 const AddPostForm = withFormik<AddPostFormProps, FormValues>({
@@ -115,6 +123,8 @@ const AddPostForm = withFormik<AddPostFormProps, FormValues>({
         setTimeout(() => {
             console.log(JSON.stringify(values, null, 2));
             setSubmitting(false);
+
+
         }, 2000);
     },
 

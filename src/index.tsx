@@ -4,8 +4,11 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import ThemeContextProvider from './contexts/ThemeContext';
-
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
+import { createFirestoreInstance } from 'redux-firestore';
 import configureStore from "./state/store";
+import { firebaseConfig } from './configs/firebaseConfig'
+
 // import * as types from './state/types';
 import {
     createStore,
@@ -16,13 +19,29 @@ import {
 import {
     Provider as ReduxProvider
 } from "react-redux";
+import firebase from 'firebase';
 
-const reduxStore = configureStore();
+firebase.initializeApp(firebaseConfig);
+firebase.firestore();
+
+// export default firebase;
+
+
+
+const reduxStore = configureStore(firebase);
 
 const RootHtml = () => (
     <ThemeContextProvider>
         <ReduxProvider store={reduxStore} >
-            <App />
+            <ReactReduxFirebaseProvider
+                firebase={firebase}
+                config={{
+                    userProfile: "users"
+                }}
+                dispatch={reduxStore.dispatch}
+                createFirestoreInstance={createFirestoreInstance}>
+                <App />
+            </ReactReduxFirebaseProvider>
         </ReduxProvider>
     </ThemeContextProvider>
 );

@@ -7,8 +7,8 @@ export const DELETE_POST = "bloggy/posts/DELETE_POST";
 
 
 export type Post = Readonly<{
-    text: string,
-    user: string,
+    content: string,
+    authorName: string,
     date: string,
     id: string,
 }>;
@@ -21,7 +21,7 @@ export interface PostsState {
 
 interface AddPostAction {
     type: typeof ADD_POST;
-    payload: Pick<Post, 'text' | "user" | "date">;
+    payload: Pick<Post, 'content' | "authorName">;
 }
 
 interface DeletePostAction {

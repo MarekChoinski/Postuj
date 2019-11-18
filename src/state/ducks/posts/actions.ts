@@ -1,15 +1,14 @@
 import * as types from "./types";
 
 export const addPost = (
-    text: string,
-    user: string,
-    date: string
+    content: string,
+    authorName: string,
+    // createdAt: any,
 ): types.PostActionTypes => ({
     type: types.ADD_POST,
     payload: {
-        text,
-        user,
-        date,
+        content,
+        authorName,
     },
 });
 
