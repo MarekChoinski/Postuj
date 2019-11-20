@@ -8,19 +8,32 @@ import { useSelector } from 'react-redux';
 
 import { postsSelectors } from '../state/ducks/posts';
 import AddPostForm from '../components/AddPostForm';
+import { useFirestoreConnect } from 'react-redux-firebase'
+
 
 const Mainpage: React.FC = () => {
 
-    const posts = useSelector(postsSelectors.getPosts);
+    useFirestoreConnect([
+        { collection: 'posts' } // or 'todos'
+    ])
+    const posts = useSelector((state: any) => state.firestore.ordered.posts);
 
-    const postList = posts.map((post: any) =>
+    // console.log(todos);
+
+
+    // const posts = useSelector(postsSelectors.getPosts);
+
+    const postList = posts ? posts.map((post: any) =>
         <PostCard
-            author={post.user}
-            text={post.text}
+            author={post.authorName}
+            text={post.content}
             key={post.id}
-            date={post.date}
+            date={(new Date(post.createdAt.seconds)).toString()}//TODO fix this for dates
         />
-    );
+    ) : null;
+
+    console.log(posts && posts[0].createdAt);
+
 
 
     return (

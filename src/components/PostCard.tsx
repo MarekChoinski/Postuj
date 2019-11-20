@@ -33,16 +33,13 @@ const PostCard: React.FC<PostProps> = (props) => {
                         <h4>{author}</h4>
                         <em>
                             Lorem, ipsum dolor.
-    </em>
+                        </em>
                     </Media.Body>
                 </Media>
                 {/* <p className="justify-content-end">+</p> */}
             </Card.Header>
             <Card.Body>
-                {/* <Card.Title>Special title treatment</Card.Title> */}
-                {/* <Card.Text> */}
                 {text}
-                {/* </Card.Text> */}
             </Card.Body>
             <Card.Footer className="text-muted">{date}</Card.Footer>
         </Card >

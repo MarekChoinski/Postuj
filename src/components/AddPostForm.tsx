@@ -12,30 +12,26 @@ import { ReactComponent as IconBold } from '../assets/add_post_form_bold.svg';
 import { ReactComponent as IconItalic } from '../assets/add_post_form_italic.svg';
 import { addPost } from '../state/ducks/posts/operations';
 
-import { useDispatch } from 'react-redux';
-
-
-
+import { useDispatch, connect } from 'react-redux';
+import { postsSelectors } from '../state/ducks/posts';
 
 const schema = Yup.object({
     postContent: Yup.string()
         .required('Required')
-        .max(30, 'Must be less than 15 characters')
+        .max(3000, 'Must be less than 15 characters')
         .min(3, 'Too short - should be 8 chars minimum.'),
 });
-
-
 
 interface FormValues {
     postContent: string,
 }
 
 const InnerForm = (props: FormikProps<FormValues>) => {
-
     const dispatch = useDispatch();
+
     const { touched, errors, isSubmitting } = props;
 
-    dispatch(addPost("Jakis kontent", "nazwa autora"));
+
 
     return (
         <Card
@@ -101,12 +97,29 @@ const InnerForm = (props: FormikProps<FormValues>) => {
     );
 };
 
+// const addPostOnSubmit: any = (values: any, { props, setSubmitting }: any): any => {
+const addPostOnSubmit = (values: any) => {
+    // props.dispatch(addPost("Jakis kontent", "nazwa autora"));
+
+    console.log(values);
+
+
+    // setTimeout(() => {
+    //     console.log(JSON.stringify(values, null, 2));
+    //     setSubmitting(false);
+
+
+    // }, 2000);
+}
+
 interface AddPostFormProps {
     postContent?: string,
+    dispatch?: any,
+    addPostOnSubmit?: any,
 
 }
 
-const AddPostForm = withFormik<AddPostFormProps, FormValues>({
+const AddPostFormFormik = withFormik<AddPostFormProps, FormValues>({
 
     mapPropsToValues: props => {
         return {
@@ -118,16 +131,22 @@ const AddPostForm = withFormik<AddPostFormProps, FormValues>({
     validateOnChange: false,
     validateOnBlur: false,
 
-    handleSubmit: (values, { setSubmitting }) => {
-
-        setTimeout(() => {
-            console.log(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-
-
-        }, 2000);
+    handleSubmit: (values, { props, setSubmitting }) => {
+        props.addPostOnSubmit(values.postContent, "Nazwa autora");
+        setSubmitting(false);
     },
 
 })(InnerForm);
+
+const mapDispatchToProps = (dispatch: any) => ({
+    // return {
+    addPostOnSubmit: (postContent: string, author: string) => dispatch(addPost(postContent, author)),
+    // }
+});
+
+const AddPostForm = connect(
+    null,
+    mapDispatchToProps
+)(AddPostFormFormik);
 
 export default AddPostForm;
