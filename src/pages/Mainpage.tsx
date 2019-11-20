@@ -29,6 +29,7 @@ const Mainpage: React.FC = () => {
             text={post.content}
             key={post.id}
             date={(new Date(post.createdAt.seconds)).toString()}//TODO fix this for dates
+            id={post.id}
         />
     ) : null;
 

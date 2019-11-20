@@ -2,16 +2,21 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Media from 'react-bootstrap/Media';
 
+import {
+    Link
+} from "react-router-dom";
+
 interface PostProps {
     author: string,
     date: string,
     text: string,
+    id: string,
 
 };
 
 const PostCard: React.FC<PostProps> = (props) => {
 
-    const { author, date, text } = props;
+    const { author, date, text, id } = props;
 
     return (
         <Card
@@ -39,7 +44,12 @@ const PostCard: React.FC<PostProps> = (props) => {
                 {/* <p className="justify-content-end">+</p> */}
             </Card.Header>
             <Card.Body>
-                {text}
+                <Card.Text>
+                    {text}
+                </Card.Text>
+                <Card.Link as={Link} to={"/post/" + id} className="ml-auto">
+                    Pokaż całość
+                </Card.Link>
             </Card.Body>
             <Card.Footer className="text-muted">{date}</Card.Footer>
         </Card >
