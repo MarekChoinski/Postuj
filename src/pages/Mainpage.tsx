@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 // import { postsSelectors } from '../state/ducks/posts';
 import AddPostForm from '../components/AddPostForm';
 import { useFirestoreConnect } from 'react-redux-firebase'
+import Spinner from 'react-bootstrap/Spinner';
 
 
 const Mainpage: React.FC = () => {
@@ -31,7 +32,19 @@ const Mainpage: React.FC = () => {
             date={(new Date(post.createdAt.seconds)).toString()}//TODO fix this for dates
             id={post.id}
         />
-    ) : null;
+    ) : <Spinner
+        animation="grow"
+        style={{
+            marginTop: "30vh",
+            marginLeft: "50vw",
+
+        }}
+        role="status"
+    >
+            <span className="sr-only">
+                Loading...
+    </span>
+        </Spinner>;
 
     console.log(posts && posts[0].createdAt);
 

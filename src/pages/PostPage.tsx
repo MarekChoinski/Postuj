@@ -22,27 +22,13 @@ const PostPage: React.FC<Props> = (props) => {
         {
             collection: 'posts',
             doc: props.match.params.id,
-        } // or 'todos'
+        }
     ])
 
-
-
-    // useFirestoreConnect(() => [
-    //     { collection: 'todos', doc: todoId } // or `todos/${props.todoId}`
-    // ])
-    // const todos = useSelector(({ firestore: { ordered } }) => ordered.todos && ordered.todos[todoId])
     const post = useSelector((state: any) =>
         state.firestore.ordered.posts
-        // ?
-        //     state.firestore.ordered.posts[0] : undefinied;
     );
 
-    console.log(post);
-
-
-
-    // const id = props.match.params.id;
-    // console.log();
 
     return (
 
@@ -68,7 +54,7 @@ const PostPage: React.FC<Props> = (props) => {
             >
                 <span className="sr-only">
                     Loading...
-            </span>
+                </span>
             </Spinner>
 
     );
