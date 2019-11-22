@@ -6,7 +6,7 @@ import PostCard from '../components/PostCard';
 
 import { useSelector } from 'react-redux';
 
-import { postsSelectors } from '../state/ducks/posts';
+// import { postsSelectors } from '../state/ducks/posts';
 import AddPostForm from '../components/AddPostForm';
 import { useFirestoreConnect } from 'react-redux-firebase'
 
