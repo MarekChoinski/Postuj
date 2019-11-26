@@ -4,6 +4,8 @@ import { withFormik, FormikProps, /*FormikErrors,*/ Form as FormikForm, Field } 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { useDispatch, connect } from 'react-redux';
+import { signIn } from '../state/ducks/auth/operations';
 
 
 const schema = Yup.object({
@@ -152,11 +154,13 @@ interface SignUpFormProps {
     lastName?: string,
     acceptedTerms?: boolean,
 
+    signInOnSubmit?: any,
+
     title: string;
 }
 
 
-const SignUpForm = withFormik<SignUpFormProps, FormValues>({
+const SignUpFormFormik = withFormik<SignUpFormProps, FormValues>({
 
     mapPropsToValues: props => {
         return {
@@ -170,14 +174,21 @@ const SignUpForm = withFormik<SignUpFormProps, FormValues>({
 
     validationSchema: schema,
 
-    handleSubmit: (values, { setSubmitting }) => {
-
-        setTimeout(() => {
-            console.log(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-        }, 2000);
+    handleSubmit: (values, { props, setSubmitting }) => {
+        // props.signInOnSubmit("testowy@test.pl", "test123");
+        setSubmitting(false);
     },
 
 })(InnerForm);
+
+const mapDispatchToProps = (dispatch: any) => ({
+    signInOnSubmit: (email: string, password: string) => dispatch(signIn(email, password)),
+});
+
+
+const SignUpForm = connect(
+    null,
+    mapDispatchToProps
+)(SignUpFormFormik);
 
 export default SignUpForm;

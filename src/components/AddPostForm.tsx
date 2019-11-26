@@ -139,9 +139,7 @@ const AddPostFormFormik = withFormik<AddPostFormProps, FormValues>({
 })(InnerForm);
 
 const mapDispatchToProps = (dispatch: any) => ({
-    // return {
     addPostOnSubmit: (postContent: string, author: string) => dispatch(addPost(postContent, author)),
-    // }
 });
 
 const AddPostForm = connect(

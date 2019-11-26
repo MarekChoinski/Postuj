@@ -10,6 +10,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
+import { useDispatch, connect } from 'react-redux';
+import { signIn } from '../state/ducks/auth/operations';
+
 
 const schema = Yup.object({
     email: Yup.string()
@@ -58,13 +61,14 @@ interface FormValues {
 
 interface OtherProps {
     title: string;
+    authError: string | undefined;
 }
 
 
 
 const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 
-    const { touched, errors, isSubmitting, title } = props;
+    const { touched, errors, isSubmitting, title, authError } = props;
 
     return (
         <Card
@@ -102,6 +106,11 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
                     Login
                 </Button>
 
+                {authError ?
+                    <Form.Control.Feedback type="invalid">
+                        {authError}
+                    </Form.Control.Feedback>
+                    : null}
 
             </FormikForm>
         </Card>
@@ -113,29 +122,46 @@ interface LoginFormProps {
     email?: string,
     password?: string,
 
+    signInOnSubmit?: any,
+    authError: string | undefined,
+
     title: string;
 }
 
-const LoginForm = withFormik<LoginFormProps, FormValues>({
+const LoginFormFormik = withFormik<LoginFormProps, FormValues>({
 
     mapPropsToValues: props => {
         return {
             email: "",
             password: "",
+            authError: "",
         };
     },
 
     // TODO async validation with firebase https://jaredpalmer.com/formik/docs/api/withFormik
     validationSchema: schema,
 
-    handleSubmit: (values, { setSubmitting }) => {
-
-        setTimeout(() => {
-            console.log(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-        }, 2000);
+    handleSubmit: (values, { props, setSubmitting }) => {
+        props.signInOnSubmit("testowy@test.pll", "test1234");
+        setSubmitting(false);
     },
 
 })(InnerForm);
+
+const mapStateToProps = (state: any) => ({
+    authError: state.auth.authError,
+})
+
+const mapDispatchToProps = (dispatch: any) => ({
+    signInOnSubmit: (email: string, password: string) => dispatch(signIn(email, password)),
+});
+
+
+
+
+const LoginForm = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LoginFormFormik);
 
 export default LoginForm;

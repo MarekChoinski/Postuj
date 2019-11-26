@@ -8,18 +8,29 @@ import { useSelector } from 'react-redux';
 
 // import { postsSelectors } from '../state/ducks/posts';
 import AddPostForm from '../components/AddPostForm';
-import { useFirestoreConnect } from 'react-redux-firebase'
+import { useFirestoreConnect, useFirebase } from 'react-redux-firebase'
 import Spinner from 'react-bootstrap/Spinner';
 
 
 const Mainpage: React.FC = () => {
+
+    // const firebase = useFirebase();
+
+    // const auth = useSelector((state: any) => state.firebase.auth)
+
+
+
+
+
+
+
+
 
     useFirestoreConnect([
         { collection: 'posts' } // or 'todos'
     ])
     const posts = useSelector((state: any) => state.firestore.ordered.posts);
 
-    // console.log(todos);
 
 
     // const posts = useSelector(postsSelectors.getPosts);
@@ -45,8 +56,6 @@ const Mainpage: React.FC = () => {
                 Loading...
     </span>
         </Spinner>;
-
-    console.log(posts && posts[0].createdAt);
 
 
 
