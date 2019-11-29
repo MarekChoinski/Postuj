@@ -49,6 +49,31 @@ export const signOutFailed = (
     error: true,
 });
 
+interface SignUpAction {
+    type: typeof types.SIGN_UP,
+    payload: {
+        error?: string
+    },
+    error?: boolean,
+}
+
+export const signUp = (
+): SignUpAction => ({
+    type: types.SIGN_UP,
+    payload: {},
+});
+
+export const signUpFailed = (
+    error: string,
+): SignUpAction => ({
+    type: types.SIGN_UP,
+    payload: {
+        error
+    },
+    error: true,
+});
+
 export type AuthActionTypes =
     SignOutAction |
-    SignInAction;
+    SignInAction |
+    SignUpAction;

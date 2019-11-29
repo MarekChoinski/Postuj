@@ -142,7 +142,9 @@ const LoginFormFormik = withFormik<LoginFormProps, FormValues>({
     validationSchema: schema,
 
     handleSubmit: (values, { props, setSubmitting }) => {
-        props.signInOnSubmit("testowy@test.pl", "test123");
+        props.signInOnSubmit(
+            "jakis@mail.com",
+            "haslo1234");
         setSubmitting(false);
     },
 

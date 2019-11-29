@@ -32,6 +32,9 @@ const Mainpage: React.FC = () => {
     const posts = useSelector((state: any) => state.firestore.ordered.posts);
 
 
+    //const stuff = useSelector((state: any) => state.firestore.ordered.posts);
+
+
 
     // const posts = useSelector(postsSelectors.getPosts);
 

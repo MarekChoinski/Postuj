@@ -57,9 +57,60 @@ export const signOut = () => {
     };
 };
 
-// export const deletePost = actions.deletePost;
+export const signUp = (
+    email: string,
+    password: string,
+) => {
+
+    return async (dispatch: any, getState: any, { getFirebase, getFirestore }: any) => {
+
+        try {
+            const firebase = getFirebase();
+
+            const firestore = getFirestore();
+
+            // const newUser = await firebase.auth().createUserWithEmailAndPassword(
+            //     "jakis@mail.com",
+            //     "haslo1234",
+            // );
+
+            // console.log(newUser);
+
+            // await firestore.collection('users').doc(newUser.user!.uid).set({
+            //     firstName: "imie",
+            //     lastName: "nazwisko",
+            // });
+
+            firebase.createUser(
+                {
+                    email: "jakis@mail.com",
+                    password: "haslo1234"
+                },
+                {
+                    firstName: "imie",
+                    lastName: "nazwisko",
+                }
+            )
+
+
+            dispatch(actions.signUp());
+
+        } catch (error) {
+
+            // if (error.code == "auth/user-not-found") {
+            //     error = "User not found!";
+            // }
+            // else {
+            //     error = error.code + " " + error.message;
+            // }
+
+            dispatch(actions.signUpFailed(error.code));
+        }
+    };
+};
 
 export default {
     signIn,
     signOut,
+    signUp,
 };

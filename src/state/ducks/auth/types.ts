@@ -1,10 +1,6 @@
 export const SIGN_IN = "bloggy/auth/SIGN_IN";
 export const SIGN_OUT = "bloggy/auth/SIGN_OUT";
-// export const DELETE_POST = "bloggy/posts/DELETE_POST";
-// export const TOGGLE_TODO = "todo_app/TOGGLE_TODO";
-// export const EDIT_TODO = "todo_app/EDIT_TODO";
-
-// export const EDIT_TITLE = "todo_app/TOGGLE_TITLE";
+export const SIGN_UP = "bloggy/auth/SIGN_UP";
 
 
 // export type Post = Readonly<{
