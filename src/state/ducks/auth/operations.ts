@@ -9,13 +9,7 @@ export const signIn = (
     return async (dispatch: any, getState: any, { getFirebase }: any) => {
 
         try {
-            // const firebase = getFirebase();
-
-            console.log("auth!");
             await firebase.auth().signInWithEmailAndPassword(email, password);
-
-
-
             dispatch(actions.signIn());
 
         } catch (error) {
@@ -60,6 +54,8 @@ export const signOut = () => {
 export const signUp = (
     email: string,
     password: string,
+    username: string,
+    profilePicPath: string,
 ) => {
 
     return async (dispatch: any, getState: any, { getFirebase, getFirestore }: any) => {
@@ -67,28 +63,14 @@ export const signUp = (
         try {
             const firebase = getFirebase();
 
-            const firestore = getFirestore();
-
-            // const newUser = await firebase.auth().createUserWithEmailAndPassword(
-            //     "jakis@mail.com",
-            //     "haslo1234",
-            // );
-
-            // console.log(newUser);
-
-            // await firestore.collection('users').doc(newUser.user!.uid).set({
-            //     firstName: "imie",
-            //     lastName: "nazwisko",
-            // });
-
             firebase.createUser(
                 {
-                    email: "jakis@mail.com",
-                    password: "haslo1234"
+                    email: email,
+                    password: password,
                 },
                 {
-                    firstName: "imie",
-                    lastName: "nazwisko",
+                    username: username,
+                    profilePicPath: profilePicPath,
                 }
             )
 

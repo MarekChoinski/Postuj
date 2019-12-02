@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Media from 'react-bootstrap/Media';
+import DefaultAvatar from '../assets/images/defaultAvatar.png';
 
 import {
     Link
@@ -31,7 +32,7 @@ const PostCard: React.FC<PostProps> = (props) => {
                         width={64}
                         height={64}
                         className="mr-3"
-                        src="http://via.placeholder.com/64"
+                        src={DefaultAvatar}
                         alt="placeholder"
                     />
                     <Media.Body>

@@ -1,0 +1,9 @@
+- [ ] delete adding posts without being signed up
+- [ ] add plus attribute for posts
+- [ ] add avatars
+- [ ] add possibility for adding images
+- [ ] add profile page
+- [ ] add sorting on mainpage by date and pluses
+- [ ] format date on posts
+- [ ] realtime checking username
+- [ ] i18n

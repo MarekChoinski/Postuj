@@ -5,7 +5,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useDispatch, connect } from 'react-redux';
-import { signIn } from '../state/ducks/auth/operations';
+import { signUp } from '../state/ducks/auth/operations';
+import Media from 'react-bootstrap/Media';
+import DefaultAvatar from '../assets/images/defaultAvatar.png';
 
 
 const schema = Yup.object({
@@ -16,11 +18,8 @@ const schema = Yup.object({
         .required('No password provided.')
         .min(8, 'Password is too short - should be 8 chars minimum.')
         .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
-    firstName: Yup.string()
+    username: Yup.string()
         .max(15, 'Must be less than 15 characters')
-        .required('Required'),
-    lastName: Yup.string()
-        .max(20, 'Must be less than 20 characters')
         .required('Required'),
     acceptedTerms: Yup.boolean()
         .required('Required')
@@ -67,8 +66,8 @@ const TextField: React.FC<FormProps> = (props) => {
 interface FormValues {
     email: string,
     password: string,
-    firstName: string,
-    lastName: string,
+    username: string,
+    file: string,
     acceptedTerms: boolean,
 }
 
@@ -78,7 +77,8 @@ interface OtherProps {
 
 const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 
-    const { touched, errors, isSubmitting, title } = props;
+    const { touched, errors, isSubmitting, title, setFieldValue } = props;
+
 
     return (
         <Card
@@ -108,23 +108,65 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
                     placeholder="Type your password"
                 />
                 <TextField
-                    touched={touched.firstName}
-                    errors={errors.firstName}
-                    label="First name"
-                    name="firstName"
-                    type="firstName"
+                    touched={touched.username}
+                    errors={errors.username}
+                    label="Username"
+                    name="username"
+                    type="username"
                     placeholder="Type your first name"
                 />
-                <TextField
-                    touched={touched.lastName}
-                    errors={errors.lastName}
-                    label="Last name"
-                    name="lastName"
-                    type="lastName"
-                    placeholder="Type your last name"
-                />
+
+
+
+
+                <Form.Label>Profile photo</Form.Label>
+                <Form.Group>
+
+
+                    {/* <Media> */}
+
+                    {/* <Media.Body> */}
+
+                    <img
+                        width={64}
+                        height={64}
+                        className="mb-3"
+                        src={props.values.file ? URL.createObjectURL(props.values.file) : DefaultAvatar}
+                        alt="Generic placeholder"
+                    />
+
+                    <input id="file" name="file" type="file" className="form-control-file" onChange={(event: any) => {
+                        setFieldValue("file", event.currentTarget.files[0]);
+                        console.log(event.currentTarget.files![0]);
+                        console.log(URL.createObjectURL(event.currentTarget.files![0]));
+
+
+                    }} />
+
+
+
+                    {/* {touched.x ? (
+                        errors.x ?
+                            <Form.Control.Feedback type="invalid">
+                                {errors.x}
+                            </Form.Control.Feedback>
+                            :
+                            <Form.Control.Feedback type="valid">
+                                "test"
+                            </Form.Control.Feedback>
+                    ) : null} */}
+
+
+
+                    {/* </Media.Body> */}
+                    {/* </Media> */}
+                </Form.Group>
+
 
                 <Form.Group>
+
+
+
                     <Form.Check type="checkbox">
                         <Form.Check.Label>
                             <Field as={Form.Check.Input} type="checkbox" name="acceptedTerms" />
@@ -138,11 +180,12 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
                         : null}
                 </Form.Group>
 
+
                 <Button disabled={isSubmitting} type="submit">Submit</Button>
 
 
             </FormikForm>
-        </Card>
+        </Card >
     );
 };
 
@@ -150,9 +193,9 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 interface SignUpFormProps {
     email?: string,
     password?: string,
-    firstName?: string,
-    lastName?: string,
+    username?: string,
     acceptedTerms?: boolean,
+    file?: string,
 
     signInOnSubmit?: any,
 
@@ -166,9 +209,9 @@ const SignUpFormFormik = withFormik<SignUpFormProps, FormValues>({
         return {
             email: "",
             password: "",
-            firstName: "",
-            lastName: "",
+            username: "",
             acceptedTerms: false,
+            file: "",
         };
     },
 
@@ -182,7 +225,12 @@ const SignUpFormFormik = withFormik<SignUpFormProps, FormValues>({
 })(InnerForm);
 
 const mapDispatchToProps = (dispatch: any) => ({
-    signInOnSubmit: (email: string, password: string) => dispatch(signIn(email, password)),
+    signUpOnSubmit: (
+        email: string,
+        password: string,
+        username: string,
+        profilePicPath: string
+    ) => dispatch(signUp(email, password, username, "test")),
 });
 
 

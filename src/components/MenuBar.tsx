@@ -28,7 +28,7 @@ const MenuBar: React.FC = () => {
                     <Nav.Link as={NavLink} to="/signup">signup</Nav.Link>
                     <Nav.Link as={NavLink} to="/login">login</Nav.Link>
                     <Nav.Link onClick={() => dispatch(signOut())}>logout</Nav.Link>
-                    <Nav.Link onClick={() => dispatch(signUp("test", "test"))}>signUp</Nav.Link>
+                    <Nav.Link onClick={() => dispatch(signUp("test@tst.com", "test123", "Uytkownik", "test"))}>signUp</Nav.Link>
                     <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
