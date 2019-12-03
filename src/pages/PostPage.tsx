@@ -36,7 +36,8 @@ const PostPage: React.FC<Props> = (props) => {
             post[0] ?
                 <PostCard
                     author={post[0].authorName}
-                    text={post[0].content}
+                    content={post[0].content}
+                    authorProfilePicture={post[0].authorProfilePicture}
                     key={post[0].id}
                     date={(new Date(post[0].createdAt.seconds)).toString()}
                     id={post[0].id}

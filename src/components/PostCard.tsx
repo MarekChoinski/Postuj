@@ -12,14 +12,15 @@ import {
 interface PostProps {
     author: string,
     date: any,
-    text: string,
+    content: string,
     id: string,
+    authorProfilePicture: string,
 
 };
 
 const PostCard: React.FC<PostProps> = (props) => {
 
-    const { author, date, text, id } = props;
+    const { author, date, content, id, authorProfilePicture } = props;
 
     return (
         <Card
@@ -34,8 +35,11 @@ const PostCard: React.FC<PostProps> = (props) => {
                         width={64}
                         height={64}
                         className="mr-3"
-                        src={DefaultAvatar}
+                        src={authorProfilePicture || DefaultAvatar}
                         alt="placeholder"
+                        style={{
+                            borderRadius: "5px",
+                        }}
                     />
                     <Media.Body>
                         <h4>{author}</h4>
@@ -50,7 +54,7 @@ const PostCard: React.FC<PostProps> = (props) => {
             </Card.Header>
             <Card.Body>
                 <Card.Text>
-                    {text}
+                    {content}
                 </Card.Text>
             </Card.Body>
             <Card.Footer

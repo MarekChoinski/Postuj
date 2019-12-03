@@ -38,13 +38,14 @@ const Mainpage: React.FC = () => {
 
     // const posts = useSelector(postsSelectors.getPosts);
     if (posts)
-        console.log(posts[0].createdAt)
+        console.log(posts[0])
 
     const postList = posts ? posts.map((post: any) =>
 
-        < PostCard
+        <PostCard
             author={post.authorName}
-            text={post.content}
+            content={post.content}
+            authorProfilePicture={post.authorProfilePicture}
             key={post.id}
             date={post.createdAt.seconds}//TODO fix this for dates
             id={post.id}
