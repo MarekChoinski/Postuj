@@ -27,16 +27,10 @@ const Mainpage: React.FC = () => {
 
 
     useFirestoreConnect([
-        { collection: 'posts' } // or 'todos'
+        { collection: 'posts' }
     ])
     const posts = useSelector((state: any) => state.firestore.ordered.posts);
 
-
-    //const stuff = useSelector((state: any) => state.firestore.ordered.posts);
-
-
-
-    // const posts = useSelector(postsSelectors.getPosts);
     if (posts)
         console.log(posts[0])
 

@@ -15,3 +15,7 @@
 
 ## Done
 - [X] add avatars
+
+## Notes
+
+Generalnie dobrym pomysłem będzie trzymanie jednak info o userze w firestore-database. Będzie można wtedy prawdopodobnie lepiej sie poruszać wokół bazy. Zatem createUser będzie musiał być usunięty.

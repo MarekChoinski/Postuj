@@ -46,7 +46,7 @@ const PostCard: React.FC<PostProps> = (props) => {
                         <span
                             className="text-muted"
                         >
-                            {formatDistanceToNow(date, { addSuffix: true })}
+                            {formatDistanceToNow(date * 1000, { addSuffix: true })}
                         </span>
                     </Media.Body>
                 </Media>
