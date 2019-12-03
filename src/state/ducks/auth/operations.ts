@@ -55,22 +55,34 @@ export const signUp = (
     email: string,
     password: string,
     username: string,
-    profilePicPath: string,
+    profilePicPath: any,
 ) => {
 
     return async (dispatch: any, getState: any, { getFirebase, getFirestore }: any) => {
 
-        try {
-            const firebase = getFirebase();
+        const ref = firebase.storage().ref().child("profilePictures/av-" + username + ".jpg");
 
-            firebase.createUser(
+        console.log("Witamy w reduxie", profilePicPath);
+
+
+
+
+
+        try {
+            await ref.put(profilePicPath);
+            console.log("uploaded!");
+            const url = await ref.getDownloadURL();
+            console.log(url);
+
+
+            getFirebase().createUser(
                 {
                     email: email,
                     password: password,
                 },
                 {
                     username: username,
-                    profilePicPath: profilePicPath,
+                    profilePicPath: url,
                 }
             )
 

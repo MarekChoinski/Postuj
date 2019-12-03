@@ -194,10 +194,10 @@ interface SignUpFormProps {
     email?: string,
     password?: string,
     username?: string,
-    acceptedTerms?: boolean,
     file?: string,
+    acceptedTerms?: boolean,
 
-    signInOnSubmit?: any,
+    signUpOnSubmit?: any,
 
     title: string;
 }
@@ -206,19 +206,32 @@ interface SignUpFormProps {
 const SignUpFormFormik = withFormik<SignUpFormProps, FormValues>({
 
     mapPropsToValues: props => {
+        // return {
+        //     email: "",
+        //     password: "",
+        //     username: "",
+        //     file: "",
+        //     acceptedTerms: false,
+        // };
+
         return {
-            email: "",
-            password: "",
-            username: "",
-            acceptedTerms: false,
+            email: "test@test.com",
+            password: "saddas111",
+            username: "saddasds",
             file: "",
+            acceptedTerms: true,
         };
     },
 
     validationSchema: schema,
 
     handleSubmit: (values, { props, setSubmitting }) => {
-        // props.signInOnSubmit("testowy@test.pl", "test123");
+        props.signUpOnSubmit(
+            values.email,
+            values.password,
+            values.username,
+            values.file,
+        );
         setSubmitting(false);
     },
 
@@ -229,8 +242,8 @@ const mapDispatchToProps = (dispatch: any) => ({
         email: string,
         password: string,
         username: string,
-        profilePicPath: string
-    ) => dispatch(signUp(email, password, username, "test")),
+        profilePicPath: any
+    ) => dispatch(signUp(email, password, username, profilePicPath)),
 });
 
 

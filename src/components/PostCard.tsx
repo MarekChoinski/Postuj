@@ -48,19 +48,30 @@ const PostCard: React.FC<PostProps> = (props) => {
                 <Card.Text>
                     {text}
                 </Card.Text>
+            </Card.Body>
+            <Card.Footer
+                className="text-muted"
+                style={{
+                    display: "flex",
+                }}
+            >
+                <span>
+
+                    {date}
+                </span>
                 <Card.Link
                     as={Link}
                     to={"/post/" + id}
                     // className="ml-auto"
                     style={{
-                        display: "block",
-                        textAlign: "right",
+                        // display: "inline-block",
+                        // textAlign: "right",
+                        marginLeft: "auto",
                     }}
                 >
                     Pokaż post
                 </Card.Link>
-            </Card.Body>
-            <Card.Footer className="text-muted">{date}</Card.Footer>
+            </Card.Footer>
         </Card >
     );
 
