@@ -132,14 +132,14 @@ const AddPostFormFormik = withFormik<AddPostFormProps, FormValues>({
     validateOnBlur: false,
 
     handleSubmit: (values, { props, setSubmitting }) => {
-        props.addPostOnSubmit(values.postContent, "Nazwa autora");
+        props.addPostOnSubmit(values.postContent);
         setSubmitting(false);
     },
 
 })(InnerForm);
 
 const mapDispatchToProps = (dispatch: any) => ({
-    addPostOnSubmit: (postContent: string, author: string) => dispatch(addPost(postContent, author)),
+    addPostOnSubmit: (postContent: string) => dispatch(addPost(postContent)),
 });
 
 const AddPostForm = connect(

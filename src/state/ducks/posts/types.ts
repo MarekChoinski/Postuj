@@ -21,7 +21,8 @@ export interface PostsState {
 
 interface AddPostAction {
     type: typeof ADD_POST;
-    payload: Pick<Post, 'content' | "authorName">;
+    payload: Pick<Post, 'content'>;
+    // payload: Pick<Post, 'content' | "authorName">;
 }
 
 interface DeletePostAction {

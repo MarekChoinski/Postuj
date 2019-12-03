@@ -2,6 +2,8 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Media from 'react-bootstrap/Media';
 import DefaultAvatar from '../assets/images/defaultAvatar.png';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+
 
 import {
     Link
@@ -9,7 +11,7 @@ import {
 
 interface PostProps {
     author: string,
-    date: string,
+    date: any,
     text: string,
     id: string,
 
@@ -37,9 +39,11 @@ const PostCard: React.FC<PostProps> = (props) => {
                     />
                     <Media.Body>
                         <h4>{author}</h4>
-                        <em>
-                            Lorem, ipsum dolor.
-                        </em>
+                        <span
+                            className="text-muted"
+                        >
+                            {formatDistanceToNow(date, { addSuffix: true })}
+                        </span>
                     </Media.Body>
                 </Media>
                 {/* <p className="justify-content-end">+</p> */}
@@ -57,7 +61,7 @@ const PostCard: React.FC<PostProps> = (props) => {
             >
                 <span>
 
-                    {date}
+
                 </span>
                 <Card.Link
                     as={Link}

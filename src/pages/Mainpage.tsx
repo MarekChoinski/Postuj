@@ -37,13 +37,16 @@ const Mainpage: React.FC = () => {
 
 
     // const posts = useSelector(postsSelectors.getPosts);
+    if (posts)
+        console.log(posts[0].createdAt)
 
     const postList = posts ? posts.map((post: any) =>
-        <PostCard
+
+        < PostCard
             author={post.authorName}
             text={post.content}
             key={post.id}
-            date={(new Date(post.createdAt.seconds)).toString()}//TODO fix this for dates
+            date={post.createdAt.seconds}//TODO fix this for dates
             id={post.id}
         />
     ) : <Spinner
