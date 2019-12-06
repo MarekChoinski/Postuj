@@ -1,6 +1,6 @@
 
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import PostCard from '../components/PostCard';
 
@@ -26,23 +26,51 @@ const Mainpage: React.FC = () => {
 
 
 
+
+    const authors = useSelector((state: any) =>
+        state.firestore.ordered.authors ?
+            state.firestore.ordered.authors.reduce((hash: any, author: any) => {
+                hash[author.id] = {
+                    ...author
+                };
+                return hash;
+            }, {})
+            : null
+    );
+
+    const posts = useSelector((state: any) =>
+        authors ?
+            state.firestore.ordered.posts.map(
+                (post: any) =>
+                    ({
+                        ...post,
+                        author: authors[post.authorId],
+                    })
+            )
+            : state.firestore.ordered.posts
+    );
+
+    const authorsQueries = posts ? posts.map((post: any) => ({
+        collection: 'users',
+        doc: post.authorId,
+        storeAs: 'authors'
+    })) : [];
+
     useFirestoreConnect([
-        { collection: 'posts' }
-    ])
-    const posts = useSelector((state: any) => state.firestore.ordered.posts);
+        { collection: 'posts' },
+        ...authorsQueries,
+    ]);
 
-    if (posts)
-        console.log(posts[0])
 
-    const postList = posts ? posts.map((post: any) =>
+    const postList = (posts && authors) ? posts.map((post: any) =>
 
         <PostCard
-            author={post.authorName}
+            author={post.author.username}
             content={post.content}
-            authorProfilePicture={post.authorProfilePicture}
+            authorProfilePicture={post.author.profilePicPath}
             key={post.id}
-            date={post.createdAt.seconds}//TODO fix this for dates
             id={post.id}
+            date={post.createdAt.seconds}//TODO fix this for dates
         />
     ) : <Spinner
         animation="grow"

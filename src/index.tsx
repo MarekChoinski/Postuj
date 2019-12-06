@@ -36,7 +36,8 @@ const RootHtml = () => (
             <ReactReduxFirebaseProvider
                 firebase={firebase}
                 config={{
-                    userProfile: "users"
+                    userProfile: "users",
+                    useFirestoreForProfile: true,
                 }}
                 dispatch={reduxStore.dispatch}
                 createFirestoreInstance={createFirestoreInstance}>

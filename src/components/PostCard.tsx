@@ -2,7 +2,9 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Media from 'react-bootstrap/Media';
 import DefaultAvatar from '../assets/images/defaultAvatar.png';
+import { useFirestoreConnect, useFirebase, useFirestore } from 'react-redux-firebase'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import { useSelector } from 'react-redux';
 
 
 import {
@@ -22,6 +24,30 @@ const PostCard: React.FC<PostProps> = (props) => {
 
     const { author, date, content, id, authorProfilePicture } = props;
 
+    // const firestore = useFirestore();
+
+    // const aut = await firestore.collection("users").doc(author).get();
+
+    // console.log("user", aut.get());
+
+    // useFirestoreConnect([
+    //     {
+    //         collection: 'users',
+    //         doc: author,
+    //     }
+
+    // ])
+
+    // const user: any = useSelector(
+    //     (state: any) => state.firestore.ordered.users &&
+    //         state.firestore.ordered.users[0]
+    // );
+
+
+    // console.log("user", user);
+
+
+
     return (
         <Card
             style={{
@@ -36,7 +62,7 @@ const PostCard: React.FC<PostProps> = (props) => {
                         height={64}
                         className="mr-3"
                         src={authorProfilePicture || DefaultAvatar}
-                        alt="placeholder"
+                        // alt="placeholder"
                         style={{
                             borderRadius: "5px",
                         }}

@@ -19,10 +19,10 @@ export const addPost = (
 
             await firestore.collection('posts').add({
                 content: content,
-                authorName: state.profile.username,
+                // authorName: state.profile.username,
                 authorId: state.auth.uid,
                 createdAt: new Date(),
-                authorProfilePicture: state.profile.profilePicPath,
+                // authorProfilePicture: state.profile.profilePicPath,
             });
 
             // await getFirebase()

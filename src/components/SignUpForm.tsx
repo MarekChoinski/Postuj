@@ -215,9 +215,9 @@ const SignUpFormFormik = withFormik<SignUpFormProps, FormValues>({
         // };
 
         return {
-            email: "test@test.com",
+            email: "test2@test.com",
             password: "saddas111",
-            username: "saddasds",
+            username: "Admin",
             file: "",
             acceptedTerms: true,
         };
