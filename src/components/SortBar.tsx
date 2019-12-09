@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Media from 'react-bootstrap/Media';
@@ -21,13 +21,31 @@ interface PostProps {
 
 };
 
-const SortBar: React.FC = () => {
+const SortBar: React.FC<{}> = (props) => {
+
+    const [sortMethod, setSortMethod] = useState('newest');
+
+    type sortOptions = {
+        [key: string]: string
+    }
+    const PL: sortOptions = {
+        newest: "najnowszych",
+        topAll: "najpopularniejszych",
+        top6: "najpopularniejszych z ostatnich 6h",
+        top12: "najpopularniejszych z ostatnich 12h",
+        top24: "najpopularniejszych z ostatniej doby",
+    };
+
+    const sortOptions = [
+        "newest", "topAll", "top6", "top12", "top24",
+    ];
+
 
     return (
         <Card
             style={{
                 width: "900px",
-                margin: "50px auto"
+                margin: "20px auto"
             }}
         >
             <Card.Body>
@@ -36,7 +54,6 @@ const SortBar: React.FC = () => {
                         display: "inline",
                     }}
                 >
-
                     Sortuj według:
                 </span>
 
@@ -47,14 +64,17 @@ const SortBar: React.FC = () => {
                     }}
                 >
                     <Dropdown.Toggle variant="light" id="dropdown-basic">
-                        najnowszych
+                        {PL[sortMethod]}
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">najpopularniejszych</Dropdown.Item>
-                        <Dropdown.Item href="#/action-1">najpopularniejszych z ostatnich 6h</Dropdown.Item>
-                        <Dropdown.Item href="#/action-1">najpopularniejszych z ostatnich 12h</Dropdown.Item>
-                        <Dropdown.Item href="#/action-1">najpopularniejszych z ostatniej doby</Dropdown.Item>
+                        {sortOptions.map((option: string) => (
+                            <Dropdown.Item onClick={
+                                () => setSortMethod(option)
+                            }>
+                                {PL[option]}
+                            </Dropdown.Item>
+                        ))}
                     </Dropdown.Menu>
                 </Dropdown>
             </Card.Body>

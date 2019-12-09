@@ -48,6 +48,9 @@ export const addPost = (
 
 export const deletePost = actions.deletePost;
 
+
+export const setSortMethod = actions.setSortMethod;
+
 export default {
     addPost,
     deletePost,

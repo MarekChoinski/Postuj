@@ -20,3 +20,13 @@ export const deletePost = (
         id,
     },
 });
+
+
+export const setSortMethod = (
+    sortMethod: string
+): types.PostActionTypes => ({
+    type: types.SET_SORT_METHOD,
+    payload: {
+        sortMethod,
+    },
+});

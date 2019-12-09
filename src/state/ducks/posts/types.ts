@@ -1,5 +1,6 @@
 export const ADD_POST = "bloggy/posts/ADD_POST";
 export const DELETE_POST = "bloggy/posts/DELETE_POST";
+export const SET_SORT_METHOD = "bloggy/posts/SET_SORT_METHOD";
 // export const TOGGLE_TODO = "todo_app/TOGGLE_TODO";
 // export const EDIT_TODO = "todo_app/EDIT_TODO";
 
@@ -15,7 +16,8 @@ export type Post = Readonly<{
 
 export interface PostsState {
     // readonly title: string,
-    readonly posts: ReadonlyArray<Post>,
+    // readonly posts: ReadonlyArray<Post>,
+    readonly sortMethod: string,
 }
 
 
@@ -30,6 +32,13 @@ interface DeletePostAction {
     payload: Pick<Post, 'id'>;
 }
 
+interface setSortMethod {
+    type: typeof SET_SORT_METHOD;
+    payload: {
+        sortMethod: string,
+    };
+}
+
 // interface EditTitleAction {
 //     type: typeof EDIT_TITLE;
 //     payload: {
@@ -40,6 +49,7 @@ interface DeletePostAction {
 
 export type PostActionTypes =
     AddPostAction |
+    setSortMethod |
     DeletePostAction;
 
 // export type TitleActionTypes = EditTitleAction;
