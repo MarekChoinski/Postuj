@@ -45,7 +45,17 @@ const Mainpage: React.FC = () => {
     })) : [];
 
     useFirestoreConnect([
-        { collection: 'posts' },
+        {
+            collection: 'posts',
+            orderBy: [
+                'createdAt',
+                'desc'
+            ],
+            // queryParams: [
+            //     "parsed",
+            //     'orderByValue=createdAt',
+            // ]
+        },
         ...authorsQueries,
     ]);
 

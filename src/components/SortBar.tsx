@@ -5,7 +5,8 @@ import Media from 'react-bootstrap/Media';
 import DefaultAvatar from '../assets/images/defaultAvatar.png';
 import { useFirestoreConnect, useFirebase, useFirestore } from 'react-redux-firebase'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSortMethod } from '../state/ducks/posts/operations';
 
 
 import {
@@ -23,7 +24,8 @@ interface PostProps {
 
 const SortBar: React.FC<{}> = (props) => {
 
-    const [sortMethod, setSortMethod] = useState('newest');
+    const [sortMethodText, setSortText] = useState('newest');
+    const dispatch = useDispatch();
 
     type sortOptions = {
         [key: string]: string
@@ -64,13 +66,16 @@ const SortBar: React.FC<{}> = (props) => {
                     }}
                 >
                     <Dropdown.Toggle variant="light" id="dropdown-basic">
-                        {PL[sortMethod]}
+                        {PL[sortMethodText]}
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
                         {sortOptions.map((option: string) => (
                             <Dropdown.Item onClick={
-                                () => setSortMethod(option)
+                                () => {
+                                    dispatch(setSortMethod(option))
+                                    setSortText(option)
+                                }
                             }>
                                 {PL[option]}
                             </Dropdown.Item>

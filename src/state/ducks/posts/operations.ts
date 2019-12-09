@@ -22,6 +22,7 @@ export const addPost = (
                 // authorName: state.profile.username,
                 authorId: state.auth.uid,
                 createdAt: new Date(),
+                likes: 0,
                 // authorProfilePicture: state.profile.profilePicPath,
             });
 
@@ -54,4 +55,5 @@ export const setSortMethod = actions.setSortMethod;
 export default {
     addPost,
     deletePost,
+    setSortMethod,
 };
