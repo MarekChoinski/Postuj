@@ -132,8 +132,8 @@ const LoginFormFormik = withFormik<LoginFormProps, FormValues>({
 
     mapPropsToValues: props => {
         return {
-            email: "",
-            password: "",
+            email: "test2@test.com",
+            password: "saddas111",
             authError: "",
         };
     },
@@ -143,8 +143,8 @@ const LoginFormFormik = withFormik<LoginFormProps, FormValues>({
 
     handleSubmit: (values, { props, setSubmitting }) => {
         props.signInOnSubmit(
-            "jakis@mail.com",
-            "haslo1234");
+            values.email,
+            values.password);
         setSubmitting(false);
     },
 

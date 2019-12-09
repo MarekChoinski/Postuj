@@ -12,8 +12,10 @@ import { ReactComponent as IconBold } from '../assets/add_post_form_bold.svg';
 import { ReactComponent as IconItalic } from '../assets/add_post_form_italic.svg';
 import { addPost } from '../state/ducks/posts/operations';
 
-import { useDispatch, connect } from 'react-redux';
+import { useDispatch, connect, useSelector } from 'react-redux';
 import { postsSelectors } from '../state/ducks/posts';
+
+import DefaultAvatar from '../assets/images/defaultAvatar.png';
 
 const schema = Yup.object({
     postContent: Yup.string()
@@ -30,16 +32,32 @@ const InnerForm = (props: FormikProps<FormValues>) => {
     const dispatch = useDispatch();
 
     const { touched, errors, isSubmitting } = props;
+    const authorized = useSelector((state: any) =>
+        !state.firebase.auth.isEmpty
+    );
+
+    const profile = useSelector((state: any) =>
+        !state.firebase.auth.isEmpty ? state.firebase.profile : null
+    );
+
+
+    console.log("auth", authorized);
+    console.log("profile", profile);
 
 
 
-    return (
-        <Card
+
+    return (authorized && profile) ?
+
+
+
+        (<Card
             style={{
                 margin: "50px auto",
                 padding: "30px",
                 width: "900px",
-            }}
+            }
+            }
         >
             <FormikForm>
 
@@ -48,7 +66,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
                         width={64}
                         height={64}
                         className="mr-3"
-                        src="http://via.placeholder.com/64"
+                        src={profile.profilePicPath || DefaultAvatar}
                         alt="placeholder"
                     />
                     <Media.Body>
@@ -93,8 +111,9 @@ const InnerForm = (props: FormikProps<FormValues>) => {
 
 
             </FormikForm>
-        </Card>
-    );
+        </Card >)
+        : null;
+
 };
 
 // const addPostOnSubmit: any = (values: any, { props, setSubmitting }: any): any => {

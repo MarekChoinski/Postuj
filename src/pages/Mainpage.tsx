@@ -14,19 +14,6 @@ import Spinner from 'react-bootstrap/Spinner';
 
 const Mainpage: React.FC = () => {
 
-    // const firebase = useFirebase();
-
-    // const auth = useSelector((state: any) => state.firebase.auth)
-
-
-
-
-
-
-
-
-
-
     const authors = useSelector((state: any) =>
         state.firestore.ordered.authors ?
             state.firestore.ordered.authors.reduce((hash: any, author: any) => {
@@ -61,8 +48,7 @@ const Mainpage: React.FC = () => {
         ...authorsQueries,
     ]);
 
-
-    const postList = (posts && authors) ? posts.map((post: any) =>
+    const postList = (authors) ? posts.map((post: any) =>
 
         <PostCard
             author={post.author.username}
