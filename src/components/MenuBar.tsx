@@ -2,8 +2,9 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import DefaultAvatar from '../assets/images/defaultAvatar.png';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
     NavLink
@@ -15,27 +16,65 @@ const MenuBar: React.FC = () => {
 
     const dispatch = useDispatch();
 
+    const authorized = useSelector((state: any) =>
+        !state.firebase.auth.isEmpty
+    );
+
+    const profile = useSelector((state: any) =>
+        !state.firebase.auth.isEmpty ? state.firebase.profile : null
+    );
+
+    const links = (authorized && profile) ?
+        <>
+
+            <NavDropdown title={profile.username} id="basic-nav-dropdown">
+                <NavDropdown.Item onClick={() => dispatch(signOut())}>Wyloguj się</NavDropdown.Item>
+                {/* <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
+            </NavDropdown>
+            <img
+                // width={36}
+                height={45}
+                className="mr-3 ml-3"
+                src={profile.profilePicPath || DefaultAvatar}
+                // alt="placeholder"
+                style={{
+                    borderRadius: "50px",
+                }}
+            />
+
+        </>
+        :
+        <>
+            <Nav.Link as={NavLink} to="/signup">Zarejestruj się</Nav.Link>
+            <Nav.Link as={NavLink} to="/login">Zaloguj się</Nav.Link>
+        </>;
 
 
     return (
+
+
         <Navbar expand="lg" bg="primary" variant="light" fixed="top">
             <Navbar.Brand as={NavLink} to="/" > React - Bootstrap</Navbar.Brand >
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+            <Navbar.Collapse
+                id="basic-navbar-nav"
+                className="justify-content-end"
+            >
                 <Nav>
-                    {/* <Nav.Link as={NavLink} to="/" exact>Home</Nav.Link> */}
-                    <Nav.Link as={NavLink} to="/404">404</Nav.Link>
-                    <Nav.Link as={NavLink} to="/signup">signup</Nav.Link>
-                    <Nav.Link as={NavLink} to="/login">login</Nav.Link>
-                    <Nav.Link onClick={() => dispatch(signOut())}>logout</Nav.Link>
-                    <Nav.Link onClick={() => dispatch(signUp("test@tst.com", "test123", "Uytkownik", "test"))}>signUp</Nav.Link>
-                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                    </NavDropdown>
+
+
+
+
+                    {links}
+
+
+
+
+
+
+
                 </Nav>
             </Navbar.Collapse>
         </Navbar >
