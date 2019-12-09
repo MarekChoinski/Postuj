@@ -33,16 +33,20 @@ const MenuBar: React.FC = () => {
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
             </NavDropdown>
-            <img
-                // width={36}
-                height={45}
-                className="mr-3 ml-3"
-                src={profile.profilePicPath || DefaultAvatar}
-                // alt="placeholder"
-                style={{
-                    borderRadius: "50px",
-                }}
-            />
+            {/* <Nav.Link as="img" to="/">Zarejestruj się</Nav.Link> */}
+            <Nav.Link as={NavLink} to="/signup">
+
+                <img
+                    // width={36}
+                    height={45}
+                    className="mr-3 ml-3"
+                    src={profile.profilePicPath || DefaultAvatar}
+                    // alt="placeholder"
+                    style={{
+                        borderRadius: "50px",
+                    }}
+                />
+            </Nav.Link>
 
         </>
         :

@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import AddPostForm from '../components/AddPostForm';
 import { useFirestoreConnect, useFirebase } from 'react-redux-firebase'
 import Spinner from 'react-bootstrap/Spinner';
+import SortBar from '../components/SortBar';
 
 
 const Mainpage: React.FC = () => {
@@ -77,6 +78,7 @@ const Mainpage: React.FC = () => {
     return (
         <>
             <AddPostForm />
+            <SortBar />
             {postList}
 
         </>
