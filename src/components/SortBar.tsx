@@ -56,7 +56,7 @@ const SortBar: React.FC<{}> = (props) => {
                         display: "inline",
                     }}
                 >
-                    Sortuj według:
+                    Sortuj posty według:
                 </span>
 
                 <Dropdown
@@ -71,12 +71,14 @@ const SortBar: React.FC<{}> = (props) => {
 
                     <Dropdown.Menu>
                         {sortOptions.map((option: string) => (
-                            <Dropdown.Item onClick={
-                                () => {
-                                    dispatch(setSortMethod(option))
-                                    setSortText(option)
-                                }
-                            }>
+                            <Dropdown.Item
+                                key={option}
+                                onClick={
+                                    () => {
+                                        dispatch(setSortMethod(option))
+                                        setSortText(option)
+                                    }
+                                }>
                                 {PL[option]}
                             </Dropdown.Item>
                         ))}

@@ -1,6 +1,6 @@
 
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 
 import PostCard from '../components/PostCard';
 
@@ -11,9 +11,51 @@ import AddPostForm from '../components/AddPostForm';
 import { useFirestoreConnect, useFirebase } from 'react-redux-firebase'
 import Spinner from 'react-bootstrap/Spinner';
 import SortBar from '../components/SortBar';
+import { subHours, getMilliseconds } from 'date-fns';
 
 
 const Mainpage: React.FC = () => {
+
+    const sortMethod = useSelector((state: any) =>
+        state.posts.sortMethod
+    );
+
+    // TODO make this as a selector returning tuple
+    let valueToOrderTo = "createdAt";
+
+    // let before = subHours(new Date(), 13);
+
+
+
+    const before = useMemo(
+        () => {
+            if (sortMethod == "top6") {
+                return subHours(new Date(), 6);
+            }
+            else if (sortMethod == "top12") {
+                return subHours(new Date(), 12);
+            }
+            else if (sortMethod == "top24") {
+                return subHours(new Date(), 24);
+            }
+            else return null;
+        },
+        [sortMethod]
+    );
+
+    if (sortMethod == 'newest') {
+        valueToOrderTo = "createdAt";
+        // before = null;
+    }
+    else {
+        valueToOrderTo = "likes";
+
+    }
+
+
+
+
+
 
     const authors = useSelector((state: any) =>
         state.firestore.ordered.authors ?
@@ -44,13 +86,35 @@ const Mainpage: React.FC = () => {
         storeAs: 'authors'
     })) : [];
 
+    // const query = useMemo(
+    //     () => ([
+    //         {
+    //             collection: 'posts',
+    //             where: [
+    //                 ['createdAt', '>', before]
+    //             ],
+    //             orderBy: [
+    //                 valueToOrderTo,
+    //                 'desc'
+    //             ],
+    //         },
+    //         ...authorsQueries,
+    //     ]),
+    //     [authorsQueries]
+    // );
+
+    // useFirestoreConnect(query)
+
     useFirestoreConnect([
         {
             collection: 'posts',
-            orderBy: [
-                'createdAt',
+            where: before ? [
+                ['createdAt', '>', before]
+            ] : null,
+            orderBy: !before ? [
+                valueToOrderTo,
                 'desc'
-            ],
+            ] : null,
             // queryParams: [
             //     "parsed",
             //     'orderByValue=createdAt',
@@ -58,6 +122,12 @@ const Mainpage: React.FC = () => {
         },
         ...authorsQueries,
     ]);
+
+    if (before) {
+        // posts.sort((a: any, b: any) => (a.likes < b.likes) ? 1 : ((b.likes < a.likes) ? -1 : 0));
+        posts.sort((a: any, b: any) => (b.likes - a.likes));
+
+    }
 
     const postList = (authors) ? posts.map((post: any) =>
 
