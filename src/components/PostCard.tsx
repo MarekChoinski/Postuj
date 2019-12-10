@@ -5,11 +5,15 @@ import DefaultAvatar from '../assets/images/defaultAvatar.png';
 import { useFirestoreConnect, useFirebase, useFirestore } from 'react-redux-firebase'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { useSelector } from 'react-redux';
+import { ReactComponent as IconFavorite } from '../assets/post-icon_favorite.svg';
+import { ReactComponent as IconAddToFavorite } from '../assets/post-icon_add_to_favorite.svg';
+import { ReactComponent as IconLike } from '../assets/post-icon_like.svg';
 
 
 import {
     Link
 } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
 
 interface PostProps {
     author: string,
@@ -17,36 +21,13 @@ interface PostProps {
     content: string,
     id: string,
     authorProfilePicture: string,
+    likes: number,
 
 };
 
 const PostCard: React.FC<PostProps> = (props) => {
 
-    const { author, date, content, id, authorProfilePicture } = props;
-
-    // const firestore = useFirestore();
-
-    // const aut = await firestore.collection("users").doc(author).get();
-
-    // console.log("user", aut.get());
-
-    // useFirestoreConnect([
-    //     {
-    //         collection: 'users',
-    //         doc: author,
-    //     }
-
-    // ])
-
-    // const user: any = useSelector(
-    //     (state: any) => state.firestore.ordered.users &&
-    //         state.firestore.ordered.users[0]
-    // );
-
-
-    // console.log("user", user);
-
-
+    const { author, date, content, id, authorProfilePicture, likes } = props;
 
     return (
         <Card
@@ -89,10 +70,44 @@ const PostCard: React.FC<PostProps> = (props) => {
                     display: "flex",
                 }}
             >
-                <span>
+                {/* <Button
+                    variant="light"
+                    style={{
+                        padding: "3px",
+                    }}
+                >
+                    <IconFavorite />
+                </Button> */}
+                <Button
+                    variant="light"
+                    style={{
+                        padding: "3px",
+                    }}
+                >
+                    <IconAddToFavorite />
+                </Button>
+                <Button
+                    variant="light"
+                    style={{
+                        padding: "3px",
+                        lineHeight: "32px",
+                    }}
+                >
+                    <IconLike />
+                    <span
+                        style={{
+                            color: "black",
+                            fontWeight: "bold",
+                            // padding: "3px",
+                            fontSize: "17px",
+                        }}>
+                        {likes}
+                    </span>
+                </Button>
 
 
-                </span>
+
+
                 <Card.Link
                     as={Link}
                     to={"/post/" + id}

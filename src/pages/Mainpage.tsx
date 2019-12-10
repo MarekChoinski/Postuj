@@ -86,25 +86,6 @@ const Mainpage: React.FC = () => {
         storeAs: 'authors'
     })) : [];
 
-    // const query = useMemo(
-    //     () => ([
-    //         {
-    //             collection: 'posts',
-    //             where: [
-    //                 ['createdAt', '>', before]
-    //             ],
-    //             orderBy: [
-    //                 valueToOrderTo,
-    //                 'desc'
-    //             ],
-    //         },
-    //         ...authorsQueries,
-    //     ]),
-    //     [authorsQueries]
-    // );
-
-    // useFirestoreConnect(query)
-
     useFirestoreConnect([
         {
             collection: 'posts',
@@ -115,18 +96,12 @@ const Mainpage: React.FC = () => {
                 valueToOrderTo,
                 'desc'
             ] : null,
-            // queryParams: [
-            //     "parsed",
-            //     'orderByValue=createdAt',
-            // ]
         },
         ...authorsQueries,
     ]);
 
     if (before) {
-        // posts.sort((a: any, b: any) => (a.likes < b.likes) ? 1 : ((b.likes < a.likes) ? -1 : 0));
         posts.sort((a: any, b: any) => (b.likes - a.likes));
-
     }
 
     const postList = (authors) ? posts.map((post: any) =>
@@ -137,7 +112,8 @@ const Mainpage: React.FC = () => {
             authorProfilePicture={post.author.profilePicPath}
             key={post.id}
             id={post.id}
-            date={post.createdAt.seconds}//TODO fix this for dates
+            date={post.createdAt.seconds}
+            likes={post.likes}
         />
     ) : <Spinner
         animation="grow"

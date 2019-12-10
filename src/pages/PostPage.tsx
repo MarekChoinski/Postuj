@@ -35,12 +35,13 @@ const PostPage: React.FC<Props> = (props) => {
         post ?
             post[0] ?
                 <PostCard
-                    author={post[0].authorName}
+                    author={post[0].author.username}
                     content={post[0].content}
-                    authorProfilePicture={post[0].authorProfilePicture}
+                    authorProfilePicture={post[0].author.profilePicPath}
                     key={post[0].id}
-                    date={(new Date(post[0].createdAt.seconds)).toString()}
+                    date={post[0].createdAt.seconds}
                     id={post[0].id}
+                    likes={post[0].likes}
                 />
                 : <Redirect to="/404" />
 
