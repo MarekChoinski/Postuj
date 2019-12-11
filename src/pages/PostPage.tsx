@@ -18,30 +18,62 @@ type Props = {
 
 const PostPage: React.FC<Props> = (props) => {
 
+
+    //TODO redundancy with mainpage
+
+    const authors = useSelector((state: any) =>
+        state.firestore.ordered.authors ?
+            state.firestore.ordered.authors.reduce((hash: any, author: any) => {
+                hash[author.id] = {
+                    ...author
+                };
+                return hash;
+            }, {})
+            : null
+    );
+
+    const posts = useSelector((state: any) =>
+        authors ?
+            state.firestore.ordered.posts.map(
+                (post: any) =>
+                    ({
+                        ...post,
+                        author: authors[post.authorId],
+                    })
+            )
+            : state.firestore.ordered.posts
+    );
+
+    const authorsQueries = posts ? posts.map((post: any) => ({
+        collection: 'users',
+        doc: post.authorId,
+        storeAs: 'authors'
+    })) : [];
+
     useFirestoreConnect([
         {
             collection: 'posts',
             doc: props.match.params.id,
-        }
+        },
+        ...authorsQueries,
     ])
 
-    const post = useSelector((state: any) =>
-        state.firestore.ordered.posts
-    );
+
 
 
     return (
 
-        post ?
-            post[0] ?
+        posts ?
+            posts[0] && authors ?
                 <PostCard
-                    author={post[0].author.username}
-                    content={post[0].content}
-                    authorProfilePicture={post[0].author.profilePicPath}
-                    key={post[0].id}
-                    date={post[0].createdAt.seconds}
-                    id={post[0].id}
-                    likes={post[0].likes}
+                    author={posts[0].author.username}
+                    content={posts[0].content}
+                    authorProfilePicture={posts[0].author.profilePicPath}
+                    key={posts[0].id}
+                    date={posts[0].createdAt.seconds}
+                    id={posts[0].id}
+                    likes={posts[0].likes}
+                    favorite={true} //TODO
                 />
                 : <Redirect to="/404" />
 

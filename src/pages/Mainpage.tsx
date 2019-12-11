@@ -20,6 +20,11 @@ const Mainpage: React.FC = () => {
         state.posts.sortMethod
     );
 
+
+    const favoritePosts = useSelector((state: any) =>
+        state.firebase.profile.favoritePosts
+    );
+
     // TODO make this as a selector returning tuple
     let valueToOrderTo = "createdAt";
 
@@ -75,6 +80,7 @@ const Mainpage: React.FC = () => {
                     ({
                         ...post,
                         author: authors[post.authorId],
+                        isFavorite: favoritePosts.includes(post.id),
                     })
             )
             : state.firestore.ordered.posts
@@ -114,6 +120,7 @@ const Mainpage: React.FC = () => {
             id={post.id}
             date={post.createdAt.seconds}
             likes={post.likes}
+            favorite={post.isFavorite}
         />
     ) : <Spinner
         animation="grow"

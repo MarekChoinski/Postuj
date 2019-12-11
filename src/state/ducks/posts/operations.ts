@@ -2,58 +2,76 @@ import * as actions from "./actions";
 
 export const addPost = (
     content: string,
-    // authorName: string,
-    // authorProfilePicture: string,
+) => async (dispatch: any, getState: any, { getFirebase, getFirestore }: any) => {
 
-) => {
+    const state = getState().firebase;
 
-    return async (dispatch: any, getState: any, { getFirebase, getFirestore }: any) => {
+    try {
+        const firestore = getFirestore();
 
-        console.log("state", getState());
+        await firestore.collection('posts').add({
+            content: content,
+            authorId: state.auth.uid,
+            createdAt: new Date(),
+            likes: 0,
+        });
 
-        const state = getState().firebase;
+        dispatch(actions.addPost(content));
 
+    } catch (error) {
+        // TODO here should came action with meta error
+        console.error(error);
+    }
 
-        try {
-            const firestore = getFirestore();
+};
 
-            await firestore.collection('posts').add({
-                content: content,
-                // authorName: state.profile.username,
-                authorId: state.auth.uid,
-                createdAt: new Date(),
-                likes: 0,
-                // authorProfilePicture: state.profile.profilePicPath,
+export const addPostToFavorites = (
+    id: string,
+) => async (dispatch: any, getState: any, { getFirebase, getFirestore }: any) => {
+
+    const actualFavoritePosts = getState().firebase.profile.favoritePosts;
+
+    try {
+        if (!actualFavoritePosts.includes(id)) {
+            getFirebase().updateProfile({
+                favoritePosts: [id, ...actualFavoritePosts],
             });
-
-            // await getFirebase()
-            //     .ref('posts')
-            //     .push({
-            //         content: content,
-            //         authorName: authorName,
-            //         authorId: "1234",
-            //         createdAt: new Date(),
-            //     });
-
-            // getState().firestore.add({ collection: 'cities' }, { name: 'Some Place' }),
-
-            dispatch(actions.addPost(content));
-
-        } catch (error) {
-            // TODO here should came action with meta error
-            console.error(error);
-            //     dispatch(clearPosts());
         }
-    };
+        // dispatch(actions.addPost(content));
+
+    } catch (error) {
+        // TODO here should came action with meta error
+        console.error(error);
+    }
+
+};
+
+export const removePostFromFavorites = (
+    id: string,
+) => async (dispatch: any, getState: any, { getFirebase, getFirestore }: any) => {
+
+    const actualFavoritePosts = getState().firebase.profile.favoritePosts.filter((item: string) => item !== id);
+
+    try {
+        getFirebase().updateProfile({
+            favoritePosts: [...actualFavoritePosts],
+        });
+
+        // dispatch(actions.addPost(content));
+
+    } catch (error) {
+        // TODO here should came action with meta error
+        console.error(error);
+    }
+
 };
 
 export const deletePost = actions.deletePost;
-
-
 export const setSortMethod = actions.setSortMethod;
 
 export default {
     addPost,
     deletePost,
     setSortMethod,
+    addPostToFavorites,
 };

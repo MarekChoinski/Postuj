@@ -21,6 +21,25 @@ export const deletePost = (
     },
 });
 
+export const addPostToFavorites = (
+    id: string
+): types.PostActionTypes => ({
+    type: types.ADD_POST_TO_FAVORITES,
+    payload: {
+        id,
+    },
+});
+
+
+export const removePostFromFavorites = (
+    id: string
+): types.PostActionTypes => ({
+    type: types.REMOVE_POST_FROM_FAVORITES,
+    payload: {
+        id,
+    },
+});
+
 
 export const setSortMethod = (
     sortMethod: string

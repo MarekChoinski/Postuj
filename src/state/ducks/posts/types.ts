@@ -1,6 +1,8 @@
 export const ADD_POST = "bloggy/posts/ADD_POST";
 export const DELETE_POST = "bloggy/posts/DELETE_POST";
 export const SET_SORT_METHOD = "bloggy/posts/SET_SORT_METHOD";
+export const ADD_POST_TO_FAVORITES = "bloggy/posts/ADD_POST_TO_FAVORITES";
+export const REMOVE_POST_FROM_FAVORITES = "bloggy/posts/REMOVE_POST_FROM_FAVORITES";
 // export const TOGGLE_TODO = "todo_app/TOGGLE_TODO";
 // export const EDIT_TODO = "todo_app/EDIT_TODO";
 
@@ -39,6 +41,16 @@ interface setSortMethod {
     };
 }
 
+interface addPostToFavorites {
+    type: typeof ADD_POST_TO_FAVORITES;
+    payload: Pick<Post, 'id'>;
+}
+
+interface removePostFromFavorites {
+    type: typeof REMOVE_POST_FROM_FAVORITES;
+    payload: Pick<Post, 'id'>;
+}
+
 // interface EditTitleAction {
 //     type: typeof EDIT_TITLE;
 //     payload: {
@@ -50,6 +62,8 @@ interface setSortMethod {
 export type PostActionTypes =
     AddPostAction |
     setSortMethod |
+    addPostToFavorites |
+    removePostFromFavorites |
     DeletePostAction;
 
 // export type TitleActionTypes = EditTitleAction;

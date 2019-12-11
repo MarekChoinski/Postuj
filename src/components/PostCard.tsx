@@ -4,7 +4,7 @@ import Media from 'react-bootstrap/Media';
 import DefaultAvatar from '../assets/images/defaultAvatar.png';
 import { useFirestoreConnect, useFirebase, useFirestore } from 'react-redux-firebase'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { ReactComponent as IconFavorite } from '../assets/post-icon_favorite.svg';
 import { ReactComponent as IconAddToFavorite } from '../assets/post-icon_add_to_favorite.svg';
 import { ReactComponent as IconLike } from '../assets/post-icon_like.svg';
@@ -14,6 +14,7 @@ import {
     Link
 } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
+import { addPostToFavorites, removePostFromFavorites } from '../state/ducks/posts/operations';
 
 interface PostProps {
     author: string,
@@ -22,12 +23,29 @@ interface PostProps {
     id: string,
     authorProfilePicture: string,
     likes: number,
-
+    favorite: boolean,
 };
 
 const PostCard: React.FC<PostProps> = (props) => {
 
-    const { author, date, content, id, authorProfilePicture, likes } = props;
+    const {
+        author,
+        date,
+        content,
+        id,
+        authorProfilePicture,
+        likes,
+        favorite
+    } = props;
+    const dispatch = useDispatch();
+
+    const authorized = useSelector((state: any) =>
+        !state.firebase.auth.isEmpty
+    );
+
+    const profile = useSelector((state: any) =>
+        !state.firebase.auth.isEmpty ? state.firebase.profile : null
+    );
 
     return (
         <Card
@@ -70,27 +88,48 @@ const PostCard: React.FC<PostProps> = (props) => {
                     display: "flex",
                 }}
             >
-                {/* <Button
-                    variant="light"
-                    style={{
-                        padding: "3px",
-                    }}
-                >
-                    <IconFavorite />
-                </Button> */}
+
+                {
+
+                    (authorized && profile) ?
+                        (favorite ?
+
+                            <Button
+                                variant="light"
+                                style={{
+                                    padding: "3px",
+                                }}
+                                onClick={
+                                    () => {
+                                        dispatch(removePostFromFavorites(id))
+                                    }
+                                }
+                            >
+                                <IconFavorite />
+                            </Button>
+                            : <Button
+                                variant="light"
+                                style={{
+                                    padding: "3px",
+                                }}
+                                onClick={
+                                    () => {
+                                        dispatch(addPostToFavorites(id))
+                                    }
+                                }
+                            >
+                                <IconAddToFavorite />
+                            </Button>) : null
+
+                }
+
+
+
                 <Button
                     variant="light"
                     style={{
-                        padding: "3px",
-                    }}
-                >
-                    <IconAddToFavorite />
-                </Button>
-                <Button
-                    variant="light"
-                    style={{
-                        padding: "3px",
-                        lineHeight: "32px",
+                        // padding: "3px",
+                        // lineHeight: "32px",
                     }}
                 >
                     <IconLike />
