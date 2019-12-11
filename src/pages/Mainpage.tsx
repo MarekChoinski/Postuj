@@ -22,7 +22,7 @@ const Mainpage: React.FC = () => {
 
 
     const favoritePosts = useSelector((state: any) =>
-        state.firebase.profile.favoritePosts
+        !state.firebase.auth.isEmpty ? state.firebase.profile.favoritePosts : []
     );
 
     // TODO make this as a selector returning tuple
@@ -80,7 +80,7 @@ const Mainpage: React.FC = () => {
                     ({
                         ...post,
                         author: authors[post.authorId],
-                        isFavorite: favoritePosts.includes(post.id),
+                        isFavorite: favoritePosts ? favoritePosts.includes(post.id) : false,
                     })
             )
             : state.firestore.ordered.posts

@@ -21,3 +21,5 @@
 - [X] Generalnie dobrym pomysłem będzie trzymanie jednak info o userze w firestore-database. Będzie można wtedy prawdopodobnie lepiej sie poruszać wokół bazy. Zatem createUser będzie musiał być usunięty.
 
 ## Notes
+
+- [ ] Mainpage is totally obscure with this whole recursive achievieng posts and profiles. This should be custom hook or whatever. Don't say anything about this favoritePosts crap xD. Also this don't work well in PostPage. This should get some DRY rule with selectors etc.
