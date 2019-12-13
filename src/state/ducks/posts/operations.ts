@@ -89,7 +89,7 @@ export const likePost = (
 
             await postRef.update({
                 likedBy: [user_id, ...peopleWhoLikedPost],
-                likes: likesOnPost - 1,
+                likes: likesOnPost + 1,
             });
         }
         // dispatch(actions.addPost(content));
