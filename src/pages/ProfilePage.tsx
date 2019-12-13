@@ -16,7 +16,7 @@ type Props = {
     }
 };
 
-const PostPage: React.FC<Props> = (props) => {
+const ProfilePage: React.FC<Props> = (props) => {
 
 
     //TODO redundancy with mainpage
@@ -59,41 +59,43 @@ const PostPage: React.FC<Props> = (props) => {
     ])
 
 
-    console.log(posts);
 
 
     return (
 
-        posts ?
-            posts[0] && authors ?
-                <PostCard
-                    author={posts[0].author.username}
-                    authorId={posts[0].author.id}
-                    content={posts[0].content}
-                    authorProfilePicture={posts[0].author.profilePicPath}
-                    key={posts[0].id}
-                    date={posts[0].createdAt.seconds}
-                    id={posts[0].id}
-                    likedBy={posts[0].likedBy}
-                    favorite={true} //TODO
-                />
-                : <Redirect to="/404" />
+        <span>
+            profile
+        </span>
 
-            : <Spinner
-                animation="grow"
-                style={{
-                    marginTop: "30vh",
-                    marginLeft: "50vw",
+        // posts ?
+        //     posts[0] && authors ?
+        //         <PostCard
+        //             author={posts[0].author.username}
+        //             content={posts[0].content}
+        //             authorProfilePicture={posts[0].author.profilePicPath}
+        //             key={posts[0].id}
+        //             date={posts[0].createdAt.seconds}
+        //             id={posts[0].id}
+        //             likedBy={posts[0].likedBy}
+        //             favorite={true} //TODO
+        //         />
+        //         : <Redirect to="/404" />
 
-                }}
-                role="status"
-            >
-                <span className="sr-only">
-                    Loading...
-                </span>
-            </Spinner>
+        //     : <Spinner
+        //         animation="grow"
+        //         style={{
+        //             marginTop: "30vh",
+        //             marginLeft: "50vw",
+
+        //         }}
+        //         role="status"
+        //     >
+        //         <span className="sr-only">
+        //             Loading...
+        //         </span>
+        //     </Spinner>
 
     );
 }
 
-export default PostPage;
+export default ProfilePage;

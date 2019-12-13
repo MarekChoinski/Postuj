@@ -19,6 +19,7 @@ import { addPostToFavorites, removePostFromFavorites, likePost, unlikePost } fro
 
 interface PostProps {
     author: string,
+    authorId: string,
     date: any,
     content: string,
     id: string,
@@ -31,12 +32,13 @@ const PostCard: React.FC<PostProps> = (props) => {
 
     const {
         author,
+        authorId,
         date,
         content,
         id,
         authorProfilePicture,
         likedBy,
-        favorite
+        favorite,
     } = props;
     const dispatch = useDispatch();
 
@@ -64,18 +66,24 @@ const PostCard: React.FC<PostProps> = (props) => {
         >
             <Card.Header>
                 <Media>
-                    <img
-                        width={64}
-                        height={64}
-                        className="mr-3"
-                        src={authorProfilePicture || DefaultAvatar}
-                        // alt="placeholder"
-                        style={{
-                            borderRadius: "5px",
-                        }}
-                    />
+                    <Link to={"/profile/" + authorId}>
+                        <img
+                            width={64}
+                            height={64}
+                            className="mr-3"
+                            src={authorProfilePicture || DefaultAvatar}
+                            // alt="placeholder"
+                            style={{
+                                borderRadius: "5px",
+                            }}
+                        />
+                    </Link>
                     <Media.Body>
-                        <h4>{author}</h4>
+                        <Link to={"/profile/" + authorId}>
+                            <h4>
+                                {author}
+                            </h4>
+                        </Link>
                         <span
                             className="text-muted"
                         >
@@ -140,7 +148,6 @@ const PostCard: React.FC<PostProps> = (props) => {
                         // lineHeight: "32px",
                     }}
                     onClick={
-
 
                         () => {
                             if (authorized && profile) {

@@ -114,6 +114,7 @@ const Mainpage: React.FC = () => {
 
         <PostCard
             author={post.author.username}
+            authorId={post.author.id}
             content={post.content}
             authorProfilePicture={post.author.profilePicPath}
             key={post.id}

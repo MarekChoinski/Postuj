@@ -15,6 +15,7 @@ import {
 import PostPage from './pages/PostPage';
 import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
+import ProfilePage from './pages/ProfilePage';
 
 const App: React.FC = () => {
   return (
@@ -27,6 +28,7 @@ const App: React.FC = () => {
         <Route exact path="/signup" component={SignUpPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route path="/post/:id" component={PostPage} />
+        <Route path="/profile/:id" component={ProfilePage} />
         <Route path="*" component={Page404} />
       </Switch>
 
