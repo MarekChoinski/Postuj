@@ -14,7 +14,7 @@ export const addPost = (
             authorId: state.auth.uid,
             createdAt: new Date(),
             likedBy: [],
-            like: 0,  //NOTE: we need this field to properly sort posts by likes
+            likes: 0,  //NOTE: we need this field to properly sort posts by likes
         });
 
         dispatch(actions.addPost(content));
