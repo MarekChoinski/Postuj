@@ -13,7 +13,8 @@ export const addPost = (
             content: content,
             authorId: state.auth.uid,
             createdAt: new Date(),
-            likes: 0,
+            likedBy: [],
+            like: 0,  //NOTE: we need this field to properly sort posts by likes
         });
 
         dispatch(actions.addPost(content));
@@ -66,6 +67,69 @@ export const removePostFromFavorites = (
 
 };
 
+export const likePost = (
+    id: string,
+) => async (dispatch: any, getState: any, { getFirebase, getFirestore }: any) => {
+
+    const likedPostsByUser = getState().firebase.profile.likedPosts;
+    const user_id = getState().firebase.auth.uid;
+
+    const postRef = getFirestore().collection('posts').doc(id);
+
+    const postDoc = await postRef.get();
+    const peopleWhoLikedPost = postDoc.data().likedBy;
+
+    const likesOnPost = postDoc.data().likes;
+
+    try {
+        if (!peopleWhoLikedPost.includes(user_id)) {
+            getFirebase().updateProfile({
+                likedPosts: [id, ...likedPostsByUser],
+            });
+
+            await postRef.update({
+                likedBy: [user_id, ...peopleWhoLikedPost],
+                likes: likesOnPost - 1,
+            });
+        }
+        // dispatch(actions.addPost(content));
+
+    } catch (error) {
+        // TODO here should came action with meta error
+        console.error(error);
+    }
+};
+
+export const unlikePost = (
+    id: string,
+) => async (dispatch: any, getState: any, { getFirebase, getFirestore }: any) => {
+
+    const likedPostsByUser = getState().firebase.profile.likedPosts.filter((item: string) => item !== id);
+    const user_id = getState().firebase.auth.uid;
+
+    const postRef = getFirestore().collection('posts').doc(id);
+
+    const postDoc = await postRef.get();
+    const peopleWhoLikedPost = postDoc.data().likedBy.filter((item: string) => item !== user_id);
+    const likesOnPost = postDoc.data().likes;
+
+    try {
+        getFirebase().updateProfile({
+            likedPosts: [...likedPostsByUser],
+        });
+
+        await postRef.update({
+            likedBy: [...peopleWhoLikedPost],
+            likes: likesOnPost - 1,
+        });
+        // dispatch(actions.addPost(content));
+
+    } catch (error) {
+        // TODO here should came action with meta error
+        console.error(error);
+    }
+};
+
 export const deletePost = actions.deletePost;
 export const setSortMethod = actions.setSortMethod;
 
@@ -74,4 +138,6 @@ export default {
     deletePost,
     setSortMethod,
     addPostToFavorites,
+    likePost,
+    unlikePost,
 };

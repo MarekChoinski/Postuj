@@ -119,7 +119,7 @@ const Mainpage: React.FC = () => {
             key={post.id}
             id={post.id}
             date={post.createdAt.seconds}
-            likes={post.likes}
+            likedBy={post.likedBy}
             favorite={post.isFavorite}
         />
     ) : <Spinner

@@ -14,7 +14,8 @@ import {
     Link
 } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
-import { addPostToFavorites, removePostFromFavorites } from '../state/ducks/posts/operations';
+import { addPostToFavorites, removePostFromFavorites, likePost, unlikePost } from '../state/ducks/posts/operations';
+// import { likePost } from '../state/ducks/posts/actions';
 
 interface PostProps {
     author: string,
@@ -22,7 +23,7 @@ interface PostProps {
     content: string,
     id: string,
     authorProfilePicture: string,
-    likes: number,
+    likedBy: Array<string>,
     favorite: boolean,
 };
 
@@ -34,7 +35,7 @@ const PostCard: React.FC<PostProps> = (props) => {
         content,
         id,
         authorProfilePicture,
-        likes,
+        likedBy,
         favorite
     } = props;
     const dispatch = useDispatch();
@@ -45,6 +46,13 @@ const PostCard: React.FC<PostProps> = (props) => {
 
     const profile = useSelector((state: any) =>
         !state.firebase.auth.isEmpty ? state.firebase.profile : null
+    );
+
+
+    const isAlreadyLiked = useSelector((state: any) =>
+        (authorized && profile) ?
+            likedBy.includes(state.firebase.auth.uid)
+            : false
     );
 
     return (
@@ -126,11 +134,23 @@ const PostCard: React.FC<PostProps> = (props) => {
 
 
                 <Button
-                    variant="light"
+                    variant={isAlreadyLiked ? "success" : "light"}
                     style={{
                         // padding: "3px",
                         // lineHeight: "32px",
                     }}
+                    onClick={
+
+
+                        () => {
+                            if (authorized && profile) {
+                                if (isAlreadyLiked) {
+                                    dispatch(unlikePost(id))
+                                }
+                                dispatch(likePost(id))
+                            }
+                        }
+                    }
                 >
                     <IconLike />
                     <span
@@ -140,7 +160,7 @@ const PostCard: React.FC<PostProps> = (props) => {
                             // padding: "3px",
                             fontSize: "17px",
                         }}>
-                        {likes}
+                        {likedBy.length}
                     </span>
                 </Button>
 

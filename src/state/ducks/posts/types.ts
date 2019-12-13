@@ -3,11 +3,8 @@ export const DELETE_POST = "bloggy/posts/DELETE_POST";
 export const SET_SORT_METHOD = "bloggy/posts/SET_SORT_METHOD";
 export const ADD_POST_TO_FAVORITES = "bloggy/posts/ADD_POST_TO_FAVORITES";
 export const REMOVE_POST_FROM_FAVORITES = "bloggy/posts/REMOVE_POST_FROM_FAVORITES";
-// export const TOGGLE_TODO = "todo_app/TOGGLE_TODO";
-// export const EDIT_TODO = "todo_app/EDIT_TODO";
-
-// export const EDIT_TITLE = "todo_app/TOGGLE_TITLE";
-
+export const LIKE_POST = "bloggy/posts/LIKE_POST";
+export const UNLIKE_POST = "bloggy/posts/UNLIKE_POST";
 
 export type Post = Readonly<{
     content: string,
@@ -51,12 +48,15 @@ interface removePostFromFavorites {
     payload: Pick<Post, 'id'>;
 }
 
-// interface EditTitleAction {
-//     type: typeof EDIT_TITLE;
-//     payload: {
-//         title: string,
-//     }
-// }
+interface likePost {
+    type: typeof LIKE_POST;
+    payload: Pick<Post, 'id'>;
+}
+
+interface unlikePost {
+    type: typeof UNLIKE_POST;
+    payload: Pick<Post, 'id'>;
+}
 
 
 export type PostActionTypes =
@@ -64,6 +64,8 @@ export type PostActionTypes =
     setSortMethod |
     addPostToFavorites |
     removePostFromFavorites |
+    likePost |
+    unlikePost |
     DeletePostAction;
 
 // export type TitleActionTypes = EditTitleAction;

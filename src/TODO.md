@@ -3,13 +3,16 @@
 ## Posts
 - [ ] add plus attribute for posts
 - [ ] add possibility for adding images
-- [ ] add profile page
 - [ ] iReady profile menubar
 - [ ] onHover on date post it should show exact date
 
-## General
+## Miscellaneous
 - [ ] realtime checking username
 - [ ] i18n
+
+# Profiles
+- [ ] add profile page
+- [ ] add role: user, mod, admin
 
 ## Done
 - [X] add sorting on mainpage by date and pluses

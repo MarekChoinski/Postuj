@@ -72,7 +72,7 @@ const PostPage: React.FC<Props> = (props) => {
                     key={posts[0].id}
                     date={posts[0].createdAt.seconds}
                     id={posts[0].id}
-                    likes={posts[0].likes}
+                    likedBy={posts[0].likedBy}
                     favorite={true} //TODO
                 />
                 : <Redirect to="/404" />

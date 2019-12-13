@@ -40,6 +40,24 @@ export const removePostFromFavorites = (
     },
 });
 
+export const likePost = (
+    id: string
+): types.PostActionTypes => ({
+    type: types.LIKE_POST,
+    payload: {
+        id,
+    },
+});
+
+export const unlikePost = (
+    id: string
+): types.PostActionTypes => ({
+    type: types.UNLIKE_POST,
+    payload: {
+        id,
+    },
+});
+
 
 export const setSortMethod = (
     sortMethod: string

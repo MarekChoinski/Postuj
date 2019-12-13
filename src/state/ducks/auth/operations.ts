@@ -62,18 +62,9 @@ export const signUp = (
 
         const ref = firebase.storage().ref().child("profilePictures/av-" + username + ".jpg");
 
-        console.log("Witamy w reduxie", profilePicPath);
-
-
-
-
-
         try {
             await ref.put(profilePicPath);
-            console.log("uploaded!");
             const url = await ref.getDownloadURL();
-            console.log(url);
-
 
             getFirebase().createUser(
                 {
@@ -83,9 +74,10 @@ export const signUp = (
                 {
                     username: username,
                     profilePicPath: url,
+                    favoritesPosts: [],
+                    likedPosts: [],
                 }
             )
-
 
             dispatch(actions.signUp());
 
