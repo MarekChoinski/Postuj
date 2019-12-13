@@ -150,6 +150,8 @@ const PostCard: React.FC<PostProps> = (props) => {
                     onClick={
 
                         () => {
+                            console.log("id", id);
+
                             if (authorized && profile) {
                                 if (isAlreadyLiked) {
                                     dispatch(unlikePost(id))

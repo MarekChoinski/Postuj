@@ -53,6 +53,9 @@ export const removePostFromFavorites = (
 
     const actualFavoritePosts = getState().firebase.profile.favoritePosts.filter((item: string) => item !== id);
 
+    console.log("actualFavoritePosts", actualFavoritePosts);
+
+
     try {
         getFirebase().updateProfile({
             favoritePosts: [...actualFavoritePosts],
