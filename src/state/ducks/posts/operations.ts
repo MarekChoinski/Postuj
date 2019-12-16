@@ -53,7 +53,7 @@ export const removePostFromFavorites = (
 
     const actualFavoritePosts = getState().firebase.profile.favoritePosts.filter((item: string) => item !== id);
 
-    console.log("actualFavoritePosts", actualFavoritePosts);
+    //console.log("actualFavoritePosts", actualFavoritePosts);
 
 
     try {
@@ -93,6 +93,7 @@ export const likePost = (
             await postRef.update({
                 likedBy: [user_id, ...peopleWhoLikedPost],
                 likes: likesOnPost + 1,
+                id, //NOTE: this dissappears when updating document. Seems to be problem with react-redux-firebase
             });
         }
         // dispatch(actions.addPost(content));
@@ -124,6 +125,7 @@ export const unlikePost = (
         await postRef.update({
             likedBy: [...peopleWhoLikedPost],
             likes: likesOnPost - 1,
+            id, //NOTE: this dissappears when updating document. Seems to be problem with react-redux-firebase
         });
         // dispatch(actions.addPost(content));
 

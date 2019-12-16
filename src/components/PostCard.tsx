@@ -57,6 +57,8 @@ const PostCard: React.FC<PostProps> = (props) => {
             : false
     );
 
+    // console.log("id", id);
+
     return (
         <Card
             style={{
@@ -150,7 +152,7 @@ const PostCard: React.FC<PostProps> = (props) => {
                     onClick={
 
                         () => {
-                            console.log("id", id);
+
 
                             if (authorized && profile) {
                                 if (isAlreadyLiked) {

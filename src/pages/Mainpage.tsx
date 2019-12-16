@@ -16,6 +16,9 @@ import { subHours, getMilliseconds } from 'date-fns';
 
 const Mainpage: React.FC = () => {
 
+
+
+
     const sortMethod = useSelector((state: any) =>
         state.posts.sortMethod
     );
@@ -85,6 +88,8 @@ const Mainpage: React.FC = () => {
             )
             : state.firestore.ordered.posts
     );
+
+    //console.log("posts", posts);
 
     const authorsQueries = posts ? posts.map((post: any) => ({
         collection: 'users',

@@ -21,6 +21,10 @@ const PostPage: React.FC<Props> = (props) => {
 
     //TODO redundancy with mainpage
 
+    const favoritePosts = useSelector((state: any) =>
+        !state.firebase.auth.isEmpty ? state.firebase.profile.favoritePosts : []
+    );
+
     const authors = useSelector((state: any) =>
         state.firestore.ordered.authors ?
             state.firestore.ordered.authors.reduce((hash: any, author: any) => {
@@ -39,6 +43,7 @@ const PostPage: React.FC<Props> = (props) => {
                     ({
                         ...post,
                         author: authors[post.authorId],
+                        isFavorite: favoritePosts ? favoritePosts.includes(post.id) : false,
                     })
             )
             : state.firestore.ordered.posts
@@ -59,6 +64,8 @@ const PostPage: React.FC<Props> = (props) => {
     ])
 
 
+
+
     console.log(posts);
 
 
@@ -75,7 +82,7 @@ const PostPage: React.FC<Props> = (props) => {
                     date={posts[0].createdAt.seconds}
                     id={posts[0].id}
                     likedBy={posts[0].likedBy}
-                    favorite={true} //TODO
+                    favorite={posts[0].isFavorite} //TODO
                 />
                 : <Redirect to="/404" />
 
