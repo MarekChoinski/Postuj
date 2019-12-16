@@ -7,6 +7,8 @@ import { useFirestoreConnect } from 'react-redux-firebase'
 import { useSelector } from 'react-redux';
 import Spinner from 'react-bootstrap/Spinner';
 import { Redirect } from 'react-router';
+import DefaultAvatar from '../assets/images/defaultAvatar.png';
+import { formatDistanceToNow } from 'date-fns';
 
 type Props = {
     match: {
@@ -98,8 +100,19 @@ const ProfilePage: React.FC<Props> = (props) => {
         !isRequestingProfileFromPage ?
             profile ?
                 <span>
-                    {profile.username}
-                    {profile.profilePicPath}
+                    {profile.username} <br />
+                    <img
+                        width={64}
+                        height={64}
+                        className="mr-3"
+                        src={profile.profilePicPath || DefaultAvatar}
+                        // alt="placeholder"
+                        style={{
+                            borderRadius: "5px",
+                        }}
+                    /><br />
+                    {formatDistanceToNow(profile.createdAt.seconds * 1000, { addSuffix: true })}
+                    <br />
                 </span>
                 // posts[0] && authors ?
                 // <PostCard

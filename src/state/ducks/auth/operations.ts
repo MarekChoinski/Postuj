@@ -76,6 +76,7 @@ export const signUp = (
                     profilePicPath: url,
                     favoritesPosts: [],
                     likedPosts: [],
+                    createdAt: new Date(),
                 }
             )
 
