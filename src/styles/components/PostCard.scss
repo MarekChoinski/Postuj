@@ -1,0 +1,74 @@
+.card.post_card {
+
+    width: 900px;
+    margin: 50px auto;
+    // border: 1px solid lightgray;
+    border: none;
+    box-shadow: $card-shadow;
+    // border-radius: 10px;
+}
+
+.card-footer.post_card__footer {
+    display: flex;
+    background-color: white;
+    // border: none;
+    margin: 0 25px;
+    padding: 25px 0px;
+    border: none;
+}
+
+.card-header.post_card__header {
+    background-color: white;
+    // border: none;
+    margin: 0 35px;
+    padding: 20px 0;
+    // border: none;
+}
+
+.card-body.post_card__body {
+    padding: 35px 35px 20px 35px;
+}
+
+.btn.post_card__fav_button {
+    padding: 3px 10px;
+    width: auto;
+    min-width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    // border: 1px solid rgb(236, 236, 236);
+
+    &:hover {
+        // background-color: lightgray;
+    }
+
+    svg {
+        height: 80%;
+        // margin-bottom: 2px;
+    }
+
+    &--plus {
+        display: flex;
+        align-items: center;
+    }
+
+}
+
+.btn.post_card__show_post {
+    color: rgb(68, 68, 68);
+    text-transform: uppercase;
+    font-weight: 600;
+    // box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.2);
+    // background-color: rgb(252, 219, 232);
+    border-radius: $btn-border-radius;
+    padding: 8px 15px;
+    height: 40px;
+    // line-height: 23px;
+    margin: 0 0 0 auto;
+    // align-self: flex-end;
+    // display: block;
+
+    &:hover {
+        background-color: lightgray;
+    }
+
+}

@@ -52,12 +52,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
 
 
         (<Card
-            style={{
-                margin: "50px auto",
-                padding: "30px",
-                width: "900px",
-            }
-            }
+            className="add_post_form"
         >
             <FormikForm>
 
@@ -79,6 +74,14 @@ const InnerForm = (props: FormikProps<FormValues>) => {
                                 rows="3"
                                 name="postContent"
                                 placeholder="Type post text..."
+                                onChange={(e: any) => {
+                                    // props.setValues({ "postContent": props.values.postContent });
+                                    // props.setFieldValue()
+                                    // console.log(props)
+                                    console.log(e.target.value);
+                                    props.setFieldValue('postContent', e.target.value);
+                                    console.log(props.values.postContent);
+                                }}
                             />
 
                             {touched.postContent && errors.postContent ?
@@ -89,14 +92,22 @@ const InnerForm = (props: FormikProps<FormValues>) => {
 
                         </Form.Group>
                         <ButtonToolbar>
-                            <Button variant="light">
+                            {/* <Button variant="light">
                                 <IconBold />
                             </Button>
                             <Button variant="light">
                                 <IconItalic />
-                            </Button>
+                            </Button> */}
                             <Button variant="light">
                                 <IconCamera />
+                                <span
+                                    style={{
+                                        fontWeight: "bold",
+                                        marginLeft: "10px",
+                                    }}>
+
+                                    DODAJ ZDJĘCIE
+                                </span>
                             </Button>
                             {/* <Button variant="light">
                                 <IconCamera />

@@ -61,12 +61,11 @@ const PostCard: React.FC<PostProps> = (props) => {
 
     return (
         <Card
-            style={{
-                width: "900px",
-                margin: "50px auto"
-            }}
+            className="post_card"
         >
-            <Card.Header>
+            <Card.Header
+                className="post_card__header"
+            >
                 <Media>
                     <Link to={"/profile/" + authorId}>
                         <img
@@ -74,7 +73,7 @@ const PostCard: React.FC<PostProps> = (props) => {
                             height={64}
                             className="mr-3"
                             src={authorProfilePicture || DefaultAvatar}
-                            // alt="placeholder"
+                            alt="User avatar"
                             style={{
                                 borderRadius: "5px",
                             }}
@@ -93,30 +92,23 @@ const PostCard: React.FC<PostProps> = (props) => {
                         </span>
                     </Media.Body>
                 </Media>
-                {/* <p className="justify-content-end">+</p> */}
             </Card.Header>
-            <Card.Body>
+            <Card.Body
+                className="post_card__body"
+            >
                 <Card.Text>
                     {content}
                 </Card.Text>
             </Card.Body>
             <Card.Footer
-                className="text-muted"
-                style={{
-                    display: "flex",
-                }}
+                className="text-muted post_card__footer"
             >
-
                 {
-
                     (authorized && profile) ?
                         (favorite ?
-
                             <Button
                                 variant="light"
-                                style={{
-                                    padding: "3px",
-                                }}
+                                className="post_card__fav_button"
                                 onClick={
                                     () => {
                                         dispatch(removePostFromFavorites(id))
@@ -127,9 +119,7 @@ const PostCard: React.FC<PostProps> = (props) => {
                             </Button>
                             : <Button
                                 variant="light"
-                                style={{
-                                    padding: "3px",
-                                }}
+                                className="post_card__fav_button"
                                 onClick={
                                     () => {
                                         dispatch(addPostToFavorites(id))
@@ -141,19 +131,11 @@ const PostCard: React.FC<PostProps> = (props) => {
 
                 }
 
-
-
                 <Button
                     variant={isAlreadyLiked ? "success" : "light"}
-                    style={{
-                        // padding: "3px",
-                        // lineHeight: "32px",
-                    }}
+                    className="post_card__fav_button post_card__fav_button--plus"
                     onClick={
-
                         () => {
-
-
                             if (authorized && profile) {
                                 if (isAlreadyLiked) {
                                     dispatch(unlikePost(id))
@@ -163,13 +145,20 @@ const PostCard: React.FC<PostProps> = (props) => {
                         }
                     }
                 >
-                    <IconLike />
+                    <IconLike
+                        style={{
+                            height: "24px",
+                        }} />
                     <span
                         style={{
                             color: "black",
                             fontWeight: "bold",
                             // padding: "3px",
                             fontSize: "17px",
+                            display: "block",
+                            height: "24px",
+                            lineHeight: "24px",
+                            marginLeft: "5px",
                         }}>
                         {likedBy.length}
                     </span>
@@ -178,18 +167,14 @@ const PostCard: React.FC<PostProps> = (props) => {
 
 
 
-                <Card.Link
+                <Button
+                    variant="light"
                     as={Link}
                     to={"/post/" + id}
-                    // className="ml-auto"
-                    style={{
-                        // display: "inline-block",
-                        // textAlign: "right",
-                        marginLeft: "auto",
-                    }}
+                    className="post_card__show_post"
                 >
                     Pokaż post
-                </Card.Link>
+                </Button>
             </Card.Footer>
         </Card >
     );

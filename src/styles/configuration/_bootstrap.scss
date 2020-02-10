@@ -11,11 +11,15 @@
 // $font-family-monospace;
 // $font-family-base: $font-family-sans-serif;
 
+$card-border-radius: 7px;
+$btn-border-radius: 5px;
+
 $primary-light: #ec407a;
 $primary-mood: #f4511e;
 $primary-dark: #ffea00;
 
-$bgc-light: #eceff1;
+//$bgc-light: #eceff1;
+$bgc-light: gray;
 $bgc-mood: #b0bec5;
 $bgc-dark: #212121; //#263238;
 
@@ -32,11 +36,12 @@ $primary: $primary-light;
 
 $theme-colors: ("primary": $primary,
     "secondary": #c1b290,
-    "success": $success,
+    "success": #00C853,
     "info": $info,
     "warning": $warning,
     "danger": #ff504e,
-    "light": $light,
+    // "light": $light,
+    "light": white,
     // "dark": #111111,
     "black": #000000);
 
@@ -47,6 +52,7 @@ $theme-colors: ("primary": $primary,
 $btn-padding-y: 10px;
 $btn-padding-x: $btn-padding-y;
 
+$input-btn-line-height: 1;
 $btn-line-height: 1;
 
 // .input-group {
