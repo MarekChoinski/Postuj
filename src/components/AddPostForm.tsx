@@ -58,11 +58,9 @@ const InnerForm = (props: FormikProps<FormValues>) => {
 
                 <Media>
                     <img
-                        width={64}
-                        height={64}
-                        className="mr-3"
                         src={profile.profilePicPath || DefaultAvatar}
                         alt="placeholder"
+                        className="mr-3 add_post_form__image"
                     />
                     <Media.Body>
                         <Form.Group

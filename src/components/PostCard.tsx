@@ -81,12 +81,14 @@ const PostCard: React.FC<PostProps> = (props) => {
                     </Link>
                     <Media.Body>
                         <Link to={"/profile/" + authorId}>
-                            <h4>
+                            <h4
+                                className="post_card__username">
                                 {author}
                             </h4>
                         </Link>
                         <span
                             className="text-muted"
+                            title="My tip"
                         >
                             {formatDistanceToNow(date * 1000, { addSuffix: true })}
                         </span>

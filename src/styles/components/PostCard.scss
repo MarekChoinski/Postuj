@@ -6,6 +6,18 @@
     border: none;
     box-shadow: $card-shadow;
     // border-radius: 10px;
+    text-align: justify;
+    text-justify: inter-word;
+
+    @media (max-width: 991.98px) {
+        margin: 20px auto;
+        width: 100%;
+        text-align: left;
+    }
+}
+
+.post_card__username {
+    color: $primary;
 }
 
 .card-footer.post_card__footer {
@@ -64,11 +76,12 @@
     height: 40px;
     // line-height: 23px;
     margin: 0 0 0 auto;
+
     // align-self: flex-end;
     // display: block;
 
-    &:hover {
-        background-color: lightgray;
-    }
+    // &:hover {
+    //     background-color: lightgray;
+    // }
 
 }

@@ -45,10 +45,7 @@ const SortBar: React.FC<{}> = (props) => {
 
     return (
         <Card
-            style={{
-                width: "900px",
-                margin: "20px auto"
-            }}
+            className="sort_bar"
         >
             <Card.Body>
                 <span

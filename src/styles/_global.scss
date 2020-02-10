@@ -8,7 +8,13 @@ html,
 }
 
 .main {
-    transition: color, background-color 1.2s ease;
+
+    @media (max-width: 991.98px) {
+        padding: 0 10px;
+    }
+
+    transition: color,
+    background-color 1.2s ease;
 
     * {
         transition: background-color 1.2s ease;
@@ -17,8 +23,8 @@ html,
     font-family: sans-serif;
     min-height: 100%;
     width: 100%;
-    display: flex;
-    justify-content: center;
+    // display: flex;
+    // justify-content: center;
     background-color: $bgc-light;
     box-sizing: border-box;
 
@@ -30,9 +36,9 @@ html,
         background-color: $bgc-dark;
     }
 
-    &__wrapper {
-        width: 600px;
-        padding: 50px;
-    }
+    // &__wrapper {
+    //     width: 600px;
+    //     padding: 50px;
+    // }
 
 }

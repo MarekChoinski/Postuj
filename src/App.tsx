@@ -19,20 +19,23 @@ import ProfilePage from './pages/ProfilePage';
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <MenuBar />
-      <ThemeSwitch />
 
-      <Switch>
-        <Route exact path="/" component={Mainpage} />
-        <Route exact path="/signup" component={SignUpPage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route path="/post/:id" component={PostPage} />
-        <Route path="/profile/:id" component={ProfilePage} />
-        <Route path="*" component={Page404} />
-      </Switch>
+    <main className="main">
+      <Router>
+        <MenuBar />
+        <ThemeSwitch />
 
-    </Router>
+        <Switch>
+          <Route exact path="/" component={Mainpage} />
+          <Route exact path="/signup" component={SignUpPage} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route path="/post/:id" component={PostPage} />
+          <Route path="/profile/:id" component={ProfilePage} />
+          <Route path="*" component={Page404} />
+        </Switch>
+
+      </Router>
+    </main>
 
   );
 }

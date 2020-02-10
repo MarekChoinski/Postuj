@@ -47,6 +47,9 @@ To może być całkiem okej. Da sie ustawić max-height i potem np. dac overflow
 - [ ] 404
 - [ ] RWD
 
+## CSS
+- [ ] card style should be mixin
+
 ## Implementation details
 
 - [ ] Mainpage is totally obscure with this whole recursive achievieng posts and profiles. This should be custom hook or whatever. Don't say anything about this favoritePosts crap xD. Also this don't work well in PostPage. This should get some DRY rule with selectors etc.
