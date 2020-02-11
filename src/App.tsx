@@ -23,7 +23,9 @@ const App: React.FC = () => {
     <main className="main">
       <Router>
         <MenuBar />
-        <ThemeSwitch />
+        <ThemeSwitch
+
+        />
 
         <Switch>
           <Route exact path="/" component={Mainpage} />

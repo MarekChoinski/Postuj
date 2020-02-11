@@ -32,7 +32,12 @@ const ThemeSwitch: React.FC = () => {
 
 
     return (
-        <div className="theme_switch">
+        <div className="theme_switch"
+            style={{
+                // marginTop: "150px",
+                // paddingRight: "50px",
+            }}
+        >
 
             <ToggleButtonGroup
                 type="radio"

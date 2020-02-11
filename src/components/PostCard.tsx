@@ -116,6 +116,9 @@ const PostCard: React.FC<PostProps> = (props) => {
                 <Card.Text>
                     {content}
                 </Card.Text>
+
+                <img src="https://placekitten.com/300/200" alt="test" className="post_card__image" />
+
             </Card.Body>
             <Card.Footer
                 className="text-muted post_card__footer"

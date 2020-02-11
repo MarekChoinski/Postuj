@@ -6,6 +6,8 @@ import DefaultAvatar from '../assets/images/defaultAvatar.png';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import ThemeSwitch from './ThemeSwitch';
+
 import {
     NavLink
 } from "react-router-dom";
@@ -68,6 +70,8 @@ const MenuBar: React.FC = () => {
                 id="basic-navbar-nav"
                 className="justify-content-end"
             >
+
+                <ThemeSwitch />
                 <Nav>
 
                     {links}
