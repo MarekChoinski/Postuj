@@ -18,6 +18,39 @@
 
 .post_card__username {
     color: $primary;
+    font-size: 1.7rem // width: 300px;
+}
+
+.post_card__observe {
+    color: rgba($primary, .7);
+    border: 1px solid rgba($primary, .7);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-left: auto;
+    // align-self: flex-end;
+
+    &:hover,
+    &:focus {
+        color: $primary;
+
+        // color: red;
+        border: 1px solid $primary;
+    }
+
+    &:focus {
+        background-color: rgba($primary, .4);
+    }
+
+    &:hover {
+        background-color: rgba($primary, .2);
+    }
+
+
+}
+
+.post_card__observe_icon {
+    fill: rgba($primary, .7);
+    margin-left: 5px;
 }
 
 .card-footer.post_card__footer {
@@ -34,6 +67,8 @@
     // border: none;
     margin: 0 35px;
     padding: 20px 0;
+    display: flex;
+    align-items: center;
     // border: none;
 }
 

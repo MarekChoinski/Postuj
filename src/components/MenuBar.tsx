@@ -27,7 +27,9 @@ const MenuBar: React.FC = () => {
     const links = (authorized && profile) ?
         <>
 
-            <NavDropdown title={profile.username} id="basic-nav-dropdown">
+            <NavDropdown
+                title={profile.username}
+                id="basic-nav-dropdown">
                 <NavDropdown.Item onClick={() => dispatch(signOut())}>Wyloguj się</NavDropdown.Item>
                 {/* <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                 <NavDropdown.Divider />
@@ -41,7 +43,7 @@ const MenuBar: React.FC = () => {
                     height={45}
                     className="mr-3 ml-3"
                     src={profile.profilePicPath || DefaultAvatar}
-                    // alt="placeholder"
+                    alt="placeholder"
                     style={{
                         borderRadius: "50px",
                     }}
@@ -59,7 +61,7 @@ const MenuBar: React.FC = () => {
     return (
 
 
-        <Navbar expand="lg" bg="primary" variant="light" fixed="top">
+        <Navbar className="menu-bar navbar-expand" bg="primary" variant="light" fixed="top">
             <Navbar.Brand as={NavLink} to="/" > React - Bootstrap</Navbar.Brand >
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse
@@ -68,16 +70,7 @@ const MenuBar: React.FC = () => {
             >
                 <Nav>
 
-
-
-
                     {links}
-
-
-
-
-
-
 
                 </Nav>
             </Navbar.Collapse>

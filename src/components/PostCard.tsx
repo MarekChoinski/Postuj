@@ -92,8 +92,23 @@ const PostCard: React.FC<PostProps> = (props) => {
                         >
                             {formatDistanceToNow(date * 1000, { addSuffix: true })}
                         </span>
+
+
+
                     </Media.Body>
                 </Media>
+                {
+                    (authorized && profile) &&
+                    <Button
+                        variant="light"
+                        className="post_card__observe"
+                    >
+                        Obserwuj
+                        <IconLike
+                            className="post_card__observe_icon" />
+                    </Button>
+
+                }
             </Card.Header>
             <Card.Body
                 className="post_card__body"
