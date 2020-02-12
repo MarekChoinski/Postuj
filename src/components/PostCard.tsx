@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Card from 'react-bootstrap/Card';
 import Media from 'react-bootstrap/Media';
 import DefaultAvatar from '../assets/images/defaultAvatar.png';
@@ -9,6 +9,7 @@ import { ReactComponent as IconFavorite } from '../assets/post-icon_favorite.svg
 import { ReactComponent as IconAddToFavorite } from '../assets/post-icon_add_to_favorite.svg';
 import { ReactComponent as IconLike } from '../assets/post-icon_like.svg';
 
+import { ThemeContext } from '../contexts/ThemeContext';
 
 import {
     Link
@@ -29,6 +30,8 @@ interface PostProps {
 };
 
 const PostCard: React.FC<PostProps> = (props) => {
+
+    const { theme } = useContext(ThemeContext);
 
     const {
         author,
@@ -61,10 +64,10 @@ const PostCard: React.FC<PostProps> = (props) => {
 
     return (
         <Card
-            className="post_card"
+            className={`post_card ${theme}`}
         >
             <Card.Header
-                className="post_card__header"
+                className={`post_card__header `}
             >
                 <Media>
                     <Link to={"/profile/" + authorId}>
@@ -82,7 +85,7 @@ const PostCard: React.FC<PostProps> = (props) => {
                     <Media.Body>
                         <Link to={"/profile/" + authorId}>
                             <h4
-                                className="post_card__username">
+                                className={`post_card__username ${theme}`}>
                                 {author}
                             </h4>
                         </Link>
@@ -101,34 +104,34 @@ const PostCard: React.FC<PostProps> = (props) => {
                     (authorized && profile) &&
                     <Button
                         variant="light"
-                        className="post_card__observe"
+                        className={`post_card__observe ${theme}`}
                     >
                         Obserwuj
                         <IconLike
-                            className="post_card__observe_icon" />
+                            className={`post_card__observe_icon ${theme}`} />
                     </Button>
 
                 }
             </Card.Header>
             <Card.Body
-                className="post_card__body"
+                className={`post_card__body ${theme}`}
             >
                 <Card.Text>
                     {content}
                 </Card.Text>
 
-                <img src="https://placekitten.com/300/200" alt="test" className="post_card__image" />
+                <img src="https://placekitten.com/300/200" alt="test" className={`post_card__image ${theme}`} />
 
             </Card.Body>
             <Card.Footer
-                className="text-muted post_card__footer"
+                className={`text-muted post_card__footer `}
             >
                 {
                     (authorized && profile) ?
                         (favorite ?
                             <Button
                                 variant="light"
-                                className="post_card__fav_button"
+                                className={`text-muted post_card__fav_button ${theme}`}
                                 onClick={
                                     () => {
                                         dispatch(removePostFromFavorites(id))
@@ -139,7 +142,7 @@ const PostCard: React.FC<PostProps> = (props) => {
                             </Button>
                             : <Button
                                 variant="light"
-                                className="post_card__fav_button"
+                                className={`text-muted post_card__fav_button ${theme}`}
                                 onClick={
                                     () => {
                                         dispatch(addPostToFavorites(id))
@@ -153,7 +156,7 @@ const PostCard: React.FC<PostProps> = (props) => {
 
                 <Button
                     variant={isAlreadyLiked ? "success" : "light"}
-                    className="post_card__fav_button post_card__fav_button--plus"
+                    className={`post_card__fav_button post_card__fav_button--plus ${theme}`}
                     onClick={
                         () => {
                             if (authorized && profile) {
@@ -191,7 +194,8 @@ const PostCard: React.FC<PostProps> = (props) => {
                     variant="light"
                     as={Link}
                     to={"/post/" + id}
-                    className="post_card__show_post"
+                    className={`post_card__show_post ${theme}`}
+
                 >
                     Pokaż post
                 </Button>

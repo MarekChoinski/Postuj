@@ -71,7 +71,7 @@ const MenuBar: React.FC = () => {
                 className="justify-content-end"
             >
 
-                <ThemeSwitch />
+                {/* <ThemeSwitch /> */}
                 <Nav>
 
                     {links}

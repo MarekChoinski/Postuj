@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Card from 'react-bootstrap/Card';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Media from 'react-bootstrap/Media';
@@ -7,6 +7,8 @@ import { useFirestoreConnect, useFirebase, useFirestore } from 'react-redux-fire
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSortMethod } from '../state/ducks/posts/operations';
+
+import { ThemeContext } from '../contexts/ThemeContext';
 
 
 import {
@@ -23,6 +25,8 @@ interface PostProps {
 };
 
 const SortBar: React.FC<{}> = (props) => {
+
+    const { theme } = useContext(ThemeContext);
 
     const [sortMethodText, setSortText] = useState('newest');
     const dispatch = useDispatch();
@@ -45,7 +49,7 @@ const SortBar: React.FC<{}> = (props) => {
 
     return (
         <Card
-            className="sort_bar"
+            className={`sort_bar ${theme}`}
         >
             <Card.Body>
                 <span
@@ -82,7 +86,7 @@ const SortBar: React.FC<{}> = (props) => {
                     </Dropdown.Menu>
                 </Dropdown>
             </Card.Body>
-        </Card>
+        </Card >
     );
 
 

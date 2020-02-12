@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import * as Yup from 'yup';
 import { withFormik, FormikProps, /*FormikErrors,*/ Form as FormikForm, Field } from 'formik';
 import Form from 'react-bootstrap/Form';
@@ -15,6 +15,8 @@ import { addPost } from '../state/ducks/posts/operations';
 import { useDispatch, connect, useSelector } from 'react-redux';
 import { postsSelectors } from '../state/ducks/posts';
 
+import { ThemeContext } from '../contexts/ThemeContext';
+
 import DefaultAvatar from '../assets/images/defaultAvatar.png';
 
 const schema = Yup.object({
@@ -29,6 +31,8 @@ interface FormValues {
 }
 
 const InnerForm = (props: FormikProps<FormValues>) => {
+
+    const { theme } = useContext(ThemeContext);
     const dispatch = useDispatch();
 
     const { touched, errors, isSubmitting } = props;
@@ -52,7 +56,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
 
 
         (<Card
-            className="add_post_form"
+            className={`add_post_form ${theme}`}
         >
             <FormikForm>
 

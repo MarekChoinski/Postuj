@@ -36,9 +36,21 @@ html,
         background-color: $bgc-dark;
     }
 
-    // &__wrapper {
-    //     width: 600px;
-    //     padding: 50px;
-    // }
+    &__wrapper {
+        padding-top: 50px;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
 
+}
+
+.mood {
+    background-color: $bgc-card-mood;
+    color: $text-color-mood;
+}
+
+.dark {
+    background-color: $bgc-card-dark;
+    color: $text-color-dark;
 }

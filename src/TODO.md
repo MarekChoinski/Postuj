@@ -49,6 +49,7 @@ To może być całkiem okej. Da sie ustawić max-height i potem np. dac overflow
 
 ## CSS
 - [ ] card style should be mixin
+- [ ] probably theming could be done simply by adding global mood and dark classes - not in every class
 
 ## Implementation details
 

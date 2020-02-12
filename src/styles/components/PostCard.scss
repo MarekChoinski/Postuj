@@ -14,11 +14,33 @@
         width: 100%;
         text-align: left;
     }
+
+    &.mood {
+        background-color: $bgc-card-mood;
+        color: $text-color-mood;
+    }
+
+    &.dark {
+        background-color: $bgc-card-dark;
+        color: $text-color-dark;
+    }
+
 }
 
 .post_card__username {
     color: $primary;
-    font-size: 1.7rem // width: 300px;
+    font-size: 1.7rem; // width: 300px;
+    background-color: transparent;
+
+    &.mood {
+        // background-color: $bgc-card-mood;
+        color: $text-color-mood;
+    }
+
+    &.dark {
+        // background-color: $bgc-card-dark;
+        color: $text-color-dark;
+    }
 }
 
 .post_card__observe {
@@ -45,12 +67,32 @@
         background-color: rgba($primary, .2);
     }
 
+    &.mood {
+        background-color: $bgc-card-mood;
+        color: $text-color-mood;
+    }
+
+    &.dark {
+        background-color: $bgc-card-dark;
+        color: $text-color-dark;
+    }
+
 
 }
 
 .post_card__observe_icon {
     fill: rgba($primary, .7);
     margin-left: 5px;
+
+    &.mood {
+        background-color: $bgc-card-mood;
+        color: $text-color-mood;
+    }
+
+    &.dark {
+        background-color: $bgc-card-dark;
+        color: $text-color-dark;
+    }
 }
 
 .post_card__image {
@@ -58,29 +100,70 @@
     margin-top: 25px;
     border-radius: 7px;
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+
+    &.mood {
+        background-color: $bgc-card-mood;
+        color: $text-color-mood;
+    }
+
+    &.dark {
+        background-color: $bgc-card-dark;
+        color: $text-color-dark;
+    }
 }
 
 .card-footer.post_card__footer {
     display: flex;
-    background-color: white;
+    background-color: transparent;
     // border: none;
     margin: 0 25px;
     padding: 25px 0px;
     border: none;
+
+    &.mood {
+        // background-color: $bgc-card-mood;
+        // color: $text-color-mood;
+    }
+
+    &.dark {
+        // background-color: $bgc-card-dark;
+        // color: $text-color-dark;
+    }
 }
 
 .card-header.post_card__header {
-    background-color: white;
+    background-color: transparent;
     // border: none;
     margin: 0 35px;
     padding: 20px 0;
     display: flex;
     align-items: center;
+
+    // &.mood {
+    // background-color: $bgc-card-mood;
+    // color: $text-color-mood;
+    // }
+
+    // &.dark {
+    // background-color: $bgc-card-dark;
+    // color: $text-color-dark;
+    // }
+
     // border: none;
 }
 
 .card-body.post_card__body {
     padding: 35px 35px 20px 35px;
+
+    // &.mood {
+    //     background-color: $bgc-card-mood;
+    //     color: $text-color-mood;
+    // }
+
+    // &.dark {
+    //     background-color: $bgc-card-dark;
+    //     color: $text-color-dark;
+    // }
 }
 
 .btn.post_card__fav_button {
@@ -89,6 +172,17 @@
     min-width: 40px;
     height: 40px;
     margin-right: 10px;
+
+    // &.mood {
+    //     background-color: $bgc-card-mood;
+    //     color: $text-color-mood;
+    // }
+
+    // &.dark {
+    //     background-color: $bgc-card-dark;
+    //     color: $text-color-dark;
+    // }
+
     // border: 1px solid rgb(236, 236, 236);
 
     &:hover {
@@ -118,6 +212,16 @@
     height: 40px;
     // line-height: 23px;
     margin: 0 0 0 auto;
+
+    // &.mood {
+    //     background-color: $bgc-card-mood;
+    //     color: $text-color-mood;
+    // }
+
+    // &.dark {
+    //     background-color: $bgc-card-dark;
+    //     color: $text-color-dark;
+    // }
 
     // align-self: flex-end;
     // display: block;

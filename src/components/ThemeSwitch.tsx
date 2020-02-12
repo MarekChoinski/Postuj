@@ -32,47 +32,50 @@ const ThemeSwitch: React.FC = () => {
 
 
     return (
-        <div className="theme_switch"
-            style={{
-                // marginTop: "150px",
-                // paddingRight: "50px",
-            }}
+        // <div className="theme_switch"
+        // style={{
+        //     // marginTop: "150px",
+        //     // paddingRight: "50px",
+        //     display: "fixed",
+        //     top: "200px",
+        //     right: "50px",
+        //     zIndex: 900,
+        // }}
+        // >
+
+        <ToggleButtonGroup
+            type="radio"
+            name="theme"
+            value={value}
+            onChange={handleChange}
+            className={`theme_switch ${theme}`}
         >
 
-            <ToggleButtonGroup
-                type="radio"
-                name="theme"
-                value={value}
-                onChange={handleChange}
-                className={`theme_switch__button-group ${theme}`}
+            <ToggleButton
+                value="light"
+                variant="light"
+                className={`theme_switch__button ${theme}`}
             >
+                <ThemeLightIcon />
+            </ToggleButton>
 
-                <ToggleButton
-                    value="light"
-                    variant="light"
-                    className={`theme_switch__button ${theme}`}
-                >
-                    <ThemeLightIcon />
-                </ToggleButton>
+            <ToggleButton
+                value="mood"
+                variant="light"
+                className={`theme_switch__button ${theme}`}
+            >
+                <ThemeMoodIcon />
+            </ToggleButton>
 
-                <ToggleButton
-                    value="mood"
-                    variant="light"
-                    className={`theme_switch__button ${theme}`}
-                >
-                    <ThemeMoodIcon />
-                </ToggleButton>
+            <ToggleButton
+                value="dark"
+                variant="light"
+                className={`theme_switch__button ${theme}`}
+            >
+                <ThemeDarkIcon />
+            </ToggleButton>
 
-                <ToggleButton
-                    value="dark"
-                    variant="light"
-                    className={`theme_switch__button ${theme}`}
-                >
-                    <ThemeDarkIcon />
-                </ToggleButton>
-
-            </ToggleButtonGroup>
-        </div >
+        </ToggleButtonGroup>
     );
 }
 

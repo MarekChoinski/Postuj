@@ -1,5 +1,17 @@
-.btn-group.theme_switch__button-group {
-    float: right;
+.theme_switch {
+    background-color: transparent;
+    position: absolute;
+    top: 100px;
+    right: 50px;
+
+
+
+    @media (max-width: 991.98px) {
+        position: unset;
+        margin: 20px 0;
+
+        // right: 15px;
+    }
 }
 
 .btn.theme_switch__button {
@@ -7,34 +19,29 @@
     border: 1px solid darken($bgc-light, 10%);
 
     &.mood {
-        background-color: $bgc-todo-mood;
-        border: 1px solid darken($bgc-todo-mood, 10%);
+        // background-color: $bgc-card-mood;
+        border: 1px solid darken($bgc-card-mood, 10%);
         fill: $text-color-mood;
     }
 
     &.dark {
-        background-color: $bgc-todo-dark;
-        border: 1px solid darken($bgc-todo-dark, 10%);
+        // background-color: $bgc-card-dark;
+        border: 1px solid darken($bgc-card-dark, 10%);
         fill: $text-color-dark;
     }
 
     &.active {
         &.mood {
-            background-color: lighten($bgc-todo-mood, 5%);
+            background-color: lighten($bgc-card-mood, 5%);
         }
 
         &.dark {
-            background-color: lighten($bgc-todo-dark, 10%);
-            border: 1px solid $bgc-todo-dark;
+            background-color: lighten($bgc-card-dark, 10%);
+            border: 1px solid $bgc-card-dark;
         }
     }
 
     &.focus {
         box-shadow: none;
     }
-}
-
-.theme_switch {
-    width: 100%;
-    display: inline-block;
 }
