@@ -6,7 +6,9 @@ export const signIn = (
     password: string,
 ) => {
 
-    return async (dispatch: any, getState: any, { getFirebase }: any) => {
+    return async (dispatch: any, getState: any, {
+        getFirebase
+    }: any) => {
 
         try {
             await firebase.auth().signInWithEmailAndPassword(email, password);
@@ -16,8 +18,7 @@ export const signIn = (
 
             if (error.code == "auth/user-not-found") {
                 error = "User not found!";
-            }
-            else {
+            } else {
                 error = error.code + " " + error.message;
             }
 
@@ -28,7 +29,9 @@ export const signIn = (
 
 export const signOut = () => {
 
-    return async (dispatch: any, getState: any, { getFirebase }: any) => {
+    return async (dispatch: any, getState: any, {
+        getFirebase
+    }: any) => {
 
         try {
             // const firebase = getFirebase();
@@ -58,7 +61,10 @@ export const signUp = (
     profilePicPath: any,
 ) => {
 
-    return async (dispatch: any, getState: any, { getFirebase, getFirestore }: any) => {
+    return async (dispatch: any, getState: any, {
+        getFirebase,
+        getFirestore
+    }: any) => {
 
         const ref = firebase.storage().ref().child("profilePictures/av-" + username + ".jpg");
 
@@ -66,19 +72,16 @@ export const signUp = (
             await ref.put(profilePicPath);
             const url = await ref.getDownloadURL();
 
-            getFirebase().createUser(
-                {
-                    email: email,
-                    password: password,
-                },
-                {
-                    username: username,
-                    profilePicPath: url,
-                    favoritesPosts: [],
-                    likedPosts: [],
-                    createdAt: new Date(),
-                }
-            )
+            getFirebase().createUser({
+                email: email,
+                password: password,
+            }, {
+                username: username,
+                profilePicPath: url,
+                favoritesPosts: [],
+                likedPosts: [],
+                createdAt: new Date(),
+            })
 
             dispatch(actions.signUp());
 

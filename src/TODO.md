@@ -73,3 +73,8 @@ To może być całkiem okej. Da sie ustawić max-height i potem np. dac overflow
 ## Notes
 
 A bit colored gray background
+
+> To nie możesz
+> Po prostu
+> <ThemeProvider prefixes={{ theme: "dark' }}>
+> Doda Ci to dark do każdego className iirc

@@ -121,6 +121,7 @@ const PostsList: React.FC = () => {
             author={post.author.username}
             authorId={post.author.id}
             content={post.content}
+            attachedPhoto={post.attachedPhoto}
             authorProfilePicture={post.author.profilePicPath}
             key={post.id}
             id={post.id}

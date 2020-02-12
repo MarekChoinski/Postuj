@@ -8,19 +8,11 @@ import { ThemeContext } from '../contexts/ThemeContext';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 
-
-
 const ThemeSwitch: React.FC = () => {
 
     const { setTheme, theme } = useContext(ThemeContext);
     const [value, setValue] = useState(1);
 
-    /*
-     * The second argument that will be passed to
-     * `handleChange` from `ToggleButtonGroup`
-     * is the SyntheticEvent object, but we are
-     * not using it in this example so we will omit it.
-     */
     const handleChange = useCallback(
         (value) => {
             setValue(value)
@@ -29,20 +21,7 @@ const ThemeSwitch: React.FC = () => {
         [setValue, setTheme],
     );
 
-
-
     return (
-        // <div className="theme_switch"
-        // style={{
-        //     // marginTop: "150px",
-        //     // paddingRight: "50px",
-        //     display: "fixed",
-        //     top: "200px",
-        //     right: "50px",
-        //     zIndex: 900,
-        // }}
-        // >
-
         <ToggleButtonGroup
             type="radio"
             name="theme"

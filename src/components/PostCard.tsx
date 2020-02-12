@@ -23,6 +23,7 @@ interface PostProps {
     authorId: string,
     date: any,
     content: string,
+    attachedPhoto: any,
     id: string,
     authorProfilePicture: string,
     likedBy: Array<string>,
@@ -38,6 +39,7 @@ const PostCard: React.FC<PostProps> = (props) => {
         authorId,
         date,
         content,
+        attachedPhoto,
         id,
         authorProfilePicture,
         likedBy,
@@ -119,8 +121,10 @@ const PostCard: React.FC<PostProps> = (props) => {
                 <Card.Text>
                     {content}
                 </Card.Text>
-
-                <img src="https://placekitten.com/300/200" alt="test" className={`post_card__image ${theme}`} />
+                {
+                    attachedPhoto &&
+                    <img src={attachedPhoto} alt="test" className={`post_card__image ${theme}`} />
+                }
 
             </Card.Body>
             <Card.Footer

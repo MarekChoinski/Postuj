@@ -28,6 +28,7 @@ const schema = Yup.object({
 
 interface FormValues {
     postContent: string,
+    file: string,
 }
 
 const InnerForm = (props: FormikProps<FormValues>) => {
@@ -35,7 +36,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
     const { theme } = useContext(ThemeContext);
     const dispatch = useDispatch();
 
-    const { touched, errors, isSubmitting } = props;
+    const { touched, errors, isSubmitting, setFieldValue } = props;
     const authorized = useSelector((state: any) =>
         !state.firebase.auth.isEmpty
     );
@@ -64,7 +65,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
                     <img
                         src={profile.profilePicPath || DefaultAvatar}
                         alt="placeholder"
-                        className="mr-3 add_post_form__image"
+                        className="mr-3 add_post_form__avatar"
                     />
                     <Media.Body>
                         <Form.Group
@@ -100,17 +101,42 @@ const InnerForm = (props: FormikProps<FormValues>) => {
                             <Button variant="light">
                                 <IconItalic />
                             </Button> */}
-                            <Button variant="light">
-                                <IconCamera />
-                                <span
-                                    style={{
-                                        fontWeight: "bold",
-                                        marginLeft: "10px",
-                                    }}>
 
-                                    DODAJ ZDJĘCIE
+
+                            {props.values.file &&
+                                <img
+                                    src={URL.createObjectURL(props.values.file)}
+                                    alt="Generic placeholder"
+                                    className={`add_post_form__attached_photo ${theme}`}
+                                />}
+
+
+
+                            <label htmlFor="file" className="add_post_form__input_file_label">
+                                <span>
+
+                                    <IconCamera />
+                                    <span
+                                        style={{
+                                            fontWeight: "bold",
+                                            marginLeft: "10px",
+                                        }}>
+
+                                        DODAJ ZDJĘCIE
                                 </span>
-                            </Button>
+                                </span>
+                            </label>
+                            {/* <Button
+                                variant="light"
+                            >
+                            </Button> */}
+
+                            <input id="file" name="file" type="file" className="add_post_form__input_file" onChange={(event: any) => {
+                                setFieldValue("file", event.currentTarget.files[0]);
+                                // console.log(event.currentTarget.files![0]);
+                                // console.log(URL.createObjectURL(event.currentTarget.files![0]));
+
+                            }} />
                             {/* <Button variant="light">
                                 <IconCamera />
                             </Button> */}
@@ -146,6 +172,7 @@ const addPostOnSubmit = (values: any) => {
 
 interface AddPostFormProps {
     postContent?: string,
+    file?: string,
     dispatch?: any,
     addPostOnSubmit?: any,
 
@@ -156,6 +183,7 @@ const AddPostFormFormik = withFormik<AddPostFormProps, FormValues>({
     mapPropsToValues: props => {
         return {
             postContent: "",
+            file: "",
         };
     },
 
@@ -164,14 +192,14 @@ const AddPostFormFormik = withFormik<AddPostFormProps, FormValues>({
     validateOnBlur: false,
 
     handleSubmit: (values, { props, setSubmitting }) => {
-        props.addPostOnSubmit(values.postContent);
+        props.addPostOnSubmit(values.postContent, values.file);
         setSubmitting(false);
     },
 
 })(InnerForm);
 
 const mapDispatchToProps = (dispatch: any) => ({
-    addPostOnSubmit: (postContent: string) => dispatch(addPost(postContent)),
+    addPostOnSubmit: (postContent: string, file: any) => dispatch(addPost(postContent, file)),
 });
 
 const AddPostForm = connect(

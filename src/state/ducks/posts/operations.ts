@@ -1,139 +1,166 @@
 import * as actions from "./actions";
+import firebase from 'firebase';
 
 export const addPost = (
     content: string,
-) => async (dispatch: any, getState: any, { getFirebase, getFirestore }: any) => {
+    attachedPhoto: any,
+) => async (dispatch: any, getState: any, {
+    getFirebase,
+    getFirestore
+}: any) => {
 
-    const state = getState().firebase;
 
-    try {
-        const firestore = getFirestore();
+        let timestamp = new Date();
 
-        await firestore.collection('posts').add({
-            content: content,
-            authorId: state.auth.uid,
-            createdAt: new Date(),
-            likedBy: [],
-            likes: 0,  //NOTE: we need this field to properly sort posts by likes
-        });
+        const state = getState().firebase;
+        const ref = firebase.storage().ref().child("photos/" + state.profile.username + "/" + timestamp.getTime() + ".jpg");
 
-        dispatch(actions.addPost(content));
 
-    } catch (error) {
-        // TODO here should came action with meta error
-        console.error(error);
-    }
+        try {
 
-};
+            await ref.put(attachedPhoto);
+            const url = await ref.getDownloadURL();
+
+            const firestore = getFirestore();
+
+            await firestore.collection('posts').add({
+                content: content,
+                attachedPhoto: attachedPhoto ? url : "",
+                authorId: state.auth.uid,
+                createdAt: new Date(),
+                likedBy: [],
+                likes: 0, //NOTE: we need this field to properly sort posts by likes
+            });
+
+            dispatch(actions.addPost(content));
+
+        } catch (error) {
+            // TODO here should came action with meta error
+            console.error(error);
+        }
+
+    };
 
 export const addPostToFavorites = (
     id: string,
-) => async (dispatch: any, getState: any, { getFirebase, getFirestore }: any) => {
+) => async (dispatch: any, getState: any, {
+    getFirebase,
+    getFirestore
+}: any) => {
 
-    const actualFavoritePosts = getState().firebase.profile.favoritePosts;
+        const actualFavoritePosts = getState().firebase.profile.favoritePosts;
 
-    try {
-        if (!actualFavoritePosts.includes(id)) {
-            getFirebase().updateProfile({
-                favoritePosts: [id, ...actualFavoritePosts],
-            });
+        try {
+            if (!actualFavoritePosts.includes(id)) {
+                getFirebase().updateProfile({
+                    favoritePosts: [id, ...actualFavoritePosts],
+                });
+            }
+            // dispatch(actions.addPost(content));
+
+        } catch (error) {
+            // TODO here should came action with meta error
+            console.error(error);
         }
-        // dispatch(actions.addPost(content));
 
-    } catch (error) {
-        // TODO here should came action with meta error
-        console.error(error);
-    }
-
-};
+    };
 
 export const removePostFromFavorites = (
     id: string,
-) => async (dispatch: any, getState: any, { getFirebase, getFirestore }: any) => {
+) => async (dispatch: any, getState: any, {
+    getFirebase,
+    getFirestore
+}: any) => {
 
-    const actualFavoritePosts = getState().firebase.profile.favoritePosts.filter((item: string) => item !== id);
+        const actualFavoritePosts = getState().firebase.profile.favoritePosts.filter((item: string) => item !== id);
 
-    //console.log("actualFavoritePosts", actualFavoritePosts);
+        //console.log("actualFavoritePosts", actualFavoritePosts);
 
 
-    try {
-        getFirebase().updateProfile({
-            favoritePosts: [...actualFavoritePosts],
-        });
+        try {
+            getFirebase().updateProfile({
+                favoritePosts: [...actualFavoritePosts],
+            });
 
-        // dispatch(actions.addPost(content));
+            // dispatch(actions.addPost(content));
 
-    } catch (error) {
-        // TODO here should came action with meta error
-        console.error(error);
-    }
+        } catch (error) {
+            // TODO here should came action with meta error
+            console.error(error);
+        }
 
-};
+    };
 
 export const likePost = (
     id: string,
-) => async (dispatch: any, getState: any, { getFirebase, getFirestore }: any) => {
+) => async (dispatch: any, getState: any, {
+    getFirebase,
+    getFirestore
+}: any) => {
 
-    const likedPostsByUser = getState().firebase.profile.likedPosts;
-    const user_id = getState().firebase.auth.uid;
+        const likedPostsByUser = getState().firebase.profile.likedPosts;
+        const user_id = getState().firebase.auth.uid;
 
-    const postRef = getFirestore().collection('posts').doc(id);
+        const postRef = getFirestore().collection('posts').doc(id);
 
-    const postDoc = await postRef.get();
-    const peopleWhoLikedPost = postDoc.data().likedBy;
+        const postDoc = await postRef.get();
+        const peopleWhoLikedPost = postDoc.data().likedBy;
 
-    const likesOnPost = postDoc.data().likes;
+        const likesOnPost = postDoc.data().likes;
 
-    try {
-        if (!peopleWhoLikedPost.includes(user_id)) {
-            getFirebase().updateProfile({
-                likedPosts: [id, ...likedPostsByUser],
-            });
+        try {
+            if (!peopleWhoLikedPost.includes(user_id)) {
+                getFirebase().updateProfile({
+                    likedPosts: [id, ...likedPostsByUser],
+                });
 
-            await postRef.update({
-                likedBy: [user_id, ...peopleWhoLikedPost],
-                likes: likesOnPost + 1,
-                id, //NOTE: this dissappears when updating document. Seems to be problem with react-redux-firebase
-            });
+                await postRef.update({
+                    likedBy: [user_id, ...peopleWhoLikedPost],
+                    likes: likesOnPost + 1,
+                    id, //NOTE: this dissappears when updating document. Seems to be problem with react-redux-firebase
+                });
+            }
+            // dispatch(actions.addPost(content));
+
+        } catch (error) {
+            // TODO here should came action with meta error
+            console.error(error);
         }
-        // dispatch(actions.addPost(content));
-
-    } catch (error) {
-        // TODO here should came action with meta error
-        console.error(error);
-    }
-};
+    };
 
 export const unlikePost = (
     id: string,
-) => async (dispatch: any, getState: any, { getFirebase, getFirestore }: any) => {
+) => async (dispatch: any, getState: any, {
+    getFirebase,
+    getFirestore
+}: any) => {
 
-    const likedPostsByUser = getState().firebase.profile.likedPosts.filter((item: string) => item !== id);
-    const user_id = getState().firebase.auth.uid;
+        const likedPostsByUser = getState().firebase.profile.likedPosts.filter((item: string) => item !== id);
+        const user_id = getState().firebase.auth.uid;
 
-    const postRef = getFirestore().collection('posts').doc(id);
+        const postRef = getFirestore().collection('posts').doc(id);
 
-    const postDoc = await postRef.get();
-    const peopleWhoLikedPost = postDoc.data().likedBy.filter((item: string) => item !== user_id);
-    const likesOnPost = postDoc.data().likes;
+        const postDoc = await postRef.get();
+        const peopleWhoLikedPost = postDoc.data().likedBy.filter((item: string) => item !== user_id);
+        const likesOnPost = postDoc.data().likes;
 
-    try {
-        getFirebase().updateProfile({
-            likedPosts: [...likedPostsByUser],
-        });
+        try {
+            getFirebase().updateProfile({
+                likedPosts: [...likedPostsByUser],
+            });
 
-        await postRef.update({
-            likedBy: [...peopleWhoLikedPost],
-            likes: likesOnPost - 1,
-            id, //NOTE: this dissappears when updating document. Seems to be problem with react-redux-firebase
-        });
-        // dispatch(actions.addPost(content));
+            await postRef.update({
+                likedBy: [...peopleWhoLikedPost],
+                likes: likesOnPost - 1,
+                id, //NOTE: this dissappears when updating document. Seems to be problem with react-redux-firebase
+            });
+            // dispatch(actions.addPost(content));
 
-    } catch (error) {
-        // TODO here should came action with meta error
-        console.error(error);
-    }
-};
+        } catch (error) {
+            // TODO here should came action with meta error
+            console.error(error);
+        }
+    };
 
 export const deletePost = actions.deletePost;
 export const setSortMethod = actions.setSortMethod;

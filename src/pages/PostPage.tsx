@@ -77,6 +77,7 @@ const PostPage: React.FC<Props> = (props) => {
                     author={posts[0].author.username}
                     authorId={posts[0].author.id}
                     content={posts[0].content}
+                    attachedPhoto={posts[0].attachedPhoto}
                     authorProfilePicture={posts[0].author.profilePicPath}
                     key={posts[0].id}
                     date={posts[0].createdAt.seconds}

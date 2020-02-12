@@ -1,6 +1,6 @@
 
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useContext } from 'react';
 
 import PostCard from '../components/PostCard';
 import { useFirestoreConnect } from 'react-redux-firebase'
@@ -10,7 +10,12 @@ import { Redirect } from 'react-router';
 import DefaultAvatar from '../assets/images/defaultAvatar.png';
 import { formatDistanceToNow, subHours } from 'date-fns';
 import Nav from 'react-bootstrap/Nav';
-
+import Card from 'react-bootstrap/Card';
+import Media from 'react-bootstrap/Media';
+import { Link } from 'react-router-dom';
+import { date } from 'yup';
+import Button from 'react-bootstrap/Button';
+import { ThemeContext } from '../contexts/ThemeContext';
 type Props = {
     match: {
         params: {
@@ -21,14 +26,10 @@ type Props = {
 
 const ProfilePage: React.FC<Props> = (props) => {
 
+    const { theme } = useContext(ThemeContext);
+
 
     //TODO redundancy with mainpage
-
-
-
-
-
-
 
 
     const sortMethod = useSelector((state: any) =>
@@ -133,6 +134,7 @@ const ProfilePage: React.FC<Props> = (props) => {
             author={post.author.username}
             authorId={post.author.id}
             content={post.content}
+            attachedPhoto={post.attachedPhoto}
             authorProfilePicture={post.author.profilePicPath}
             key={post.id}
             id={post.id}
@@ -207,53 +209,85 @@ const ProfilePage: React.FC<Props> = (props) => {
 
         !isRequestingProfileFromPage ?
             profile ?
+
+
                 <>
-
-                    <span
-                        style={{
-                            margin: "100px auto 0 auto",
-                            width: "900px",
-                            display: "block"
-                        }}
+                    <Card
+                        className={`post_card ${theme}`}
                     >
-                        {profile.username} <br />
-                        <img
-                            width={64}
-                            height={64}
-                            className="mr-3"
-                            src={profile.profilePicPath || DefaultAvatar}
-                            // alt="placeholder"
-                            style={{
-                                borderRadius: "5px",
-                            }}
-                        /><br />
-                        {formatDistanceToNow(profile.createdAt.seconds * 1000, { addSuffix: true })}
-                        <br />
-                    </span>
+                        <Card.Header
+                            className={`post_card__header `}
+                        >
+                            <Media>
+                                {/* <Link to={"/profile/" + authorId}> */}
+                                <img
+                                    width={64}
+                                    height={64}
+                                    className="mr-3"
+                                    src={profile.profilePicPath || DefaultAvatar}
+                                    alt="placeholder"
+                                    style={{
+                                        borderRadius: "5px",
+                                    }}
+                                />
+                                {/* </Link> */}
+                                <Media.Body>
+                                    {/* <Link to={"/profile/" + authorId}> */}
+                                    <h4
+                                        className={`post_card__username ${theme}`}>
+                                        {profile.username}
+                                    </h4>
+                                    {/* </Link> */}
+                                    <span
+                                        className="text-muted"
+                                        title="My tip"
+                                    >
+                                        {formatDistanceToNow(profile.createdAt.seconds * 1000, { addSuffix: true })}
+                                    </span>
 
-                    <Nav justify variant="tabs" defaultActiveKey="/home"
-                        style={{
-                            margin: "50px auto 0 auto",
-                            width: "900px",
-                        }}
-                    >
-                        <Nav.Item>
-                            <Nav.Link active>Najlepsze</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link>Najnowsze</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link>Ulubione</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link>Polubione</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link>Obserwowani</Nav.Link>
-                        </Nav.Item>
 
-                    </Nav>
+
+                                </Media.Body>
+                            </Media>
+
+                        </Card.Header>
+                        <Card.Body
+                            className={`post_card__body ${theme}`}
+                        >
+                            <Card.Text>
+                                test
+                            </Card.Text>
+
+
+
+
+
+
+                            <Nav justify variant="tabs" defaultActiveKey="/home"
+                                style={{
+                                    margin: "50px auto 0 auto",
+                                    width: "900px",
+                                }}
+                            >
+                                <Nav.Item>
+                                    <Nav.Link active>Najlepsze</Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item>
+                                    <Nav.Link>Najnowsze</Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item>
+                                    <Nav.Link>Ulubione</Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item>
+                                    <Nav.Link>Polubione</Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item>
+                                    <Nav.Link>Obserwowani</Nav.Link>
+                                </Nav.Item>
+
+                            </Nav>
+                        </Card.Body>
+                    </Card>
 
                     {postList}
                 </>

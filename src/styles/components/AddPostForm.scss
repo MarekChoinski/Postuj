@@ -27,12 +27,32 @@
     // }
 }
 
-.add_post_form__image {
+.add_post_form__avatar {
     width: 64px;
     height: 64px;
     border-radius: 8px;
 
     @media (max-width: 991.98px) {
         display: none;
+    }
+}
+
+.add_post_form__attached_photo {
+    max-width: 100%;
+    border-radius: 7px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+.add_post_form__input_file {
+    display: none;
+}
+
+.add_post_form__input_file_label {
+    padding: 6px 12px;
+    border-radius: 7px;
+
+    &:hover {
+        background-color: lightgray;
     }
 }
