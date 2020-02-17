@@ -4,6 +4,7 @@ import Media from 'react-bootstrap/Media';
 import DefaultAvatar from '../assets/images/defaultAvatar.png';
 import { useFirestoreConnect, useFirebase, useFirestore } from 'react-redux-firebase'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import { format } from 'date-fns'
 import { useSelector, useDispatch } from 'react-redux';
 import { ReactComponent as IconFavorite } from '../assets/post-icon_favorite.svg';
 import { ReactComponent as IconAddToFavorite } from '../assets/post-icon_add_to_favorite.svg';
@@ -93,7 +94,7 @@ const PostCard: React.FC<PostProps> = (props) => {
                         </Link>
                         <span
                             className="text-muted"
-                            title="My tip"
+                            title={format((date * 1000), "'Opublikowano 'dd-MM-yyyy' o godz. 'hh:mm")}
                         >
                             {formatDistanceToNow(date * 1000, { addSuffix: true })}
                         </span>
@@ -106,9 +107,12 @@ const PostCard: React.FC<PostProps> = (props) => {
                     (authorized && profile) &&
                     <Button
                         variant="light"
-                        className={`post_card__observe ${theme}`}
+                        className={`post_card__observe_button ${theme}`}
                     >
-                        Obserwuj
+                        <span className="post_card__observe_text">
+
+                            Obserwuj
+                        </span>
                         <IconLike
                             className={`post_card__observe_icon ${theme}`} />
                     </Button>

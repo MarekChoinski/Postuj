@@ -48,9 +48,11 @@ html,
 .mood {
     background-color: $bgc-card-mood;
     color: $text-color-mood;
+    fill: $text-color-mood;
 }
 
 .dark {
     background-color: $bgc-card-dark;
     color: $text-color-dark;
+    fill: $text-color-dark;
 }

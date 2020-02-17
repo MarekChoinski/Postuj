@@ -43,7 +43,7 @@
     }
 }
 
-.post_card__observe {
+.post_card__observe_button {
     color: rgba($primary, .7);
     border: 1px solid rgba($primary, .7);
     font-weight: 600;
@@ -78,6 +78,14 @@
     }
 
 
+
+}
+
+.post_card__observe_text {
+    @media (max-width: 460px) {
+        display: none;
+    }
+
 }
 
 .post_card__observe_icon {
@@ -93,6 +101,11 @@
         background-color: $bgc-card-dark;
         color: $text-color-dark;
     }
+
+    @media (max-width: 460px) {
+        margin-left: 0px;
+    }
+
 }
 
 .post_card__image {

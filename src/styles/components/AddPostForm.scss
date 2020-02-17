@@ -4,15 +4,15 @@
     box-shadow: $card-shadow;
     border: none;
     padding: 30px;
-    margin-top: 50px;
+    // margin-top: 50px;
 
     @media (max-width: 991.98px) {
         width: 100%;
         margin: 20px auto;
-        margin-top: 120px;
+        // margin-top: 0px;
     }
 
-    @media (max-width: 1330px) {
+    @media (max-width: 1330px) and (min-width: 991.98px) {
         margin-top: 120px;
     }
 

@@ -64,7 +64,7 @@ const MenuBar: React.FC = () => {
 
 
         <Navbar className="menu-bar navbar-expand" bg="primary" variant="light" fixed="top">
-            <Navbar.Brand as={NavLink} to="/" > React - Bootstrap</Navbar.Brand >
+            <Navbar.Brand as={NavLink} to="/" >Postuj.pl</Navbar.Brand >
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse
                 id="basic-navbar-nav"

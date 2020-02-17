@@ -8,6 +8,7 @@ import { useDispatch, connect } from 'react-redux';
 import { signUp } from '../state/ducks/auth/operations';
 import Media from 'react-bootstrap/Media';
 import DefaultAvatar from '../assets/images/defaultAvatar.png';
+import { ReactComponent as IconCamera } from '../assets/add_post_form_camera.svg';
 
 
 const schema = Yup.object({
@@ -128,20 +129,41 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
                     {/* <Media.Body> */}
 
                     <img
-                        width={64}
-                        height={64}
-                        className="mb-3"
+                        // width={64}
+                        // height={64}
+                        className="sign_up_form__avatar"
                         src={props.values.file ? URL.createObjectURL(props.values.file) : DefaultAvatar}
                         alt="Generic placeholder"
                     />
 
-                    <input id="file" name="file" type="file" className="form-control-file" onChange={(event: any) => {
+                    <input id="file" name="file" type="file" className="sign_up_form__input_file" onChange={(event: any) => {
                         setFieldValue("file", event.currentTarget.files[0]);
-                        console.log(event.currentTarget.files![0]);
-                        console.log(URL.createObjectURL(event.currentTarget.files![0]));
+                        // console.log(event.currentTarget.files![0]);
+                        // console.log(URL.createObjectURL(event.currentTarget.files![0]));
 
 
                     }} />
+
+
+
+
+
+                    <label htmlFor="file" className="sign_up_form__input_file_label">
+                        <span
+                            style={{ display: "inline-block" }}
+                        >
+
+                            <IconCamera />
+                            <span
+                                style={{
+                                    fontWeight: "bold",
+                                    marginLeft: "10px",
+                                }}>
+
+                                DODAJ ZDJĘCIE
+                                </span>
+                        </span>
+                    </label>
 
 
 
