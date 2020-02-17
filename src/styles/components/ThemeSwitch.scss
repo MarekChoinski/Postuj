@@ -12,15 +12,11 @@
         background-color: transparent;
     }
 
-    // @media (max-width: 991.98px) {
-    @media (max-width: 1300px) {
-        position: unset;
-        // float: right;
-        // clear: both;
-        // margin-left: auto;
-        // margin: 20px 0;
-        // right: ;
-        margin-top: 20px;
+    @media (max-width: 991.98px) {
+        right: 15px;
+        // @media (max-width: 1300px) {
+        // position: unset;
+        // margin: 15px 0 20;
     }
 }
 

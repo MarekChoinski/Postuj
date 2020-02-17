@@ -12,7 +12,9 @@
         // margin-top: 0px;
     }
 
-    @media (max-width: 1330px) and (min-width: 991.98px) {
+
+
+    @media (max-width: 1330px) {
         margin-top: 120px;
     }
 
@@ -26,6 +28,7 @@
     //     color: $text-color-dark;
     // }
 }
+
 
 .add_post_form__avatar {
     width: 64px;
