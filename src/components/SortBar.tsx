@@ -42,6 +42,7 @@ const SortBar: React.FC<{}> = (props) => {
         top24: "najpopularniejszych z ostatniej doby",
     };
 
+    //TODO this has no sense, should iterate by keys - but for now i should check i18n
     const sortOptions = [
         "newest", "topAll", "top6", "top12", "top24",
     ];

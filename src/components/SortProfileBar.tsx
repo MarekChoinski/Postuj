@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import Card from 'react-bootstrap/Card';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Media from 'react-bootstrap/Media';
@@ -28,24 +28,39 @@ interface PostProps {
 
 const SortProfileBar: React.FC<{}> = (props) => {
 
-    const { theme } = useContext(ThemeContext);
+    // const { theme } = useContext(ThemeContext);
 
     const [sortMethodText, setSortText] = useState('newest');
     const dispatch = useDispatch();
 
+    const handleChange = useCallback(
+        (option: any) => {
+            dispatch(setSortMethod(option))
+            setSortText(option)
+        },
+        [setSortMethod, setSortText],
+    );
+
     type sortOptions = {
         [key: string]: string
     }
+
+    //TODO this has no sense, should iterate by keys - but for now i should check i18n
     const PL: sortOptions = {
-        newest: "najnowszych",
-        topAll: "najpopularniejszych",
-        top6: "najpopularniejszych z ostatnich 6h",
-        top12: "najpopularniejszych z ostatnich 12h",
-        top24: "najpopularniejszych z ostatniej doby",
+        best: "Najlepsze",
+        newest: "Najnowsze",
+        favorite: "Ulubione",
+        liked: "Polubione",
+        observed: "Obserwowani",
     };
 
+    //TODO this has no sense, should iterate by keys - but for now i should check i18n
     const sortOptions = [
-        "newest", "topAll", "top6", "top12", "top24",
+        "best",
+        "newest",
+        "favorite",
+        "liked",
+        "observed",
     ];
 
 
@@ -53,57 +68,24 @@ const SortProfileBar: React.FC<{}> = (props) => {
         <ToggleButtonGroup
             type="radio"
             name="theme"
-            style={{
-                margin: "50px auto 0 auto",
-                width: "900px",
-            }}
-        // value={value}
-        // onChange={handleChange}
-        // className={`theme_switch ${theme}`}
+            value={sortMethodText}
+            onChange={handleChange}
+            className={`sort_profile_bar`}
         >
 
-            <ToggleButton
-                value="best"
-                variant="light"
-            // className={`theme_switch__button ${theme}`}
-            >
-                Najlepsze
-                                </ToggleButton>
+            {sortOptions.map((option: string) => (
 
-            <ToggleButton
-                value="newest"
-                variant="light"
-            // className={`theme_switch__button ${theme}`}
-            >
-                Najnowsze
-                                </ToggleButton>
-
-            <ToggleButton
-                value="favorite"
-                variant="light"
-            // className={`theme_switch__button ${theme}`}
-            >
-                Ulubione
-                                </ToggleButton>
-            <ToggleButton
-                value="liked"
-                variant="light"
-            // className={`theme_switch__button ${theme}`}
-            >
-                Polubione
-                                </ToggleButton>
-
-            <ToggleButton
-                value="observed"
-                variant="light"
-            // className={`theme_switch__button ${theme}`}
-            >
-                Obserwowani
-                                </ToggleButton>
+                <ToggleButton
+                    value={option}
+                    variant="light"
+                    className={`sort_profile_bar__button`}
+                >
+                    {PL[option]}
+                </ToggleButton>
+            ))}
 
         </ToggleButtonGroup>
     );
-
 
 };
 

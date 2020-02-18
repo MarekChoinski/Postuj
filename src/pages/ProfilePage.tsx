@@ -7,15 +7,10 @@ import SortProfileBar from '../components/SortProfileBar';
 import { useFirestoreConnect } from 'react-redux-firebase'
 import { useSelector } from 'react-redux';
 import Spinner from 'react-bootstrap/Spinner';
-import { Redirect } from 'react-router';
 import DefaultAvatar from '../assets/images/defaultAvatar.png';
 import { formatDistanceToNow, subHours } from 'date-fns';
-import Nav from 'react-bootstrap/Nav';
 import Card from 'react-bootstrap/Card';
 import Media from 'react-bootstrap/Media';
-import { Link } from 'react-router-dom';
-import { date } from 'yup';
-import Button from 'react-bootstrap/Button';
 import { ThemeContext } from '../contexts/ThemeContext';
 
 
