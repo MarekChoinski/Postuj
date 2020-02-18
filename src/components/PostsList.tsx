@@ -3,6 +3,7 @@
 import React, { useEffect, useMemo } from 'react';
 
 import PostCard from '../components/PostCard';
+import PostCard404 from '../components/PostCard404';
 
 import { useSelector } from 'react-redux';
 
@@ -145,6 +146,14 @@ const PostsList: React.FC = () => {
 
 
 
+
+    {
+        console.log(postList);
+    }
+
+    if (postList.length === 0) {
+        return <PostCard404 />
+    }
 
     return postList;
 }
