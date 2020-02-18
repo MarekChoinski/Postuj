@@ -1,0 +1,22 @@
+.sign_up_form__avatar {
+    width: 64px;
+    height: 64px;
+    // border-radius: 7px;
+    margin-left: 10px;
+}
+
+.sign_up_form__input_file {
+    display: none;
+}
+
+.sign_up_form__input_file_label {
+    padding: 6px 12px;
+    border-radius: 7px;
+    display: block;
+    margin-top: 10px;
+    width: 200px;
+
+    &:hover {
+        background-color: lightgray;
+    }
+}
