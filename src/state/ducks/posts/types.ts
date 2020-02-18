@@ -1,6 +1,7 @@
 export const ADD_POST = "bloggy/posts/ADD_POST";
 export const DELETE_POST = "bloggy/posts/DELETE_POST";
 export const SET_SORT_METHOD = "bloggy/posts/SET_SORT_METHOD";
+export const SET_PROFILE_SORT_METHOD = "bloggy/posts/SET_PROFILE_SORT_METHOD";
 export const ADD_POST_TO_FAVORITES = "bloggy/posts/ADD_POST_TO_FAVORITES";
 export const REMOVE_POST_FROM_FAVORITES = "bloggy/posts/REMOVE_POST_FROM_FAVORITES";
 export const LIKE_POST = "bloggy/posts/LIKE_POST";
@@ -17,6 +18,7 @@ export interface PostsState {
     // readonly title: string,
     // readonly posts: ReadonlyArray<Post>,
     readonly sortMethod: string,
+    readonly sortProfileMethod: string,
 }
 
 
@@ -33,6 +35,13 @@ interface DeletePostAction {
 
 interface setSortMethod {
     type: typeof SET_SORT_METHOD;
+    payload: {
+        sortMethod: string,
+    };
+}
+
+interface setProfileSortMethod {
+    type: typeof SET_PROFILE_SORT_METHOD;
     payload: {
         sortMethod: string,
     };
@@ -62,6 +71,7 @@ interface unlikePost {
 export type PostActionTypes =
     AddPostAction |
     setSortMethod |
+    setProfileSortMethod |
     addPostToFavorites |
     removePostFromFavorites |
     likePost |

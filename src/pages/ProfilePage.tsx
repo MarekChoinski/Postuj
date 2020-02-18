@@ -3,6 +3,7 @@
 import React, { useMemo, useContext } from 'react';
 
 import PostCard from '../components/PostCard';
+import SortProfileBar from '../components/SortProfileBar';
 import { useFirestoreConnect } from 'react-redux-firebase'
 import { useSelector } from 'react-redux';
 import Spinner from 'react-bootstrap/Spinner';
@@ -16,6 +17,10 @@ import { Link } from 'react-router-dom';
 import { date } from 'yup';
 import Button from 'react-bootstrap/Button';
 import { ThemeContext } from '../contexts/ThemeContext';
+
+
+
+
 type Props = {
     match: {
         params: {
@@ -215,14 +220,26 @@ const ProfilePage: React.FC<Props> = (props) => {
                     <Card
                         className={`post_card ${theme}`}
                     >
+                        <Card.Img
+                            width={900}
+                            height={400}
+
+                            variant="top" src="https://placeimg.com/900/400/arch" />
                         <Card.Header
                             className={`post_card__header `}
+                            style={{
+                                marginTop: "-100px",
+                                backgroundColor: "white",
+                                borderRadius: "8px",
+                                padding: "20px",
+                            }}
                         >
                             <Media>
                                 {/* <Link to={"/profile/" + authorId}> */}
+
                                 <img
-                                    width={64}
-                                    height={64}
+                                    width={128}
+                                    height={128}
                                     className="mr-3"
                                     src={profile.profilePicPath || DefaultAvatar}
                                     alt="placeholder"
@@ -231,9 +248,16 @@ const ProfilePage: React.FC<Props> = (props) => {
                                     }}
                                 />
                                 {/* </Link> */}
-                                <Media.Body>
+                                <Media.Body
+                                    style={{
+                                        // padding: "20px",
+                                    }}
+                                >
                                     {/* <Link to={"/profile/" + authorId}> */}
                                     <h4
+                                        style={{
+                                            fontSize: "40px",
+                                        }}
                                         className={`post_card__username ${theme}`}>
                                         {profile.username}
                                     </h4>
@@ -242,7 +266,7 @@ const ProfilePage: React.FC<Props> = (props) => {
                                         className="text-muted"
                                         title="My tip"
                                     >
-                                        {formatDistanceToNow(profile.createdAt.seconds * 1000, { addSuffix: true })}
+                                        Dołączył {formatDistanceToNow(profile.createdAt.seconds * 1000, { addSuffix: true })}
                                     </span>
 
 
@@ -253,9 +277,16 @@ const ProfilePage: React.FC<Props> = (props) => {
                         </Card.Header>
                         <Card.Body
                             className={`post_card__body ${theme}`}
+                            style={{
+                                paddingBottom: "55px",
+                            }}
                         >
-                            <Card.Text>
-                                test
+                            <Card.Text
+                                style={{
+                                    padding: "0 20px",
+                                }}
+                            >
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus ipsum sequi fuga quis velit voluptas. Veritatis, quibusdam voluptates. Neque, ipsam? Asperiores voluptas cumque molestiae nisi assumenda eos officia ab blanditiis et dolores error accusantium rem, tempore fugiat, explicabo expedita aut rerum sequi vitae amet repellat! Ut molestiae nemo commodi amet cumque doloremque necessitatibus rerum nulla quasi aut corrupti accusamus, laboriosam hic voluptate, a nostrum? Quibusdam deleniti, et corrupti ipsam illum ullam aspernatur necessitatibus nam amet dolorem quia nobis omnis, velit harum rem repellendus tenetur vitae dicta hic quasi fuga, modi placeat porro architecto! Modi sint vel necessitatibus aliquid consectetur asperiores.
                             </Card.Text>
 
 
@@ -263,7 +294,7 @@ const ProfilePage: React.FC<Props> = (props) => {
 
 
 
-                            <Nav justify variant="tabs" defaultActiveKey="/home"
+                            {/* <Nav justify variant="tabs" defaultActiveKey="/home"
                                 style={{
                                     margin: "50px auto 0 auto",
                                     width: "900px",
@@ -285,9 +316,11 @@ const ProfilePage: React.FC<Props> = (props) => {
                                     <Nav.Link>Obserwowani</Nav.Link>
                                 </Nav.Item>
 
-                            </Nav>
+                            </Nav> */}
                         </Card.Body>
                     </Card>
+
+                    <SortProfileBar />
 
                     {postList}
                 </>

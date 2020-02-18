@@ -3,6 +3,7 @@ import * as types from "./types";
 
 const initialState: types.PostsState = {
     sortMethod: "newest",
+    sortProfileMethod: "newest",
 };
 
 const reducer = (
@@ -34,6 +35,7 @@ const reducer = (
         //     }
 
         case types.SET_SORT_METHOD:
+        case types.SET_PROFILE_SORT_METHOD:
             return {
                 ...state,
                 ...action.payload,

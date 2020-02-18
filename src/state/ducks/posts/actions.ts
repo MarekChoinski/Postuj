@@ -67,3 +67,12 @@ export const setSortMethod = (
         sortMethod,
     },
 });
+
+export const setProfileSortMethod = (
+    sortMethod: string
+): types.PostActionTypes => ({
+    type: types.SET_PROFILE_SORT_METHOD,
+    payload: {
+        sortMethod,
+    },
+});
