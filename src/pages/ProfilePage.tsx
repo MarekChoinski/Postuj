@@ -213,47 +213,37 @@ const ProfilePage: React.FC<Props> = (props) => {
 
                 <>
                     <Card
-                        className={`post_card ${theme}`}
+                        className={`profile_card ${theme}`}
                     >
-                        <Card.Img
-                            width={900}
-                            height={400}
+                        {/* <Card.Img */}
+                        <div>
+                            <img
 
-                            variant="top" src="https://placeimg.com/900/400/arch" />
+                                className="profile_card__background_image"
+                                // variant="top"
+                                src="https://placeimg.com/900/400/arch"
+                                alt="text"
+                            />
+                        </div>
                         <Card.Header
-                            className={`post_card__header `}
-                            style={{
-                                marginTop: "-100px",
-                                backgroundColor: "white",
-                                borderRadius: "8px",
-                                padding: "20px",
-                            }}
+                            className={`profile_card__header`}
                         >
                             <Media>
-                                {/* <Link to={"/profile/" + authorId}> */}
 
                                 <img
                                     width={128}
                                     height={128}
-                                    className="mr-3"
+                                    className="profile_card__avatar"
                                     src={profile.profilePicPath || DefaultAvatar}
                                     alt="placeholder"
-                                    style={{
-                                        borderRadius: "5px",
-                                    }}
                                 />
-                                {/* </Link> */}
                                 <Media.Body
-                                    style={{
-                                        // padding: "20px",
-                                    }}
                                 >
-                                    {/* <Link to={"/profile/" + authorId}> */}
                                     <h4
                                         style={{
                                             fontSize: "40px",
                                         }}
-                                        className={`post_card__username ${theme}`}>
+                                        className={`profile_card__username ${theme}`}>
                                         {profile.username}
                                     </h4>
                                     {/* </Link> */}
