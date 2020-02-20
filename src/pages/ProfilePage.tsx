@@ -6,7 +6,7 @@ import PostCard from '../components/PostCard';
 import SortProfileBar from '../components/SortProfileBar';
 import { useFirestoreConnect } from 'react-redux-firebase'
 import { useSelector } from 'react-redux';
-import Spinner from 'react-bootstrap/Spinner';
+import LoadingSpinner from '../components/LoadingSpinner';
 import DefaultAvatar from '../assets/images/defaultAvatar.png';
 import { formatDistanceToNow, subHours } from 'date-fns';
 import Card from 'react-bootstrap/Card';
@@ -142,19 +142,7 @@ const ProfilePage: React.FC<Props> = (props) => {
             likedBy={post.likedBy}
             favorite={post.isFavorite}
         />
-    ) : <Spinner
-        animation="grow"
-        style={{
-            marginTop: "30vh",
-            marginLeft: "50vw",
-
-        }}
-        role="status"
-    >
-            <span className="sr-only">
-                Loading...
-</span>
-        </Spinner>;
+    ) : LoadingSpinner;
 
 
 
@@ -280,19 +268,7 @@ const ProfilePage: React.FC<Props> = (props) => {
                 </>
                 : null//<Redirect to="/404" />
 
-            : <Spinner
-                animation="grow"
-                style={{
-                    marginTop: "30vh",
-                    marginLeft: "50vw",
-
-                }}
-                role="status"
-            >
-                <span className="sr-only">
-                    Loading...
-                </span>
-            </Spinner>
+            : <LoadingSpinner />
 
     );
 }
