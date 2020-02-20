@@ -216,7 +216,9 @@ const ProfilePage: React.FC<Props> = (props) => {
                         className={`profile_card ${theme}`}
                     >
                         {/* <Card.Img */}
-                        <div>
+                        <div
+                            className="profile_card__background_wrapper"
+                        >
                             <img
 
                                 className="profile_card__background_image"
@@ -231,18 +233,13 @@ const ProfilePage: React.FC<Props> = (props) => {
                             <Media>
 
                                 <img
-                                    width={128}
-                                    height={128}
                                     className="profile_card__avatar"
                                     src={profile.profilePicPath || DefaultAvatar}
-                                    alt="placeholder"
+                                    alt="avatar"
                                 />
                                 <Media.Body
                                 >
                                     <h4
-                                        style={{
-                                            fontSize: "40px",
-                                        }}
                                         className={`profile_card__username ${theme}`}>
                                         {profile.username}
                                     </h4>
@@ -274,34 +271,6 @@ const ProfilePage: React.FC<Props> = (props) => {
                                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus ipsum sequi fuga quis velit voluptas. Veritatis, quibusdam voluptates. Neque, ipsam? Asperiores voluptas cumque molestiae nisi assumenda eos officia ab blanditiis et dolores error accusantium rem, tempore fugiat, explicabo expedita aut rerum sequi vitae amet repellat! Ut molestiae nemo commodi amet cumque doloremque necessitatibus rerum nulla quasi aut corrupti accusamus, laboriosam hic voluptate, a nostrum? Quibusdam deleniti, et corrupti ipsam illum ullam aspernatur necessitatibus nam amet dolorem quia nobis omnis, velit harum rem repellendus tenetur vitae dicta hic quasi fuga, modi placeat porro architecto! Modi sint vel necessitatibus aliquid consectetur asperiores.
                             </Card.Text>
 
-
-
-
-
-
-                            {/* <Nav justify variant="tabs" defaultActiveKey="/home"
-                                style={{
-                                    margin: "50px auto 0 auto",
-                                    width: "900px",
-                                }}
-                            >
-                                <Nav.Item>
-                                    <Nav.Link active>Najlepsze</Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link>Najnowsze</Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link>Ulubione</Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link>Polubione</Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link>Obserwowani</Nav.Link>
-                                </Nav.Item>
-
-                            </Nav> */}
                         </Card.Body>
                     </Card>
 

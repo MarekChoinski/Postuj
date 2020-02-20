@@ -32,25 +32,20 @@ const MenuBar: React.FC = () => {
 
     const links = (authorized && profile) ?
         <>
-
             <NavDropdown
                 title={profile.username}
                 className="menu_bar__username"
                 id="basic-nav-dropdown">
-                <NavDropdown.Item
-                    onClick={() => dispatch(signOut())}><b>Admin</b></NavDropdown.Item>
+                <NavDropdown.Item as={NavLink} to={`/profile/${uid}`} className="menu_bar__link">Admin</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={() => dispatch(signOut())}>Wyloguj się</NavDropdown.Item>
-                {/* <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
             </NavDropdown>
-            {/* <Nav.Link as="img" to="/">Zarejestruj się</Nav.Link> */}
             <Nav.Link as={NavLink} to={`/profile/${uid}`}>
 
                 <img
                     className="menu_bar__avatar"
                     src={profile.profilePicPath || DefaultAvatar}
-                    alt="placeholder"
+                    alt="avatar"
                 />
             </Nav.Link>
 
@@ -61,28 +56,20 @@ const MenuBar: React.FC = () => {
             <Nav.Link className="menu_bar__item" as={NavLink} to="/login">Zaloguj się</Nav.Link>
         </>;
 
-
     return (
-
-
         <Navbar className="menu_bar navbar-expand" bg="primary" variant="light" fixed="top">
-            <Navbar.Brand as={NavLink} to="/" >Postuj.pl</Navbar.Brand >
+            <Navbar.Brand as={NavLink} to="/" className="menu_bar__brand" >Postuj.pl</Navbar.Brand >
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse
                 id="basic-navbar-nav"
                 className="justify-content-end"
             >
-
-                {/* <ThemeSwitch /> */}
                 <Nav>
-
                     {links}
-
                 </Nav>
             </Navbar.Collapse>
         </Navbar >
     );
-
 
 };
 

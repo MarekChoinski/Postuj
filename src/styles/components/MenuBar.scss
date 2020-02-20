@@ -10,6 +10,21 @@
     margin-right: 20px;
 }
 
+.navbar-brand.menu_bar__brand {
+    font-weight: bold;
+    color: white;
+    font-size: 25px;
+
+    &:hover {
+        color: white;
+    }
+}
+
+.dropdown-item.menu_bar__link {
+    background-color: #fff;
+    color: black;
+}
+
 .dropdown.nav-item {
     margin: auto 0;
 
@@ -20,7 +35,6 @@
 
         &:hover {
             color: white;
-
         }
     }
 }
