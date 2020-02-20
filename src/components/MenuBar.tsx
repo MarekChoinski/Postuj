@@ -26,44 +26,46 @@ const MenuBar: React.FC = () => {
         !state.firebase.auth.isEmpty ? state.firebase.profile : null
     );
 
+    const uid = useSelector((state: any) =>
+        !state.firebase.auth.isEmpty ? state.firebase.auth.uid : null
+    );
+
     const links = (authorized && profile) ?
         <>
 
             <NavDropdown
                 title={profile.username}
+                className="menu_bar__username"
                 id="basic-nav-dropdown">
+                <NavDropdown.Item
+                    onClick={() => dispatch(signOut())}><b>Admin</b></NavDropdown.Item>
+                <NavDropdown.Divider />
                 <NavDropdown.Item onClick={() => dispatch(signOut())}>Wyloguj się</NavDropdown.Item>
                 {/* <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
             </NavDropdown>
             {/* <Nav.Link as="img" to="/">Zarejestruj się</Nav.Link> */}
-            <Nav.Link as={NavLink} to="/signup">
+            <Nav.Link as={NavLink} to={`/profile/${uid}`}>
 
                 <img
-                    // width={36}
-                    height={45}
-                    className="mr-3 ml-3"
+                    className="menu_bar__avatar"
                     src={profile.profilePicPath || DefaultAvatar}
                     alt="placeholder"
-                    style={{
-                        borderRadius: "50px",
-                    }}
                 />
             </Nav.Link>
 
         </>
         :
         <>
-            <Nav.Link as={NavLink} to="/signup">Zarejestruj się</Nav.Link>
-            <Nav.Link as={NavLink} to="/login">Zaloguj się</Nav.Link>
+            <Nav.Link className="menu_bar__item" as={NavLink} to="/signup">Zarejestruj się</Nav.Link>
+            <Nav.Link className="menu_bar__item" as={NavLink} to="/login">Zaloguj się</Nav.Link>
         </>;
 
 
     return (
 
 
-        <Navbar className="menu-bar navbar-expand" bg="primary" variant="light" fixed="top">
+        <Navbar className="menu_bar navbar-expand" bg="primary" variant="light" fixed="top">
             <Navbar.Brand as={NavLink} to="/" >Postuj.pl</Navbar.Brand >
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse

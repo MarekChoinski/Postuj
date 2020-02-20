@@ -1,5 +1,36 @@
-.navbar.menu-bar {
+.navbar.menu_bar {
     background-color: #fff;
+    box-shadow: $menu_bar-shadow;
+
+}
+
+.menu_bar__avatar {
+    height: 45px;
+    border-radius: 50px;
+    margin-right: 20px;
+}
+
+.dropdown.nav-item {
+    margin: auto 0;
+
+    a:not(.dropdown-item) {
+        font-weight: bold;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.2rem;
+
+        &:hover {
+            color: white;
+
+        }
+    }
+}
+
+.navbar-nav {
+
+    .nav-link.menu_bar__item {
+        font-weight: bold;
+        color: white;
+    }
 }
 
 // .navbar-collapse.collapse {
