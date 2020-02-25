@@ -21,7 +21,10 @@ $primary-dark: #ffea00;
 //$bgc-light: #eceff1;
 $bgc-light: rgb(247, 247, 247);
 $bgc-mood: #b0bec5;
-$bgc-dark: #212121; //#263238;
+$bgc-dark: #263238;
+
+//TODO use this concept?
+// $bgc: var(--bgc);
 
 $bgc-card-mood: #d8e9f1;
 $bgc-card-dark: #424242; //#37474f;
@@ -67,3 +70,12 @@ $btn-line-height: 1;
 .valid-feedback {
     display: block !important;
 }
+
+//pagination
+$pagination-color: gray;
+$pagination-hover-color: black;
+$pagination-active-color: black;
+$pagination-focus-box-shadow: none;
+$pagination-active-color: white;
+$pagination-active-bg: $primary;
+$pagination-active-border-color: $pagination-active-bg;

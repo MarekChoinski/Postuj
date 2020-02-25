@@ -12,6 +12,7 @@ import { formatDistanceToNow, subHours } from 'date-fns';
 import Card from 'react-bootstrap/Card';
 import Media from 'react-bootstrap/Media';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { Redirect } from 'react-router';
 
 
 
@@ -145,18 +146,7 @@ const ProfilePage: React.FC<Props> = (props) => {
     ) : LoadingSpinner;
 
 
-
-
-
-
-
-
-
-
-
     //TODO redundancy with mainpage
-
-
 
     useFirestoreConnect([
         {
@@ -168,49 +158,28 @@ const ProfilePage: React.FC<Props> = (props) => {
 
     const profile = useSelector((state: any) =>
         state.firestore.ordered.profileFromPage && state.firestore.ordered.profileFromPage[0]
-        //  ?
-        // state.firestore.ordered.authors.reduce((hash: any, author: any) => {
-        //     hash[author.id] = {
-        //         ...author
-        //     };
-        //     return hash;
-        // }, {})
-        // : null
     );
-
 
     const isRequestingProfileFromPage = useSelector((state: any) =>
         !state.firebase.isInitializing &&
         state.firestore.status.requesting.profileFromPage
     );
 
-    console.log("isRequestingProfileFromPage", isRequestingProfileFromPage);
-    console.log("profile", profile);
-
-
-
-
-
     return (
-
-
 
         !isRequestingProfileFromPage ?
             profile ?
-
 
                 <>
                     <Card
                         className={`profile_card ${theme}`}
                     >
-                        {/* <Card.Img */}
                         <div
                             className="profile_card__background_wrapper"
                         >
                             <img
 
                                 className="profile_card__background_image"
-                                // variant="top"
                                 src="https://placeimg.com/900/400/arch"
                                 alt="text"
                             />
@@ -231,15 +200,12 @@ const ProfilePage: React.FC<Props> = (props) => {
                                         className={`profile_card__username ${theme}`}>
                                         {profile.username}
                                     </h4>
-                                    {/* </Link> */}
                                     <span
                                         className="text-muted"
                                         title="My tip"
                                     >
                                         Dołączył {formatDistanceToNow(profile.createdAt.seconds * 1000, { addSuffix: true })}
                                     </span>
-
-
 
                                 </Media.Body>
                             </Media>
@@ -266,10 +232,9 @@ const ProfilePage: React.FC<Props> = (props) => {
 
                     {postList}
                 </>
-                : null//<Redirect to="/404" />
+                : <Redirect to="/404" />
 
             : <LoadingSpinner />
-
     );
 }
 

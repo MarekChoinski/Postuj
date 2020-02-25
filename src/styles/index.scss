@@ -6,7 +6,8 @@
 
 
 
-// @import "~bootstrap/scss/root";
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/reboot";
 @import "~bootstrap/scss/type";
 // @import "~bootstrap/scss/images";
@@ -25,7 +26,7 @@
 @import "~bootstrap/scss/card";
 @import "~bootstrap/scss/spinners";
 // @import "~bootstrap/scss/breadcrumb";
-// @import "~bootstrap/scss/pagination";
+@import "~bootstrap/scss/pagination";
 // @import "~bootstrap/scss/badge";
 // @import "~bootstrap/scss/jumbotron";
 // @import "~bootstrap/scss/alert";

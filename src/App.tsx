@@ -24,25 +24,26 @@ const App: React.FC = () => {
   const { theme } = useContext(ThemeContext);
 
   return (
+    <body className={theme}>
+      <main className="main">
+        <Router>
+          <MenuBar />
+          <div className="main__wrapper">
+            <ThemeSwitch />
 
-    <main className={`main ${theme}`}>
-      <Router>
-        <MenuBar />
-        <div className="main__wrapper">
-          <ThemeSwitch />
+            <Switch>
+              <Route exact path="/" component={Mainpage} />
+              <Route exact path="/signup" component={SignUpPage} />
+              <Route exact path="/login" component={LoginPage} />
+              <Route path="/post/:id" component={PostPage} />
+              <Route path="/profile/:id" component={ProfilePage} />
+              <Route path="*" component={Page404} />
+            </Switch>
 
-          <Switch>
-            <Route exact path="/" component={Mainpage} />
-            <Route exact path="/signup" component={SignUpPage} />
-            <Route exact path="/login" component={LoginPage} />
-            <Route path="/post/:id" component={PostPage} />
-            <Route path="/profile/:id" component={ProfilePage} />
-            <Route path="*" component={Page404} />
-          </Switch>
-
-        </div>
-      </Router>
-    </main>
+          </div>
+        </Router>
+      </main>
+    </body>
 
   );
 }

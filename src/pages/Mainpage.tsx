@@ -11,6 +11,7 @@ import AddPostForm from '../components/AddPostForm';
 import { useFirestoreConnect, useFirebase } from 'react-redux-firebase'
 import Spinner from 'react-bootstrap/Spinner';
 import SortBar from '../components/SortBar';
+import PaginationBar from '../components/PaginationBar';
 import { subHours, getMilliseconds } from 'date-fns';
 import PostsList from '../components/PostsList';
 
@@ -22,6 +23,7 @@ const Mainpage: React.FC = () => {
             <AddPostForm />
             <SortBar />
             <PostsList />
+            <PaginationBar />
         </>
     );
 }

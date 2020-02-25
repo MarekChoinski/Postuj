@@ -6,11 +6,7 @@ import SignUpForm from '../components/SignUpForm';
 
 const SignUpPage: React.FC = () => {
     return (
-        <>
-
-            <SignUpForm title="Sign up!" />
-
-        </>
+        <SignUpForm title="Sign up!" />
     );
 }
 

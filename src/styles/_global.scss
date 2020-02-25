@@ -7,6 +7,29 @@ html,
 
 }
 
+body {
+
+    .light {
+
+        --bgc: rgb(247, 247, 247);
+        --bgc-card: white;
+    }
+
+    //TODO should be mixins imo
+
+    .mood {
+        --bgc: #b0bec5;
+        --bgc-card: #d8e9f1;
+    }
+
+    .dark {
+        --bgc: #212121;
+        --bgc-card: #424242;
+
+    }
+
+}
+
 .main {
 
     @media (max-width: 991.98px) {
@@ -25,16 +48,9 @@ html,
     width: 100%;
     // display: flex;
     // justify-content: center;
-    background-color: $bgc-light;
+    background-color: var(--bgc);
     box-sizing: border-box;
 
-    &.mood {
-        background-color: $bgc-mood;
-    }
-
-    &.dark {
-        background-color: $bgc-dark;
-    }
 
     &__wrapper {
         padding-top: 50px;
@@ -46,13 +62,12 @@ html,
 }
 
 .mood {
-    background-color: $bgc-card-mood;
-    color: $text-color-mood;
-    fill: $text-color-mood;
+    // color: $text-color-mood;
+    // fill: $text-color-mood;
 }
 
 .dark {
-    background-color: $bgc-card-dark;
-    color: $text-color-dark;
-    fill: $text-color-dark;
+    // background-color: $bgc-card-dark;
+    // color: $text-color-dark;
+    // fill: $text-color-dark;
 }
