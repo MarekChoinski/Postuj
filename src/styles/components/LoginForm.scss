@@ -1,0 +1,26 @@
+.card.sign_up_form {
+    @include card;
+    padding: 30px;
+    width: 700px;
+}
+
+.sign_up_form__avatar {
+    @include small_avatar;
+    margin-left: 10px;
+}
+
+.sign_up_form__input_file {
+    display: none;
+}
+
+.sign_up_form__input_file_label {
+    padding: 6px 12px;
+    border-radius: 7px;
+    display: block;
+    margin-top: 10px;
+    width: 200px;
+
+    &:hover {
+        background-color: lightgray;
+    }
+}

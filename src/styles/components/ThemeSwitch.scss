@@ -12,39 +12,20 @@
         background-color: transparent;
     }
 
-    @media (max-width: 991.98px) {
+    @media (max-width: $size-mobile) {
         right: 15px;
-        // @media (max-width: 1300px) {
-        // position: unset;
-        // margin: 15px 0 20;
     }
 }
 
 .btn.theme_switch__button {
 
-    border: 1px solid darken($bgc-light, 10%);
-
-    &.mood {
-        // background-color: $bgc-card-mood;
-        border: 1px solid darken($bgc-card-mood, 10%);
-        fill: $text-color-mood;
-    }
-
-    &.dark {
-        // background-color: $bgc-card-dark;
-        border: 1px solid darken($bgc-card-dark, 10%);
-        fill: $text-color-dark;
-    }
+    border: 1px solid var(--border-color);
+    fill: var(--text-color);
+    background-color: var(--bgc-card);
 
     &.active {
-        &.mood {
-            background-color: lighten($bgc-card-mood, 5%);
-        }
-
-        &.dark {
-            background-color: lighten($bgc-card-dark, 10%);
-            border: 1px solid $bgc-card-dark;
-        }
+        background-color: var(--bgc-card-lighten) !important;
+        border: 1px solid var(--border-color) !important;
     }
 
     &.focus {

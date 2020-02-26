@@ -1,0 +1,21 @@
+@mixin card {
+    width: 900px;
+    margin: 50px auto;
+    box-shadow: $card-shadow;
+    background-color: var(--bgc-card);
+    color: var(--text-color);
+    border: none;
+    fill: var(--text-color);
+
+    @media (max-width: $size-mobile) {
+        width: 100%;
+        margin: 20px auto;
+    }
+}
+
+@mixin small_avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 5px;
+    margin-right: 15px;
+}

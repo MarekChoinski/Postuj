@@ -1,29 +1,35 @@
 .card.sort_bar {
-    width: 900px;
-    margin: 50px auto;
-    box-shadow: $card-shadow;
-    border: none;
+    @include card;
     padding: 0 20px;
 
-    @media (max-width: 991.98px) {
+    @media (max-width: $size-mobile) {
         width: 100%;
         text-align: left;
     }
+}
 
-    // &.mood {
-    //     background-color: $bgc-card-mood;
-    //     color: $text-color-mood;
-    // }
+.sort_bar__dropdown {
+    display: inline;
+    margin-left: 10px;
 
-    // &.dark {
-    //     background-color: $bgc-card-dark;
-    //     color: $text-color-dark;
-    // }
+    button {
+
+        background-color: var(--bgc-card);
+        color: var(--text-color);
+        border: none;
+
+        &.active {
+            background-color: var(--bgc-card-lighten) !important;
+        }
+
+        &.focus {
+            box-shadow: none;
+        }
+    }
 }
 
 :not(.add_post_form)+.sort_bar {
-
-    @media (max-width: 1330px) {
+    @media (max-width: $size-desktop) {
         margin-top: 120px;
     }
 }

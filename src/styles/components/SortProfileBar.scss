@@ -6,65 +6,22 @@
     border: none;
     display: flex;
     align-items: stretch;
-    // overflow-x: initial;
     overflow-x: auto;
-
 
     @media (max-width: 991.98px) {
         max-width: 100%;
     }
-
-    &.mood {
-        background-color: transparent;
-    }
-
-    &.dark {
-        background-color: transparent;
-    }
-
-    // &.mood {
-    //     background-color: $bgc-card-mood;
-    //     color: $text-color-mood;
-    // }
-
-    // &.dark {
-    //     background-color: $bgc-card-dark;
-    //     color: $text-color-dark;
-    // }
 }
 
 .btn.sort_profile_bar__button {
-    // height: 100%;
     line-height: 1.5;
     text-transform: uppercase;
     font-weight: 600;
     color: gray;
-
-    border: 1px solid darken($bgc-light, 10%);
-
-    &.mood {
-        // background-color: $bgc-card-mood;
-        border: 1px solid darken($bgc-card-mood, 10%);
-        // fill: $text-color-mood;
-    }
-
-    &.dark {
-        // background-color: $bgc-card-dark;
-        border: 1px solid darken($bgc-card-dark, 10%);
-        // fill: $text-color-dark;
-    }
+    border: 1px solid var(--border-color);
 
     &.active {
-        // color: $primary;
-
-        &.mood {
-            background-color: lighten($bgc-card-mood, 5%);
-        }
-
-        &.dark {
-            background-color: lighten($bgc-card-dark, 10%);
-            border: 1px solid $bgc-card-dark;
-        }
+        background-color: var(--bgc-card-lighten);
     }
 
     &.focus {

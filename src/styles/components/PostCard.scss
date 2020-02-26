@@ -1,18 +1,9 @@
 .card.post_card {
-
-    width: 900px;
-    margin: 50px auto;
-    // border: 1px solid lightgray;
-    border: none;
-    box-shadow: $card-shadow;
-    // border-radius: 10px;
+    @include card;
     text-align: justify;
     text-justify: inter-word;
-    background-color: var(--bgc-card);
 
-    @media (max-width: 991.98px) {
-        margin: 20px auto;
-        width: 100%;
+    @media (max-width: $size-mobile) {
         text-align: left;
     }
 
@@ -20,9 +11,12 @@
 
 .post_card__username {
     color: $primary;
-    font-size: 1.7rem; // width: 300px;
-    background-color: transparent;
+    font-size: 1.7rem;
+}
 
+.post_card__avatar {
+    @include small_avatar;
+    margin-right: 15px;
 }
 
 .post_card__observe_button {
@@ -31,13 +25,11 @@
     font-weight: 600;
     text-transform: uppercase;
     margin-left: auto;
-    // align-self: flex-end;
+    background-color: transparent;
 
     &:hover,
     &:focus {
         color: $primary;
-
-        // color: red;
         border: 1px solid $primary;
     }
 
@@ -48,18 +40,6 @@
     &:hover {
         background-color: rgba($primary, .2);
     }
-
-    &.mood {
-        background-color: $bgc-card-mood;
-        color: $text-color-mood;
-    }
-
-    &.dark {
-        background-color: $bgc-card-dark;
-        color: $text-color-dark;
-    }
-
-
 
 }
 
@@ -74,16 +54,6 @@
     fill: rgba($primary, .7);
     margin-left: 5px;
 
-    &.mood {
-        background-color: $bgc-card-mood;
-        color: $text-color-mood;
-    }
-
-    &.dark {
-        background-color: $bgc-card-dark;
-        color: $text-color-dark;
-    }
-
     @media (max-width: 460px) {
         margin-left: 0px;
     }
@@ -95,70 +65,26 @@
     margin-top: 25px;
     border-radius: 7px;
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
-
-    &.mood {
-        background-color: $bgc-card-mood;
-        color: $text-color-mood;
-    }
-
-    &.dark {
-        background-color: $bgc-card-dark;
-        color: $text-color-dark;
-    }
 }
 
 .card-footer.post_card__footer {
     display: flex;
-    background-color: transparent;
-    // border: none;
     margin: 0 25px;
     padding: 25px 0px;
     border: none;
-
-    &.mood {
-        // background-color: $bgc-card-mood;
-        // color: $text-color-mood;
-    }
-
-    &.dark {
-        // background-color: $bgc-card-dark;
-        // color: $text-color-dark;
-    }
+    background-color: transparent;
 }
 
 .card-header.post_card__header {
-    background-color: transparent;
-    // border: none;
     margin: 0 35px;
     padding: 20px 0;
     display: flex;
     align-items: center;
-
-    // &.mood {
-    // background-color: $bgc-card-mood;
-    // color: $text-color-mood;
-    // }
-
-    // &.dark {
-    // background-color: $bgc-card-dark;
-    // color: $text-color-dark;
-    // }
-
-    // border: none;
+    background-color: transparent;
 }
 
 .card-body.post_card__body {
     padding: 35px 35px 20px 35px;
-
-    // &.mood {
-    //     background-color: $bgc-card-mood;
-    //     color: $text-color-mood;
-    // }
-
-    // &.dark {
-    //     background-color: $bgc-card-dark;
-    //     color: $text-color-dark;
-    // }
 }
 
 .btn.post_card__fav_button {
@@ -168,25 +94,8 @@
     height: 40px;
     margin-right: 10px;
 
-    // &.mood {
-    //     background-color: $bgc-card-mood;
-    //     color: $text-color-mood;
-    // }
-
-    // &.dark {
-    //     background-color: $bgc-card-dark;
-    //     color: $text-color-dark;
-    // }
-
-    // border: 1px solid rgb(236, 236, 236);
-
-    &:hover {
-        // background-color: lightgray;
-    }
-
     svg {
         height: 80%;
-        // margin-bottom: 2px;
     }
 
     &--plus {
@@ -200,31 +109,10 @@
     color: rgb(68, 68, 68);
     text-transform: uppercase;
     font-weight: 600;
-    // box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.2);
-    // background-color: rgb(252, 219, 232);
     border-radius: $btn-border-radius;
     padding: 8px 15px;
     height: 40px;
-    // line-height: 23px;
     margin: 0 0 0 auto;
-
-    // &.mood {
-    //     background-color: $bgc-card-mood;
-    //     color: $text-color-mood;
-    // }
-
-    // &.dark {
-    //     background-color: $bgc-card-dark;
-    //     color: $text-color-dark;
-    // }
-
-    // align-self: flex-end;
-    // display: block;
-
-    // &:hover {
-    //     background-color: lightgray;
-    // }
-
 }
 
 .postcard404 {

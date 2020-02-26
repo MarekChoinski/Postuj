@@ -5,7 +5,6 @@
 // https://github.com/twbs/bootstrap/tree/master/scss
 
 
-
 @import "~bootstrap/scss/root";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/reboot";
@@ -42,10 +41,9 @@
 // @import "~bootstrap/scss/print";
 
 @import "vars";
+@import "mixins";
 
 // Custom components
-// @import "./components/Todo";
-// @import "./components/Header";
 @import "./components/ThemeSwitch";
 @import "./components/PostCard";
 @import "./components/ProfileCard";
@@ -54,7 +52,8 @@
 @import "./components/SortProfileBar";
 @import "./components/MenuBar";
 @import "./components/SignUpForm";
-// @import "./components/AddTodoForm";
-// @import "./components/TodoList";
+@import "./components/LoginForm";
+@import "./components/LoadingSpinner";
+@import "./components/PaginationBar";
 
 @import "global";

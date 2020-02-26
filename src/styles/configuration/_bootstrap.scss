@@ -11,29 +11,27 @@
 // $font-family-monospace;
 // $font-family-base: $font-family-sans-serif;
 
-$card-border-radius: 7px;
-$btn-border-radius: 5px;
 
 $primary-light: #ec407a;
-$primary-mood: #f4511e;
-$primary-dark: #ffea00;
+// $primary-mood: #f4511e;
+// $primary-dark: #ffea00;
 
 //$bgc-light: #eceff1;
-$bgc-light: rgb(247, 247, 247);
-$bgc-mood: #b0bec5;
-$bgc-dark: #263238;
+// $bgc-light: rgb(247, 247, 247);
+// $bgc-mood: #b0bec5;
+// $bgc-dark: #263238;
 
 //TODO use this concept?
 // $bgc: var(--bgc);
 
-$bgc-card-mood: #d8e9f1;
-$bgc-card-dark: #424242; //#37474f;
+// $bgc-card-mood: #d8e9f1;
+// $bgc-card-dark: #424242; //#37474f;
 
-$bgc-todo-header-mood: #96a2a8;
-$bgc-todo-header-dark: #2e2e2e; //#37474f;
+// $bgc-todo-header-mood: #96a2a8;
+// $bgc-todo-header-dark: #2e2e2e; //#37474f;
 
-$text-color-mood: #314047;
-$text-color-dark: #cecccc;
+// $text-color-mood: #314047;
+// $text-color-dark: #cecccc;
 
 $primary: $primary-light;
 
@@ -72,6 +70,8 @@ $btn-line-height: 1;
 }
 
 //pagination
+$pagination-padding-y: 0.8rem;
+$pagination-padding-x: 1.2rem;
 $pagination-color: gray;
 $pagination-hover-color: black;
 $pagination-active-color: black;
@@ -79,3 +79,10 @@ $pagination-focus-box-shadow: none;
 $pagination-active-color: white;
 $pagination-active-bg: $primary;
 $pagination-active-border-color: $pagination-active-bg;
+$pagination-border-radius: 7px;
+
+//card
+$card-border-radius: 7px;
+
+//button
+$btn-border-radius: 5px;

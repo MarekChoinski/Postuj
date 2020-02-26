@@ -72,11 +72,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 
     return (
         <Card
-            style={{
-                margin: "50px auto",
-                padding: "30px",
-                width: "600px",
-            }}
+            className="login_form"
         >
             <FormikForm>
 

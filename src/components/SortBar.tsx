@@ -1,19 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Media from 'react-bootstrap/Media';
-import DefaultAvatar from '../assets/images/defaultAvatar.png';
-import { useFirestoreConnect, useFirebase, useFirestore } from 'react-redux-firebase'
-import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setSortMethod } from '../state/ducks/posts/operations';
-
-import { ThemeContext } from '../contexts/ThemeContext';
-
-
-import {
-    Link
-} from "react-router-dom";
 
 interface PostProps {
     author: string,
@@ -21,12 +10,9 @@ interface PostProps {
     content: string,
     id: string,
     authorProfilePicture: string,
-
 };
 
 const SortBar: React.FC<{}> = (props) => {
-
-    const { theme } = useContext(ThemeContext);
 
     const [sortMethodText, setSortText] = useState('newest');
     const dispatch = useDispatch();
@@ -47,27 +33,22 @@ const SortBar: React.FC<{}> = (props) => {
         "newest", "topAll", "top6", "top12", "top24",
     ];
 
-
     return (
         <Card
-            className={`sort_bar ${theme}`}
+            className="sort_bar"
         >
             <Card.Body>
-                <span
-                    style={{
-                        display: "inline",
-                    }}
-                >
+                <span>
                     Sortuj posty według:
                 </span>
 
                 <Dropdown
-                    style={{
-                        display: "inline",
-                        marginLeft: "10px",
-                    }}
+                    className="sort_bar__dropdown"
                 >
-                    <Dropdown.Toggle variant="light" id="dropdown-basic">
+                    <Dropdown.Toggle
+                        variant="light"
+                        id="dropdown-basic"
+                    >
                         {PL[sortMethodText]}
                     </Dropdown.Toggle>
 
@@ -89,8 +70,6 @@ const SortBar: React.FC<{}> = (props) => {
             </Card.Body>
         </Card >
     );
-
-
 };
 
 export default SortBar;

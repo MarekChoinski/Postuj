@@ -7,16 +7,12 @@ const LoadingSpinner: React.FC = () => {
     return (
         <Spinner
             animation="grow"
-            style={{
-                marginTop: "30vh",
-                marginLeft: "50vw",
-
-            }}
+            className="loading_spinner"
             role="status"
         >
             <span className="sr-only">
                 Loading...
-                </span>
+            </span>
         </Spinner>
     );
 

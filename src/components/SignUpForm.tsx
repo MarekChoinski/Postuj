@@ -83,11 +83,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 
     return (
         <Card
-            style={{
-                margin: "50px auto",
-                padding: "30px",
-                width: "600px",
-            }}
+            className="sign_up_form"
         >
             <FormikForm>
                 <h1>{title}</h1>
@@ -123,14 +119,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
                 <Form.Label>Profile photo</Form.Label>
                 <Form.Group>
 
-
-                    {/* <Media> */}
-
-                    {/* <Media.Body> */}
-
                     <img
-                        // width={64}
-                        // height={64}
                         className="sign_up_form__avatar"
                         src={props.values.file ? URL.createObjectURL(props.values.file) : DefaultAvatar}
                         alt="Generic placeholder"
@@ -138,21 +127,12 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 
                     <input id="file" name="file" type="file" className="sign_up_form__input_file" onChange={(event: any) => {
                         setFieldValue("file", event.currentTarget.files[0]);
-                        // console.log(event.currentTarget.files![0]);
-                        // console.log(URL.createObjectURL(event.currentTarget.files![0]));
-
-
                     }} />
-
-
-
-
 
                     <label htmlFor="file" className="sign_up_form__input_file_label">
                         <span
                             style={{ display: "inline-block" }}
                         >
-
                             <IconCamera />
                             <span
                                 style={{

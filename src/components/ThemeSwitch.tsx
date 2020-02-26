@@ -27,13 +27,13 @@ const ThemeSwitch: React.FC = () => {
             name="theme"
             value={value}
             onChange={handleChange}
-            className={`theme_switch ${theme}`}
+            className="theme_switch"
         >
 
             <ToggleButton
                 value="light"
                 variant="light"
-                className={`theme_switch__button ${theme}`}
+                className="theme_switch__button"
             >
                 <ThemeLightIcon />
             </ToggleButton>
@@ -41,7 +41,7 @@ const ThemeSwitch: React.FC = () => {
             <ToggleButton
                 value="mood"
                 variant="light"
-                className={`theme_switch__button ${theme}`}
+                className="theme_switch__button"
             >
                 <ThemeMoodIcon />
             </ToggleButton>
@@ -49,7 +49,7 @@ const ThemeSwitch: React.FC = () => {
             <ToggleButton
                 value="dark"
                 variant="light"
-                className={`theme_switch__button ${theme}`}
+                className="theme_switch__button"
             >
                 <ThemeDarkIcon />
             </ToggleButton>

@@ -1,41 +1,25 @@
 .card.add_post_form {
-    width: 900px;
-    margin: 50px auto;
-    box-shadow: $card-shadow;
-    border: none;
+    @include card;
     padding: 30px;
-    // margin-top: 50px;
 
-    @media (max-width: 991.98px) {
-        width: 100%;
-        margin: 20px auto;
-        // margin-top: 0px;
-    }
-
-
-
-    @media (max-width: 1330px) {
+    @media (max-width: $size_desktop) {
         margin-top: 120px;
     }
-
-    // &.mood {
-    //     background-color: $bgc-card-mood;
-    //     color: $text-color-mood;
-    // }
-
-    // &.dark {
-    //     background-color: $bgc-card-dark;
-    //     color: $text-color-dark;
-    // }
 }
 
+.add_post_form__textarea {
+    background-color: var(--bgc-card-lighten);
+    border: 1px solid var(--border-color);
+
+    &::placeholder {
+        color: var(--text-color);
+    }
+}
 
 .add_post_form__avatar {
-    width: 64px;
-    height: 64px;
-    border-radius: 8px;
+    @include small_avatar;
 
-    @media (max-width: 991.98px) {
+    @media (max-width: $size_mobile) {
         display: none;
     }
 }

@@ -1,0 +1,19 @@
+.pagination_bar__wrapper {
+    display: flex;
+    margin: 0px auto;
+    padding: 20px 0;
+    width: min-content;
+}
+
+.pagination.pagination_bar {
+    width: min-content;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.1);
+
+    .page-item a {
+        background-color: var(--bgc-card);
+        color: var(--muted-text-color);
+        border: 1px solid var(--border-color);
+        font-weight: bold;
+    }
+
+}

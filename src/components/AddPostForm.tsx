@@ -46,15 +46,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
     );
 
 
-    console.log("auth", authorized);
-    console.log("profile", profile);
-
-
-
-
     return (authorized && profile) ?
-
-
 
         (<Card
             className={`add_post_form ${theme}`}
@@ -65,7 +57,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
                     <img
                         src={profile.profilePicPath || DefaultAvatar}
                         alt="placeholder"
-                        className="mr-3 add_post_form__avatar"
+                        className="add_post_form__avatar"
                     />
                     <Media.Body>
                         <Form.Group
@@ -73,14 +65,11 @@ const InnerForm = (props: FormikProps<FormValues>) => {
                         >
                             <Field
                                 as="textarea"
-                                className="form-control"
+                                className="form-control add_post_form__textarea"
                                 rows="3"
                                 name="postContent"
-                                placeholder="Type post text..."
+                                placeholder="Wpisz treść wpisu..."
                                 onChange={(e: any) => {
-                                    // props.setValues({ "postContent": props.values.postContent });
-                                    // props.setFieldValue()
-                                    // console.log(props)
                                     console.log(e.target.value);
                                     props.setFieldValue('postContent', e.target.value);
                                     console.log(props.values.postContent);
@@ -95,26 +84,21 @@ const InnerForm = (props: FormikProps<FormValues>) => {
 
                         </Form.Group>
                         <ButtonToolbar>
-                            {/* <Button variant="light">
-                                <IconBold />
-                            </Button>
-                            <Button variant="light">
-                                <IconItalic />
-                            </Button> */}
 
-
-                            {props.values.file &&
+                            {
+                                props.values.file &&
                                 <img
                                     src={URL.createObjectURL(props.values.file)}
                                     alt="Generic placeholder"
                                     className={`add_post_form__attached_photo ${theme}`}
-                                />}
+                                />
+                            }
 
-
-
-                            <label htmlFor="file" className="add_post_form__input_file_label">
+                            <label
+                                htmlFor="file"
+                                className="add_post_form__input_file_label"
+                            >
                                 <span>
-
                                     <IconCamera />
                                     <span
                                         style={{
@@ -123,24 +107,20 @@ const InnerForm = (props: FormikProps<FormValues>) => {
                                         }}>
 
                                         DODAJ ZDJĘCIE
-                                </span>
+                                    </span>
                                 </span>
                             </label>
-                            {/* <Button
-                                variant="light"
-                            >
-                            </Button> */}
 
                             <input id="file" name="file" type="file" className="add_post_form__input_file" onChange={(event: any) => {
                                 setFieldValue("file", event.currentTarget.files[0]);
-                                // console.log(event.currentTarget.files![0]);
-                                // console.log(URL.createObjectURL(event.currentTarget.files![0]));
-
                             }} />
-                            {/* <Button variant="light">
-                                <IconCamera />
-                            </Button> */}
-                            <Button disabled={isSubmitting} type="submit" className="ml-auto">Submit</Button>
+                            <Button
+                                disabled={isSubmitting}
+                                type="submit"
+                                className="ml-auto"
+                            >
+                                Dodaj post
+                            </Button>
                         </ButtonToolbar>
                     </Media.Body>
                 </Media>
