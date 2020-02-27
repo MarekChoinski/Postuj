@@ -172,7 +172,7 @@ const ProfilePage: React.FC<Props> = (props) => {
 
                 <>
                     <Card
-                        className={`profile_card ${theme}`}
+                        className="profile_card"
                     >
                         <div
                             className="profile_card__background_wrapper"
@@ -185,7 +185,7 @@ const ProfilePage: React.FC<Props> = (props) => {
                             />
                         </div>
                         <Card.Header
-                            className={`profile_card__header`}
+                            className="profile_card__header"
                         >
                             <Media>
 
@@ -197,7 +197,7 @@ const ProfilePage: React.FC<Props> = (props) => {
                                 <Media.Body
                                 >
                                     <h4
-                                        className={`profile_card__username ${theme}`}>
+                                        className="profile_card__username">
                                         {profile.username}
                                     </h4>
                                     <span
@@ -212,7 +212,7 @@ const ProfilePage: React.FC<Props> = (props) => {
 
                         </Card.Header>
                         <Card.Body
-                            className={`post_card__body ${theme}`}
+                            className="post_card__body"
                             style={{
                                 paddingBottom: "55px",
                             }}
@@ -232,7 +232,8 @@ const ProfilePage: React.FC<Props> = (props) => {
 
                     {postList}
                 </>
-                : <Redirect to="/404" />
+                // : <Redirect to="/404" />
+                : null
 
             : <LoadingSpinner />
     );

@@ -10,7 +10,6 @@ import { ReactComponent as IconFavorite } from '../assets/post-icon_favorite.svg
 import { ReactComponent as IconAddToFavorite } from '../assets/post-icon_add_to_favorite.svg';
 import { ReactComponent as IconLike } from '../assets/post-icon_like.svg';
 
-import { ThemeContext } from '../contexts/ThemeContext';
 
 import {
     Link
@@ -32,8 +31,6 @@ interface PostProps {
 };
 
 const PostCard: React.FC<PostProps> = (props) => {
-
-    const { theme } = useContext(ThemeContext);
 
     const {
         author,
@@ -120,7 +117,10 @@ const PostCard: React.FC<PostProps> = (props) => {
                 </Card.Text>
                 {
                     attachedPhoto &&
-                    <img src={attachedPhoto} alt="test" className="post_card__image" />
+                    <img
+                        src={attachedPhoto}
+                        alt="test"
+                        className="post_card__image" />
                 }
 
             </Card.Body>

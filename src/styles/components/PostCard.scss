@@ -106,13 +106,24 @@
 }
 
 .btn.post_card__show_post {
-    color: rgb(68, 68, 68);
+    color: var(--text-color);
+    background-color: transparent !important;
+    border: none;
     text-transform: uppercase;
     font-weight: 600;
     border-radius: $btn-border-radius;
     padding: 8px 15px;
     height: 40px;
     margin: 0 0 0 auto;
+    line-height: 1.5;
+
+    &:hover {
+        background-color: var(--flat-button-color-hover) !important;
+    }
+
+    &:focus {
+        background-color: var(--flat-button-color-active) !important;
+    }
 }
 
 .postcard404 {
