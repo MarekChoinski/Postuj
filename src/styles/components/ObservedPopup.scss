@@ -1,0 +1,96 @@
+.card.observed_popup {
+    @include card;
+    box-shadow: $popup-shadow;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    width: 430px;
+    margin: 0;
+    padding: 12px;
+    z-index: 1000;
+
+    animation: fadein 0.5s ease-in;
+
+    @keyframes fadein {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @media (max-width: $size-mobile) {
+        width: calc(100% - 30px);
+        top: 70px;
+        height: 220px;
+        left: 15px;
+    }
+
+    &--closing {
+        opacity: 0;
+        transition: opacity 0.5s ease-out;
+    }
+
+    &--closed {
+        display: none;
+    }
+
+}
+
+.media.observed_popup__media_header {
+    display: flex;
+    align-items: center;
+}
+
+.observed_popup__avatar {
+    width: 35px;
+    height: auto;
+    margin-right: 15px;
+    border-radius: 4px;
+}
+
+.card-body.observed_popup__body {
+    padding: 8px;
+    font-size: 0.8rem;
+}
+
+.btn.observed_popup__close_btn {
+    @include flat-button;
+    padding: 5px;
+    margin-left: auto;
+}
+
+.observed_popup__username {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.card-header.observed_popup__header {
+    margin: 0;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+}
+
+.card-footer.observed_popup__footer {
+    display: flex;
+    margin: 0 10px;
+    padding: 0px;
+    border: none;
+    background-color: transparent;
+}
+
+
+.btn.observed_popup__show_post {
+    @include flat-button;
+    // height: auto;
+    font-size: 0.8rem;
+    padding: 8px 15px;
+    margin: 0 0 0 auto;
+}

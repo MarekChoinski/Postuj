@@ -70,7 +70,7 @@ const SortProfileBar: React.FC<{}> = (props) => {
             name="theme"
             value={sortMethodText}
             onChange={handleChange}
-            className={`sort_profile_bar`}
+            className="sort_profile_bar"
         >
 
             {sortOptions.map((option: string) => (
@@ -78,7 +78,7 @@ const SortProfileBar: React.FC<{}> = (props) => {
                 <ToggleButton
                     value={option}
                     variant="light"
-                    className={`sort_profile_bar__button`}
+                    className="sort_profile_bar__button"
                 >
                     {PL[option]}
                 </ToggleButton>

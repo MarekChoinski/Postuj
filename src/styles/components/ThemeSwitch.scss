@@ -4,14 +4,6 @@
     top: 100px;
     right: 50px;
 
-    &.mood {
-        background-color: transparent;
-    }
-
-    &.dark {
-        background-color: transparent;
-    }
-
     @media (max-width: $size-mobile) {
         right: 15px;
     }

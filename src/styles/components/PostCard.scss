@@ -9,9 +9,15 @@
 
 }
 
+.post_card__created_at {
+    color: var(--muted-text-color);
+    font-size: 0.9rem;
+}
+
 .post_card__username {
     color: $primary;
     font-size: 1.7rem;
+    margin-bottom: 0.1rem;
 }
 
 .post_card__avatar {
@@ -26,14 +32,19 @@
     text-transform: uppercase;
     margin-left: auto;
     background-color: transparent;
+    display: flex;
+    align-items: center;
 
     &:hover,
-    &:focus {
+    &:focus,
+    &:active {
         color: $primary;
+        fill: $primary;
         border: 1px solid $primary;
     }
 
-    &:focus {
+    &:focus,
+    &:active {
         background-color: rgba($primary, .4);
     }
 
@@ -87,42 +98,36 @@
     padding: 35px 35px 20px 35px;
 }
 
-.btn.post_card__fav_button {
-    padding: 3px 10px;
-    width: auto;
-    min-width: 40px;
-    height: 40px;
-    margin-right: 10px;
-
-    svg {
-        height: 80%;
-    }
-
-    &--plus {
-        display: flex;
-        align-items: center;
-    }
-
+.btn.post_card__show_post {
+    @include flat-button;
+    padding: 8px 15px;
+    margin: 0 0 0 auto;
 }
 
-.btn.post_card__show_post {
-    color: var(--text-color);
-    background-color: transparent !important;
-    border: none;
-    text-transform: uppercase;
-    font-weight: 600;
-    border-radius: $btn-border-radius;
-    padding: 8px 15px;
-    height: 40px;
-    margin: 0 0 0 auto;
-    line-height: 1.5;
+.btn.post_card__fav_button {
+    padding: 3px 10px;
+    margin-right: 10px;
+    @include flat-button;
+    display: flex;
+    align-items: center;
 
-    &:hover {
-        background-color: var(--flat-button-color-hover) !important;
+    span {
+        margin-left: 3px;
+        font-size: 1.2rem;
     }
 
-    &:focus {
-        background-color: var(--flat-button-color-active) !important;
+    &--is_favorite {
+        fill: rgb(214, 53, 50);
+    }
+
+    &--is_liked {
+        color: white;
+        fill: white;
+        background-color: rgb(65, 163, 70) !important;
+
+        &:focus {
+            background-color: rgb(65, 163, 70) !important;
+        }
     }
 }
 

@@ -83,7 +83,7 @@ const PostCard: React.FC<PostProps> = (props) => {
                             </h4>
                         </Link>
                         <span
-                            className="text-muted"
+                            className="post_card__created_at"
                             title={format((date * 1000), "'Opublikowano 'dd-MM-yyyy' o godz. 'hh:mm")}
                         >
                             {formatDistanceToNow(date * 1000, { addSuffix: true })}
@@ -125,14 +125,14 @@ const PostCard: React.FC<PostProps> = (props) => {
 
             </Card.Body>
             <Card.Footer
-                className="text-muted post_card__footer"
+                className="post_card__footer"
             >
                 {
                     (authorized && profile) ?
                         (favorite ?
                             <Button
                                 variant="light"
-                                className="text-muted post_card__fav_button"
+                                className="post_card__fav_button post_card__fav_button--is_favorite"
                                 onClick={
                                     () => {
                                         dispatch(removePostFromFavorites(id))
@@ -143,7 +143,7 @@ const PostCard: React.FC<PostProps> = (props) => {
                             </Button>
                             : <Button
                                 variant="light"
-                                className="text-muted post_card__fav_button"
+                                className="post_card__fav_button"
                                 onClick={
                                     () => {
                                         dispatch(addPostToFavorites(id))
@@ -157,7 +157,7 @@ const PostCard: React.FC<PostProps> = (props) => {
 
                 <Button
                     variant={isAlreadyLiked ? "success" : "light"}
-                    className="post_card__fav_button post_card__fav_button--plus"
+                    className={`post_card__fav_button ${isAlreadyLiked && "post_card__fav_button--is_liked"}`}
                     onClick={
                         () => {
                             if (authorized && profile) {
@@ -169,21 +169,8 @@ const PostCard: React.FC<PostProps> = (props) => {
                         }
                     }
                 >
-                    <IconLike
-                        style={{
-                            height: "24px",
-                        }} />
-                    <span
-                        style={{
-                            color: "black",
-                            fontWeight: "bold",
-                            // padding: "3px",
-                            fontSize: "17px",
-                            display: "block",
-                            height: "24px",
-                            lineHeight: "24px",
-                            marginLeft: "5px",
-                        }}>
+                    <IconLike />
+                    <span>
                         {likedBy.length}
                     </span>
                 </Button>

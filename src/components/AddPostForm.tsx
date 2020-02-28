@@ -8,14 +8,11 @@ import Card from 'react-bootstrap/Card';
 import Media from 'react-bootstrap/Media';
 
 import { ReactComponent as IconCamera } from '../assets/add_post_form_camera.svg';
-import { ReactComponent as IconBold } from '../assets/add_post_form_bold.svg';
-import { ReactComponent as IconItalic } from '../assets/add_post_form_italic.svg';
 import { addPost } from '../state/ducks/posts/operations';
 
 import { useDispatch, connect, useSelector } from 'react-redux';
 import { postsSelectors } from '../state/ducks/posts';
 
-import { ThemeContext } from '../contexts/ThemeContext';
 
 import DefaultAvatar from '../assets/images/defaultAvatar.png';
 
@@ -33,7 +30,6 @@ interface FormValues {
 
 const InnerForm = (props: FormikProps<FormValues>) => {
 
-    const { theme } = useContext(ThemeContext);
     const dispatch = useDispatch();
 
     const { touched, errors, isSubmitting, setFieldValue } = props;
@@ -49,7 +45,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
     return (authorized && profile) ?
 
         (<Card
-            className={`add_post_form ${theme}`}
+            className="add_post_form"
         >
             <FormikForm>
 
@@ -90,7 +86,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
                                 <img
                                     src={URL.createObjectURL(props.values.file)}
                                     alt="Generic placeholder"
-                                    className={`add_post_form__attached_photo ${theme}`}
+                                    className="add_post_form__attached_photo"
                                 />
                             }
 
@@ -136,19 +132,19 @@ const InnerForm = (props: FormikProps<FormValues>) => {
 };
 
 // const addPostOnSubmit: any = (values: any, { props, setSubmitting }: any): any => {
-const addPostOnSubmit = (values: any) => {
-    // props.dispatch(addPost("Jakis kontent", "nazwa autora"));
+// const addPostOnSubmit = (values: any) => {
+// props.dispatch(addPost("Jakis kontent", "nazwa autora"));
 
-    console.log(values);
-
-
-    // setTimeout(() => {
-    //     console.log(JSON.stringify(values, null, 2));
-    //     setSubmitting(false);
+// console.log(values);
 
 
-    // }, 2000);
-}
+// setTimeout(() => {
+//     console.log(JSON.stringify(values, null, 2));
+//     setSubmitting(false);
+
+
+// }, 2000);
+// }
 
 interface AddPostFormProps {
     postContent?: string,

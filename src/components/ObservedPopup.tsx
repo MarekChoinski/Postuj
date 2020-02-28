@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Media from 'react-bootstrap/Media';
 import DefaultAvatar from '../assets/images/defaultAvatar.png';
@@ -33,6 +33,8 @@ interface PostProps {
 
 const ObservedPopup: React.FC<PostProps> = (props) => {
 
+
+
     const {
         author,
         authorId,
@@ -45,67 +47,68 @@ const ObservedPopup: React.FC<PostProps> = (props) => {
         // favorite,
     } = props;
 
+    const [status, setStatus] = useState("open");
+
 
     return (
         <Card
-            className="post_card"
+            className={`observed_popup ${status === "closing" ? "observed_popup--closing" : (status === "closed" ? "observed_popup--closed" : null)}`}
         >
             <Card.Header
-                className="post_card__header"
+                className="observed_popup__header"
             >
-                <Media>
+                <Media
+                    className="observed_popup__media_header"
+                >
                     <Link to={"/profile/" + authorId}>
                         <img
-                            className="post_card__avatar"
+                            className="observed_popup__avatar"
                             src={authorProfilePicture || DefaultAvatar}
                             alt="User avatar"
                         />
                     </Link>
                     <Media.Body>
-                        <Link to={"/profile/" + authorId}>
-                            <h4
-                                className="post_card__username">
-                                {author}
-                            </h4>
-                        </Link>
-                        <span
-                            className="text-muted"
-                        // title={format((date * 1000), "'Opublikowano 'dd-MM-yyyy' o godz. 'hh:mm")}
-                        >
-                            przed chwilą
-                        </span>
-
-
+                        <h4
+                            className="observed_popup__username">
+                            {author} dodał przed chwilą post
+                        </h4>
 
                     </Media.Body>
                 </Media>
 
                 <Button
                     variant="light"
-                    className="post_card__observe_button"
+                    className="observed_popup__close_btn"
+                    onClick={
+                        () => {
+                            setStatus("closing");
+                            setTimeout(function () {
+                                setStatus("closed");
+                            }, 500);
+                        }
+                    }
                 >
-                    <IconClose
-                        className="post_card__observe_icon" />
+                    <IconClose />
                 </Button>
 
             </Card.Header>
             <Card.Body
-                className="post_card__body"
+                className="observed_popup__body"
             >
                 <Card.Text>
-                    {content}
+                    {content.length > 200 ? content.substr(0, 200) + "..." : content}
                 </Card.Text>
 
             </Card.Body>
             <Card.Footer
-                className="text-muted post_card__footer"
+                className="observed_popup__footer"
             >
 
                 <Button
                     variant="light"
                     as={Link}
                     to={"/post/" + id}
-                    className="post_card__show_post"
+                    className="observed_popup__show_post"
 
                 >
                     Pokaż post
