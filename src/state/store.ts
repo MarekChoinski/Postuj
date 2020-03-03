@@ -9,10 +9,19 @@ import { createFirestoreInstance, firestoreReducer } from 'redux-firestore';
 import { firebaseConfig } from '../configs/firebaseConfig';
 
 import * as reducers from "./ducks"
+import { StateAll } from "./ducks/types"
+
+const extraArguments = { getFirebase, getFirestore };
+type extraArgs = typeof extraArguments;
 
 const middlewares = [
-    thunk.withExtraArgument({ getFirebase, getFirestore })
+    thunk.withExtraArgument(extraArguments)
 ]
+
+export interface State extends StateAll {
+    firebase: any;
+    firestore: any;
+}
 
 export default function configureStore(firebaseInstance: any) {
     return createStore(

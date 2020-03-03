@@ -3,8 +3,8 @@ import { AuthState } from './auth/types'
 
 export interface StateAll {
     posts: PostsState,
-}
-
-export interface StateAll {
     auth: AuthState,
 }
+
+// export interface StateAll {
+// }

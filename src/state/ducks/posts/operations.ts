@@ -1,24 +1,31 @@
 import * as actions from "./actions";
+import * as types from "./types";
 import firebase from 'firebase';
+import { Dispatch } from 'redux';
+
+import { State } from '../../store'
 
 export const addPost = (
     content: string,
-    attachedPhoto: any,
-) => async (dispatch: any, getState: any, {
-    getFirebase,
-    getFirestore
-}: any) => {
-
-
+    attachedPhoto?: File,
+) => async (
+    dispatch: Dispatch<types.PostActionTypes>,
+    getState: () => State,
+    {
+        getFirestore
+    }: any
+): Promise<void> => {
         let timestamp = new Date();
 
         const state = getState().firebase;
-        const ref = firebase.storage().ref().child("photos/" + state.profile.username + "/" + timestamp.getTime() + ".jpg");
-
+        const ref = firebase.storage()
+            .ref()
+            .child("photos/" + state.profile.username + "/" + timestamp.getTime() + ".jpg");
 
         try {
-
-            await ref.put(attachedPhoto);
+            if (attachedPhoto) {
+                await ref.put(attachedPhoto);
+            }
             const url = await ref.getDownloadURL();
 
             const firestore = getFirestore();
@@ -43,10 +50,12 @@ export const addPost = (
 
 export const addPostToFavorites = (
     id: string,
-) => async (dispatch: any, getState: any, {
-    getFirebase,
-    getFirestore
-}: any) => {
+) => async (
+    getState: () => State,
+    {
+        getFirebase,
+    }: any
+) => {
 
         const actualFavoritePosts = getState().firebase.profile.favoritePosts;
 
@@ -56,7 +65,6 @@ export const addPostToFavorites = (
                     favoritePosts: [id, ...actualFavoritePosts],
                 });
             }
-            // dispatch(actions.addPost(content));
 
         } catch (error) {
             // TODO here should came action with meta error
@@ -67,10 +75,14 @@ export const addPostToFavorites = (
 
 export const removePostFromFavorites = (
     id: string,
-) => async (dispatch: any, getState: any, {
-    getFirebase,
-    getFirestore
-}: any) => {
+) => async (
+    dispatch: Dispatch<types.PostActionTypes>,
+    getState: () => State,
+    {
+        getFirebase,
+        getFirestore
+    }: any
+) => {
 
         const actualFavoritePosts = getState().firebase.profile.favoritePosts.filter((item: string) => item !== id);
 
@@ -93,10 +105,14 @@ export const removePostFromFavorites = (
 
 export const likePost = (
     id: string,
-) => async (dispatch: any, getState: any, {
-    getFirebase,
-    getFirestore
-}: any) => {
+) => async (
+    dispatch: Dispatch<types.PostActionTypes>,
+    getState: () => State,
+    {
+        getFirebase,
+        getFirestore
+    }: any
+) => {
 
         const likedPostsByUser = getState().firebase.profile.likedPosts;
         const user_id = getState().firebase.auth.uid;
@@ -130,10 +146,14 @@ export const likePost = (
 
 export const unlikePost = (
     id: string,
-) => async (dispatch: any, getState: any, {
-    getFirebase,
-    getFirestore
-}: any) => {
+) => async (
+    dispatch: Dispatch<types.PostActionTypes>,
+    getState: () => State,
+    {
+        getFirebase,
+        getFirestore
+    }: any
+) => {
 
         const likedPostsByUser = getState().firebase.profile.likedPosts.filter((item: string) => item !== id);
         const user_id = getState().firebase.auth.uid;

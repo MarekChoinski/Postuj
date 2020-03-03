@@ -10,7 +10,7 @@ const defaultTheme = "light";
 const defaultUpdate: UpdateType = () => defaultTheme;
 
 
-export const ThemeContext = React.createContext({
+export const ThemeContext = createContext({
   theme: defaultTheme,
   setTheme: defaultUpdate
 });
@@ -32,7 +32,5 @@ const ThemeContextProvider: React.FC<Props> = props => {
   );
 
 };
-
-
 
 export default ThemeContextProvider;

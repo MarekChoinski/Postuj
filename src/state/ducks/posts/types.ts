@@ -9,6 +9,7 @@ export const UNLIKE_POST = "bloggy/posts/UNLIKE_POST";
 
 export type Post = Readonly<{
     content: string,
+    attachedPhoto?: string,
     authorName: string,
     date: string,
     id: string,
@@ -21,10 +22,9 @@ export interface PostsState {
     readonly sortProfileMethod: string,
 }
 
-
 interface AddPostAction {
     type: typeof ADD_POST;
-    payload: Pick<Post, 'content'>;
+    payload: Pick<Post, 'content' | 'attachedPhoto'>;
     // payload: Pick<Post, 'content' | "authorName">;
 }
 

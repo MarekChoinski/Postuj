@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import * as Yup from 'yup';
 import { withFormik, FormikProps, /*FormikErrors,*/ Form as FormikForm, Field } from 'formik';
 import Form from 'react-bootstrap/Form';
@@ -10,8 +10,10 @@ import Media from 'react-bootstrap/Media';
 import { ReactComponent as IconCamera } from '../assets/add_post_form_camera.svg';
 import { addPost } from '../state/ducks/posts/operations';
 
-import { useDispatch, connect, useSelector } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import { postsSelectors } from '../state/ducks/posts';
+import * as types from "../state/ducks/posts/types";
 
 
 import DefaultAvatar from '../assets/images/defaultAvatar.png';
@@ -25,12 +27,10 @@ const schema = Yup.object({
 
 interface FormValues {
     postContent: string,
-    file: string,
+    file: File | null,
 }
 
 const InnerForm = (props: FormikProps<FormValues>) => {
-
-    const dispatch = useDispatch();
 
     const { touched, errors, isSubmitting, setFieldValue } = props;
     const authorized = useSelector((state: any) =>
@@ -41,9 +41,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
         !state.firebase.auth.isEmpty ? state.firebase.profile : null
     );
 
-
     return (authorized && profile) ?
-
         (<Card
             className="add_post_form"
         >
@@ -65,11 +63,6 @@ const InnerForm = (props: FormikProps<FormValues>) => {
                                 rows="3"
                                 name="postContent"
                                 placeholder="Wpisz treść wpisu..."
-                                onChange={(e: any) => {
-                                    console.log(e.target.value);
-                                    props.setFieldValue('postContent', e.target.value);
-                                    console.log(props.values.postContent);
-                                }}
                             />
 
                             {touched.postContent && errors.postContent ?
@@ -85,7 +78,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
                                 props.values.file &&
                                 <img
                                     src={URL.createObjectURL(props.values.file)}
-                                    alt="Generic placeholder"
+                                    alt="attached to post"
                                     className="add_post_form__attached_photo"
                                 />
                             }
@@ -108,6 +101,8 @@ const InnerForm = (props: FormikProps<FormValues>) => {
                             </label>
 
                             <input id="file" name="file" type="file" className="add_post_form__input_file" onChange={(event: any) => {
+                                console.log(event.currentTarget.files[0]);
+
                                 setFieldValue("file", event.currentTarget.files[0]);
                             }} />
                             <Button
@@ -121,37 +116,17 @@ const InnerForm = (props: FormikProps<FormValues>) => {
                     </Media.Body>
                 </Media>
 
-
-
-
-
             </FormikForm>
         </Card >)
         : null;
 
 };
 
-// const addPostOnSubmit: any = (values: any, { props, setSubmitting }: any): any => {
-// const addPostOnSubmit = (values: any) => {
-// props.dispatch(addPost("Jakis kontent", "nazwa autora"));
-
-// console.log(values);
-
-
-// setTimeout(() => {
-//     console.log(JSON.stringify(values, null, 2));
-//     setSubmitting(false);
-
-
-// }, 2000);
-// }
-
 interface AddPostFormProps {
     postContent?: string,
-    file?: string,
-    dispatch?: any,
+    file?: File | null,
+    dispatch?: Dispatch,
     addPostOnSubmit?: any,
-
 }
 
 const AddPostFormFormik = withFormik<AddPostFormProps, FormValues>({
@@ -159,7 +134,7 @@ const AddPostFormFormik = withFormik<AddPostFormProps, FormValues>({
     mapPropsToValues: props => {
         return {
             postContent: "",
-            file: "",
+            file: null,
         };
     },
 
@@ -174,9 +149,21 @@ const AddPostFormFormik = withFormik<AddPostFormProps, FormValues>({
 
 })(InnerForm);
 
-const mapDispatchToProps = (dispatch: any) => ({
-    addPostOnSubmit: (postContent: string, file: any) => dispatch(addPost(postContent, file)),
-});
+const mapDispatchToProps = (dispatch: Dispatch) =>
+    // ({
+    // addPostOnSubmit: (postContent: string, file: File) =>
+    // dispatch(
+    // addPost(postContent, file)
+    // ),
+
+    bindActionCreators(
+        {
+            addPostOnSubmit: addPost,
+        },
+        dispatch
+        // );
+        // }
+    );
 
 const AddPostForm = connect(
     null,

@@ -10,7 +10,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 
 const ThemeSwitch: React.FC = () => {
 
-    const { setTheme, theme } = useContext(ThemeContext);
+    const { setTheme } = useContext(ThemeContext);
     const [value, setValue] = useState("light");
 
     const handleChange = useCallback(
