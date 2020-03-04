@@ -39,7 +39,7 @@ export const addPost = (
                 likes: 0, //NOTE: we need this field to properly sort posts by likes
             });
 
-            dispatch(actions.addPost(content));
+            // dispatch(actions.addPost(content));
 
         } catch (error) {
             // TODO here should came action with meta error

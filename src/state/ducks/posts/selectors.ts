@@ -5,7 +5,7 @@ import {
 
 import * as types from './types';
 
-import { StateAll } from '../types';
+import { DuckStates } from '../types';
 
 // const getPosts = (state: StateAll) => state.posts.posts; //first 'posts' is reducer name and second is Post[]
 

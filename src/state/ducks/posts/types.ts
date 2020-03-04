@@ -25,7 +25,6 @@ export interface PostsState {
 interface AddPostAction {
     type: typeof ADD_POST;
     payload: Pick<Post, 'content' | 'attachedPhoto'>;
-    // payload: Pick<Post, 'content' | "authorName">;
 }
 
 interface DeletePostAction {
@@ -66,7 +65,6 @@ interface unlikePost {
     type: typeof UNLIKE_POST;
     payload: Pick<Post, 'id'>;
 }
-
 
 export type PostActionTypes =
     AddPostAction |

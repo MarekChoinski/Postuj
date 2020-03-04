@@ -1,24 +1,21 @@
 import { applyMiddleware, compose, combineReducers, createStore } from "redux"
 import { composeWithDevTools } from "redux-devtools-extension"
-// import thunkMiddleware from "redux-thunk"
 import thunk from "redux-thunk"
 import { getFirebase } from 'react-redux-firebase'
 import { getFirestore, reduxFirestore } from 'redux-firestore'
-import { ReactReduxFirebaseProvider, firebaseReducer } from 'react-redux-firebase'
-import { createFirestoreInstance, firestoreReducer } from 'redux-firestore';
-import { firebaseConfig } from '../configs/firebaseConfig';
+import { firebaseReducer } from 'react-redux-firebase'
+import { firestoreReducer } from 'redux-firestore';
 
 import * as reducers from "./ducks"
-import { StateAll } from "./ducks/types"
+import { DuckStates } from "./ducks/types"
 
 const extraArguments = { getFirebase, getFirestore };
-type extraArgs = typeof extraArguments;
 
 const middlewares = [
     thunk.withExtraArgument(extraArguments)
 ]
 
-export interface State extends StateAll {
+export interface State extends DuckStates {
     firebase: any;
     firestore: any;
 }

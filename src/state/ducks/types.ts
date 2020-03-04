@@ -1,10 +1,7 @@
 import { PostsState } from './posts/types'
 import { AuthState } from './auth/types'
 
-export interface StateAll {
+export interface DuckStates {
     posts: PostsState,
     auth: AuthState,
 }
-
-// export interface StateAll {
-// }

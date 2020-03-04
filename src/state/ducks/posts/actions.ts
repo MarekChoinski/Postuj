@@ -3,8 +3,6 @@ import * as types from "./types";
 export const addPost = (
     content: string,
     attachedPhoto?: string,
-    // authorName: string,
-    // createdAt: any,
 ): types.PostActionTypes => ({
     type: types.ADD_POST,
     payload: {

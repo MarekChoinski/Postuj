@@ -12,36 +12,13 @@ const reducer = (
 ): types.PostsState => {
 
     switch (action.type) {
-        case types.ADD_POST:
-            // return {
-            //     ...state,
-            //     posts: [
-            //         ...state.posts,
-            //         {
-            //             // id: uuid.v1(),
-            //             id: "TEST",
-            //             ...action.payload,
-            //         }
-            //     ],
-            // }
-            return state;
-
-        // case types.DELETE_POST:
-        //     return {
-        //         ...state,
-        //         posts: state.posts.filter(post =>
-        //             post.id !== action.payload.id
-        //         )
-        //     }
-
+        // case types.ADD_POST:
         case types.SET_SORT_METHOD:
         case types.SET_PROFILE_SORT_METHOD:
             return {
                 ...state,
                 ...action.payload,
             }
-            return state;
-
         default:
             return state;
     }

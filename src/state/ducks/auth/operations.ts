@@ -1,14 +1,16 @@
 import * as actions from "./actions";
 import firebase from 'firebase';
+import * as types from "./types";
+import { Dispatch } from 'redux';
+import { State } from '../../store'
 
 export const signIn = (
     email: string,
     password: string,
-) => {
-
-    return async (dispatch: any, getState: any, {
-        getFirebase
-    }: any) => {
+) => async (
+    dispatch: Dispatch<types.AuthActionTypes>,
+    getState: () => State,
+    ): Promise<void> => {
 
         try {
             await firebase.auth().signInWithEmailAndPassword(email, password);
@@ -16,7 +18,7 @@ export const signIn = (
 
         } catch (error) {
 
-            if (error.code == "auth/user-not-found") {
+            if (error.code === "auth/user-not-found") {
                 error = "User not found!";
             } else {
                 error = error.code + " " + error.message;
@@ -25,13 +27,14 @@ export const signIn = (
             dispatch(actions.signInFailed(error));
         }
     };
-};
+
 
 export const signOut = () => {
 
-    return async (dispatch: any, getState: any, {
-        getFirebase
-    }: any) => {
+    return async (
+        dispatch: any,
+        getState: () => State
+    ) => {
 
         try {
             // const firebase = getFirebase();
@@ -58,18 +61,20 @@ export const signUp = (
     email: string,
     password: string,
     username: string,
-    profilePicPath: any,
+    profilePic: File,
 ) => {
 
-    return async (dispatch: any, getState: any, {
-        getFirebase,
-        getFirestore
-    }: any) => {
+    return async (
+        dispatch: any,
+        getState: () => State, {
+            getFirebase,
+            getFirestore
+        }: any) => {
 
         const ref = firebase.storage().ref().child("profilePictures/av-" + username + ".jpg");
 
         try {
-            await ref.put(profilePicPath);
+            await ref.put(profilePic);
             const url = await ref.getDownloadURL();
 
             getFirebase().createUser({

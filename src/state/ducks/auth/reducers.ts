@@ -1,5 +1,4 @@
 import * as types from "./types";
-import { AuthActionTypes } from "./actions";
 // import uuid from "uuid";
 
 const initialState: any = {
@@ -9,8 +8,8 @@ const initialState: any = {
 
 const reducer = (
     state = initialState,
-    action: AuthActionTypes// | types.TitleActionTypes
-): any => {
+    action: types.AuthActionTypes// | types.TitleActionTypes
+): types.AuthState => {
 
     switch (action.type) {
         case types.SIGN_IN:
