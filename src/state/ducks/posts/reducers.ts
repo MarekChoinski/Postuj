@@ -2,6 +2,7 @@ import * as types from "./types";
 // import uuid from "uuid";
 
 const initialState: types.PostsState = {
+    actualPage: 1,
     sortMethod: "newest",
     sortProfileMethod: "newest",
 };

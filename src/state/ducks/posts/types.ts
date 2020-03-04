@@ -18,6 +18,7 @@ export type Post = Readonly<{
 export interface PostsState {
     // readonly title: string,
     // readonly posts: ReadonlyArray<Post>,
+    readonly actualPage: number,
     readonly sortMethod: string,
     readonly sortProfileMethod: string,
 }

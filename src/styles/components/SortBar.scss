@@ -28,7 +28,7 @@
     }
 }
 
-:not(.add_post_form)+.sort_bar {
+.theme_switch+.post_card {
     @media (max-width: $size-desktop) {
         margin-top: 120px;
     }

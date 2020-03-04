@@ -3,7 +3,7 @@ import * as types from "./types";
 import firebase from 'firebase';
 import { Dispatch } from 'redux';
 
-import { State } from '../../store'
+import { State } from '../types'
 
 export const addPost = (
     content: string,

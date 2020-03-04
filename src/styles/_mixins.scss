@@ -1,6 +1,6 @@
 @mixin card {
     width: 900px;
-    margin: 50px auto;
+    margin: 50px auto 0 auto;
     box-shadow: $card-shadow;
     background-color: var(--bgc-card);
     color: var(--text-color);
@@ -11,6 +11,7 @@
         width: 100%;
         margin: 20px auto;
     }
+
 }
 
 @mixin small_avatar {

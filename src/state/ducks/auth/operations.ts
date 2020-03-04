@@ -2,7 +2,7 @@ import * as actions from "./actions";
 import firebase from 'firebase';
 import * as types from "./types";
 import { Dispatch } from 'redux';
-import { State } from '../../store'
+import { State } from '../types'
 
 export const signIn = (
     email: string,
