@@ -150,19 +150,12 @@ const AddPostFormFormik = withFormik<AddPostFormProps, FormValues>({
 })(InnerForm);
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
-    // ({
-    // addPostOnSubmit: (postContent: string, file: File) =>
-    // dispatch(
-    // addPost(postContent, file)
-    // ),
 
     bindActionCreators(
         {
             addPostOnSubmit: addPost,
         },
         dispatch
-        // );
-        // }
     );
 
 const AddPostForm = connect(

@@ -18,21 +18,22 @@ export const addPost = (
         let timestamp = new Date();
 
         const state = getState().firebase;
-        const ref = firebase.storage()
-            .ref()
-            .child("photos/" + state.profile.username + "/" + timestamp.getTime() + ".jpg");
 
         try {
+            let url = "";
             if (attachedPhoto) {
+                const ref = firebase.storage()
+                    .ref()
+                    .child("photos/" + state.profile.username + "/" + timestamp.getTime() + ".jpg");
                 await ref.put(attachedPhoto);
+                url = await ref.getDownloadURL();
             }
-            const url = await ref.getDownloadURL();
 
             const firestore = getFirestore();
 
             await firestore.collection('posts').add({
                 content: content,
-                attachedPhoto: attachedPhoto ? url : "",
+                attachedPhoto: url,
                 authorId: state.auth.uid,
                 createdAt: new Date(),
                 likedBy: [],
@@ -147,7 +148,7 @@ export const likePost = (
 export const unlikePost = (
     id: string,
 ) => async (
-    dispatch: Dispatch<types.PostActionTypes>,
+    // dispatch: Dispatch<types.PostActionTypes>,
     getState: () => State,
     {
         getFirebase,
