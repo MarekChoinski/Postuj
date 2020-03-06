@@ -1,4 +1,4 @@
-import { PostsState } from './posts/types'
+import { PostsState, SortMethod as PostSortMethod } from './posts/types'
 import { AuthState } from './auth/types'
 
 export interface State {
@@ -7,3 +7,5 @@ export interface State {
     firebase: any;
     firestore: any;
 }
+
+export { SortMethod } from './posts/types';

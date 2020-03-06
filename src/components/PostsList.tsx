@@ -6,39 +6,36 @@ import PostCard from '../components/PostCard';
 import PostCard404 from '../components/PostCard404';
 import { useSelector } from 'react-redux';
 import { useFirestoreConnect } from 'react-redux-firebase'
-import Spinner from 'react-bootstrap/Spinner';
 import { subHours } from 'date-fns';
+import LoadingSpinner from './LoadingSpinner';
+import * as types from '../state/ducks/types'
 
+interface PostListParametres {
+    author?: string,
+};
 
-const PostsList: React.FC = () => {
+const PostsList: React.FC<PostListParametres> = () => {
 
-
-
-    const sortMethod = useSelector((state: any) =>
+    const sortMethod: types.SortMethod = useSelector((state: types.State) =>
         state.posts.sortMethod
     );
 
-
-    const favoritePosts = useSelector((state: any) =>
+    const favoritePosts = useSelector((state: types.State) =>
         !state.firebase.auth.isEmpty ? state.firebase.profile.favoritePosts : []
     );
 
     // TODO make this as a selector returning tuple
     let valueToOrderTo = "createdAt";
 
-    // let before = subHours(new Date(), 13);
-
-
-
     const before = useMemo(
         () => {
-            if (sortMethod === "top6") {
+            if (sortMethod === types.SortMethod.Top6) {
                 return subHours(new Date(), 6);
             }
-            else if (sortMethod === "top12") {
+            else if (sortMethod === types.SortMethod.Top12) {
                 return subHours(new Date(), 12);
             }
-            else if (sortMethod === "top24") {
+            else if (sortMethod === types.SortMethod.Top24) {
                 return subHours(new Date(), 24);
             }
             else return null;
@@ -46,16 +43,15 @@ const PostsList: React.FC = () => {
         [sortMethod]
     );
 
-    if (sortMethod === 'newest') {
+    if (sortMethod === types.SortMethod.Newest) {
         valueToOrderTo = "createdAt";
         // before = null;
     }
     else {
         valueToOrderTo = "likes";
-
     }
 
-    const authors = useSelector((state: any) =>
+    const authors = useSelector((state: types.State) =>
         state.firestore.ordered.authors ?
             state.firestore.ordered.authors.reduce((hash: any, author: any) => {
                 hash[author.id] = {
@@ -66,7 +62,7 @@ const PostsList: React.FC = () => {
             : null
     );
 
-    const posts = useSelector((state: any) =>
+    const posts = useSelector((state: types.State) =>
         authors ?
             state.firestore.ordered.posts.map(
                 (post: any) =>
@@ -79,7 +75,9 @@ const PostsList: React.FC = () => {
             : state.firestore.ordered.posts
     );
 
-    //console.log("posts", posts);
+    // console.log("posts", posts);
+    // console.log("au", authors);
+    // console.log();
 
     const authorsQueries = posts ? posts.map((post: any) => ({
         collection: 'users',
@@ -88,6 +86,7 @@ const PostsList: React.FC = () => {
     })) : [];
 
     useFirestoreConnect([
+        ...authorsQueries,
         {
             collection: 'posts',
             where: before ? [
@@ -98,7 +97,6 @@ const PostsList: React.FC = () => {
                 'desc'
             ] : null,
         },
-        ...authorsQueries,
     ]);
 
     if (posts && before) {
@@ -119,19 +117,7 @@ const PostsList: React.FC = () => {
             likedBy={post.likedBy}
             favorite={post.isFavorite}
         />
-    ) : <Spinner
-        animation="grow"
-        style={{
-            marginTop: "30vh",
-            marginLeft: "50vw",
-
-        }}
-        role="status"
-    >
-            <span className="sr-only">
-                Loading...
-            </span>
-        </Spinner>;
+    ) : <LoadingSpinner />;
 
 
     if (postList.length === 0) {

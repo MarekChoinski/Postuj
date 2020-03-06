@@ -185,7 +185,7 @@ export const unlikePost = (
 
 export const deletePost = actions.deletePost;
 export const setSortMethod = actions.setSortMethod;
-export const setProfileSortMethod = actions.setProfileSortMethod;
+// export const setProfileSortMethod = actions.setProfileSortMethod;
 
 export default {
     addPost,

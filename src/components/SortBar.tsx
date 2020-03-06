@@ -3,35 +3,28 @@ import Card from 'react-bootstrap/Card';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useDispatch } from 'react-redux';
 import { setSortMethod } from '../state/ducks/posts/operations';
-
-interface PostProps {
-    author: string,
-    date: any,
-    content: string,
-    id: string,
-    authorProfilePicture: string,
-};
+import * as types from '../state/ducks/types';
 
 const SortBar: React.FC<{}> = (props) => {
 
-    const [sortMethodText, setSortText] = useState('newest');
+    const [sortMethodText, setSortText] = useState(types.SortMethod.Newest);
     const dispatch = useDispatch();
 
     type sortOptions = {
-        [key: string]: string
+        [key in types.SortMethod]?: string
     }
-    const PL: sortOptions = {
-        newest: "najnowszych",
-        topAll: "najpopularniejszych",
-        top6: "najpopularniejszych z ostatnich 6h",
-        top12: "najpopularniejszych z ostatnich 12h",
-        top24: "najpopularniejszych z ostatniej doby",
+    const optionText: sortOptions = {
+        Newest: "najnowszych",
+        Top: "najpopularniejszych",
+        Top6: "najpopularniejszych z ostatnich 6h",
+        Top12: "najpopularniejszych z ostatnich 12h",
+        Top24: "najpopularniejszych z ostatniej doby",
     };
 
     //TODO this has no sense, should iterate by keys - but for now i should check i18n
-    const sortOptions = [
-        "newest", "topAll", "top6", "top12", "top24",
-    ];
+    // const sortOptions = [
+    //     "newest", "topAll", "top6", "top12", "top24",
+    // ];
 
     return (
         <Card
@@ -49,20 +42,21 @@ const SortBar: React.FC<{}> = (props) => {
                         variant="light"
                         id="dropdown-basic"
                     >
-                        {PL[sortMethodText]}
+                        {optionText[sortMethodText]}
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        {sortOptions.map((option: string) => (
+                        {Object.keys(optionText).map((option: string) => (
                             <Dropdown.Item
                                 key={option}
                                 onClick={
                                     () => {
-                                        dispatch(setSortMethod(option))
-                                        setSortText(option)
+                                        dispatch(setSortMethod(types.SortMethod[option]))
+                                        setSortText(types.SortMethod[option])
                                     }
-                                }>
-                                {PL[option]}
+                                }
+                            >
+                                {optionText[option]}
                             </Dropdown.Item>
                         ))}
                     </Dropdown.Menu>

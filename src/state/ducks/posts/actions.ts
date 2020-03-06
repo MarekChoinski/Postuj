@@ -59,7 +59,7 @@ export const unlikePost = (
 
 
 export const setSortMethod = (
-    sortMethod: string
+    sortMethod: types.SortMethod
 ): types.PostActionTypes => ({
     type: types.SET_SORT_METHOD,
     payload: {
@@ -67,11 +67,11 @@ export const setSortMethod = (
     },
 });
 
-export const setProfileSortMethod = (
-    sortMethod: string
-): types.PostActionTypes => ({
-    type: types.SET_PROFILE_SORT_METHOD,
-    payload: {
-        sortMethod,
-    },
-});
+// export const setProfileSortMethod = (
+//     sortMethod: string
+// ): types.PostActionTypes => ({
+//     type: types.SET_PROFILE_SORT_METHOD,
+//     payload: {
+//         sortMethod,
+//     },
+// });

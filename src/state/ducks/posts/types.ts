@@ -15,12 +15,25 @@ export type Post = Readonly<{
     id: string,
 }>;
 
+export enum SortMethod {
+    Newest = "Newest",
+    Top = "Top",
+    Top6 = "Top6",
+    Top12 = "Top12",
+    Top24 = "Top24",
+    NewestUser = "NewestUser",
+    TopUser = "TopUser",
+    FavoriteUser = "FavoriteUser",
+    FavoriteMyProfile = "FavoriteMyProfile",
+    LikedByUser = "LikedByUser",
+    LikedByMyProfile = "LikedByMyProfile",
+    Observed = "Observed",
+}
+
 export interface PostsState {
-    // readonly title: string,
-    // readonly posts: ReadonlyArray<Post>,
     readonly actualPage: number,
-    readonly sortMethod: string,
-    readonly sortProfileMethod: string,
+    readonly sortMethod: SortMethod,
+    // readonly sortProfileMethod: string,
 }
 
 interface AddPostAction {
@@ -36,16 +49,16 @@ interface DeletePostAction {
 interface setSortMethod {
     type: typeof SET_SORT_METHOD;
     payload: {
-        sortMethod: string,
+        sortMethod: SortMethod,
     };
 }
 
-interface setProfileSortMethod {
-    type: typeof SET_PROFILE_SORT_METHOD;
-    payload: {
-        sortMethod: string,
-    };
-}
+// interface setProfileSortMethod {
+//     type: typeof SET_PROFILE_SORT_METHOD;
+//     payload: {
+//         sortMethod: string,
+//     };
+// }
 
 interface addPostToFavorites {
     type: typeof ADD_POST_TO_FAVORITES;
@@ -70,7 +83,7 @@ interface unlikePost {
 export type PostActionTypes =
     AddPostAction |
     setSortMethod |
-    setProfileSortMethod |
+    // setProfileSortMethod |
     addPostToFavorites |
     removePostFromFavorites |
     likePost |

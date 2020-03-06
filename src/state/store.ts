@@ -14,8 +14,6 @@ const middlewares = [
     thunk.withExtraArgument(extraArguments)
 ]
 
-
-
 export default function configureStore(firebaseInstance: any) {
     return createStore(
         combineReducers({

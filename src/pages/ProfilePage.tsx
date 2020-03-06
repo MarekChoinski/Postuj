@@ -13,6 +13,7 @@ import Card from 'react-bootstrap/Card';
 import Media from 'react-bootstrap/Media';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { Redirect } from 'react-router';
+import PostsList from '../components/PostsList';
 
 
 
@@ -27,127 +28,6 @@ type Props = {
 
 const ProfilePage: React.FC<Props> = (props) => {
 
-    const { theme } = useContext(ThemeContext);
-
-
-    //TODO redundancy with mainpage
-
-
-    const sortMethod = useSelector((state: any) =>
-        state.posts.sortMethod
-    );
-
-
-    const favoritePosts = useSelector((state: any) =>
-        !state.firebase.auth.isEmpty ? state.firebase.profile.favoritePosts : []
-    );
-
-    // TODO make this as a selector returning tuple
-    let valueToOrderTo = "createdAt";
-
-    // let before = subHours(new Date(), 13);
-
-
-
-    const before = useMemo(
-        () => {
-            if (sortMethod == "top6") {
-                return subHours(new Date(), 6);
-            }
-            else if (sortMethod == "top12") {
-                return subHours(new Date(), 12);
-            }
-            else if (sortMethod == "top24") {
-                return subHours(new Date(), 24);
-            }
-            else return null;
-        },
-        [sortMethod]
-    );
-
-    if (sortMethod == 'newest') {
-        valueToOrderTo = "createdAt";
-        // before = null;
-    }
-    else {
-        valueToOrderTo = "likes";
-
-    }
-
-
-
-
-
-
-    const authors = useSelector((state: any) =>
-        state.firestore.ordered.authors ?
-            state.firestore.ordered.authors.reduce((hash: any, author: any) => {
-                hash[author.id] = {
-                    ...author
-                };
-                return hash;
-            }, {})
-            : null
-    );
-
-    const posts = useSelector((state: any) =>
-        authors ?
-            state.firestore.ordered.posts.map(
-                (post: any) =>
-                    ({
-                        ...post,
-                        author: authors[post.authorId],
-                        isFavorite: favoritePosts ? favoritePosts.includes(post.id) : false,
-                    })
-            )
-            : state.firestore.ordered.posts
-    );
-
-    //console.log("posts", posts);
-
-    const authorsQueries = posts ? posts.map((post: any) => ({
-        collection: 'users',
-        doc: post.authorId,
-        storeAs: 'authors'
-    })) : [];
-
-    useFirestoreConnect([
-        {
-            collection: 'posts',
-            where: before ? [
-                ['createdAt', '>', before]
-            ] : null,
-            orderBy: !before ? [
-                valueToOrderTo,
-                'desc'
-            ] : null,
-        },
-        ...authorsQueries,
-    ]);
-
-    if (before) {
-        posts.sort((a: any, b: any) => (b.likes - a.likes));
-    }
-
-    const postList = (authors) ? posts.map((post: any) =>
-
-        <PostCard
-            author={post.author.username}
-            authorId={post.author.id}
-            content={post.content}
-            attachedPhoto={post.attachedPhoto}
-            authorProfilePicture={post.author.profilePicPath}
-            key={post.id}
-            id={post.id}
-            date={post.createdAt.seconds}
-            likedBy={post.likedBy}
-            favorite={post.isFavorite}
-        />
-    ) : LoadingSpinner;
-
-
-    //TODO redundancy with mainpage
-
     useFirestoreConnect([
         {
             collection: 'users',
@@ -157,17 +37,19 @@ const ProfilePage: React.FC<Props> = (props) => {
     ])
 
     const profile = useSelector((state: any) =>
-        state.firestore.ordered.profileFromPage && state.firestore.ordered.profileFromPage[0]
+        state.firestore.ordered.profileFromPage &&
+        state.firestore.ordered.profileFromPage[0]
     );
 
-    const isRequestingProfileFromPage = useSelector((state: any) =>
+    const isRequestedProfileFromPage = useSelector((state: any) =>
         !state.firebase.isInitializing &&
-        state.firestore.status.requesting.profileFromPage
+        state.firestore.status.requested.profileFromPage
     );
+
 
     return (
 
-        !isRequestingProfileFromPage ?
+        isRequestedProfileFromPage ?
             profile ?
 
                 <>
@@ -202,7 +84,6 @@ const ProfilePage: React.FC<Props> = (props) => {
                                     </h4>
                                     <span
                                         className="text-muted"
-                                        title="My tip"
                                     >
                                         Dołączył {formatDistanceToNow(profile.createdAt.seconds * 1000, { addSuffix: true })}
                                     </span>
@@ -230,11 +111,9 @@ const ProfilePage: React.FC<Props> = (props) => {
 
                     <SortProfileBar />
 
-                    {postList}
+                    <PostsList />
                 </>
-                // : <Redirect to="/404" />
-                : null
-
+                : <Redirect to="/404" />
             : <LoadingSpinner />
     );
 }
