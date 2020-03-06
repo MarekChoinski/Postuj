@@ -37,13 +37,13 @@ const PostsList: React.FC = () => {
 
     const before = useMemo(
         () => {
-            if (sortMethod == "top6") {
+            if (sortMethod === "top6") {
                 return subHours(new Date(), 6);
             }
-            else if (sortMethod == "top12") {
+            else if (sortMethod === "top12") {
                 return subHours(new Date(), 12);
             }
-            else if (sortMethod == "top24") {
+            else if (sortMethod === "top24") {
                 return subHours(new Date(), 24);
             }
             else return null;
@@ -51,7 +51,7 @@ const PostsList: React.FC = () => {
         [sortMethod]
     );
 
-    if (sortMethod == 'newest') {
+    if (sortMethod === 'newest') {
         valueToOrderTo = "createdAt";
         // before = null;
     }
@@ -59,12 +59,6 @@ const PostsList: React.FC = () => {
         valueToOrderTo = "likes";
 
     }
-
-
-
-    console.log("rendered!");
-
-
 
     const authors = useSelector((state: any) =>
         state.firestore.ordered.authors ?
@@ -112,7 +106,7 @@ const PostsList: React.FC = () => {
         ...authorsQueries,
     ]);
 
-    if (before) {
+    if (posts && before) {
         posts.sort((a: any, b: any) => (b.likes - a.likes));
     }
 
@@ -141,15 +135,9 @@ const PostsList: React.FC = () => {
     >
             <span className="sr-only">
                 Loading...
-</span>
+            </span>
         </Spinner>;
 
-
-
-
-    {
-        console.log(postList);
-    }
 
     if (postList.length === 0) {
         return <PostCard404 />

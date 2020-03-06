@@ -3,7 +3,7 @@ import * as types from "./types";
 
 const initialState: types.PostsState = {
     actualPage: 1,
-    sortMethod: "newest",
+    sortMethod: "top6",
     sortProfileMethod: "newest",
 };
 
