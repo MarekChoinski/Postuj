@@ -4,7 +4,7 @@ import Pagination from 'react-bootstrap/Pagination';
 
 const PaginationBar: React.FC = () => {
 
-    const maxPage = 2;
+    const maxPage = 1;
     const [currentPage, setCurrentPage] = useState(1);
 
     const prevPage = () => {
@@ -78,23 +78,25 @@ const PaginationBar: React.FC = () => {
     const paginationItems = paginate();
 
     return (
-        <div className="pagination_bar__wrapper">
-            <Pagination
-                className="pagination_bar"
-            >
-                <Pagination.Prev
-                    className="pagination_bar--only_desktop"
-                    onClick={prevPage}
-                />
 
-                {paginationItems}
+        maxPage > 1 ?
+            <div className="pagination_bar__wrapper">
+                <Pagination
+                    className="pagination_bar"
+                >
+                    <Pagination.Prev
+                        className="pagination_bar--only_desktop"
+                        onClick={prevPage}
+                    />
 
-                <Pagination.Next
-                    className="pagination_bar--only_desktop"
-                    onClick={nextPage}
-                />
-            </Pagination>
-        </div >
+                    {paginationItems}
+
+                    <Pagination.Next
+                        className="pagination_bar--only_desktop"
+                        onClick={nextPage}
+                    />
+                </Pagination>
+            </div > : null
     );
 
 

@@ -1,18 +1,13 @@
 
 
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 import PostCard from '../components/PostCard';
 import PostCard404 from '../components/PostCard404';
-
 import { useSelector } from 'react-redux';
-
-// import { postsSelectors } from '../state/ducks/posts';
-import AddPostForm from '../components/AddPostForm';
-import { useFirestoreConnect, useFirebase } from 'react-redux-firebase'
+import { useFirestoreConnect } from 'react-redux-firebase'
 import Spinner from 'react-bootstrap/Spinner';
-import SortBar from '../components/SortBar';
-import { subHours, getMilliseconds } from 'date-fns';
+import { subHours } from 'date-fns';
 
 
 const PostsList: React.FC = () => {
