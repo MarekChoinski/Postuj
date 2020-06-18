@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/Postuj/static/css/main.f75d526b.chunk.css",
+    "main.js": "/Postuj/static/js/main.0a4a4e1e.chunk.js",
+    "main.js.map": "/Postuj/static/js/main.0a4a4e1e.chunk.js.map",
+    "runtime-main.js": "/Postuj/static/js/runtime-main.f7d97643.js",
+    "runtime-main.js.map": "/Postuj/static/js/runtime-main.f7d97643.js.map",
+    "static/js/2.bd2b46e4.chunk.js": "/Postuj/static/js/2.bd2b46e4.chunk.js",
+    "static/js/2.bd2b46e4.chunk.js.map": "/Postuj/static/js/2.bd2b46e4.chunk.js.map",
+    "index.html": "/Postuj/index.html",
+    "precache-manifest.4544d1610c1a31413b94f3f30f58b8cd.js": "/Postuj/precache-manifest.4544d1610c1a31413b94f3f30f58b8cd.js",
+    "service-worker.js": "/Postuj/service-worker.js",
+    "static/css/main.f75d526b.chunk.css.map": "/Postuj/static/css/main.f75d526b.chunk.css.map",
+    "static/js/2.bd2b46e4.chunk.js.LICENSE.txt": "/Postuj/static/js/2.bd2b46e4.chunk.js.LICENSE.txt",
+    "static/media/add_post_form_camera.60f0926c.svg": "/Postuj/static/media/add_post_form_camera.60f0926c.svg",
+    "static/media/observed_popup-icon_close.5bb294ba.svg": "/Postuj/static/media/observed_popup-icon_close.5bb294ba.svg",
+    "static/media/post-icon_add_to_favorite.042aa417.svg": "/Postuj/static/media/post-icon_add_to_favorite.042aa417.svg",
+    "static/media/post-icon_favorite.4c67d875.svg": "/Postuj/static/media/post-icon_favorite.4c67d875.svg",
+    "static/media/post-icon_like.ca3efbf7.svg": "/Postuj/static/media/post-icon_like.ca3efbf7.svg",
+    "static/media/theme_dark.1ad14ac7.svg": "/Postuj/static/media/theme_dark.1ad14ac7.svg",
+    "static/media/theme_light.16c41030.svg": "/Postuj/static/media/theme_light.16c41030.svg",
+    "static/media/theme_mood.4582a368.svg": "/Postuj/static/media/theme_mood.4582a368.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f7d97643.js",
+    "static/js/2.bd2b46e4.chunk.js",
+    "static/css/main.f75d526b.chunk.css",
+    "static/js/main.0a4a4e1e.chunk.js"
+  ]
+}
