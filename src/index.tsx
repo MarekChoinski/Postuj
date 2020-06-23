@@ -20,6 +20,7 @@ import {
     Provider as ReduxProvider
 } from "react-redux";
 import firebase from 'firebase';
+import Head from './components/Head';
 
 firebase.initializeApp(firebaseConfig);
 firebase.firestore();
@@ -41,7 +42,8 @@ const RootHtml = () => (
                 }}
                 dispatch={reduxStore.dispatch}
                 createFirestoreInstance={createFirestoreInstance}>
-                <App />
+                    <Head />
+                    <App />
             </ReactReduxFirebaseProvider>
         </ReduxProvider>
     </ThemeContextProvider>
