@@ -6,7 +6,10 @@
 Social community, where anyone can set up an account and start creating posts, like, comment and follow other users with interesting content!. Typescript frontend stuffed with **React**, **Redux** and **Context API** is powered safely with **Firebase** framework.
 
 [![Dependabot badge](https://flat.badgen.net/dependabot/wbkd/webpack-starter?icon=dependabot)](https://dependabot.com/)
-![Alt Text](https://i.imgur.com/ioBWyOp.gif)
+
+![light](https://i.imgur.com/FzuuG7F.jpg)
+![blue](https://i.imgur.com/RhtLoHi.jpg)
+![dark](https://i.imgur.com/8rOR638.jpg)
 
 </div>
 <div align="center">
@@ -16,7 +19,7 @@ Social community, where anyone can set up an account and start creating posts, l
 
 ### Signing up
 
-![Signing up](https://i.imgur.com/4EjlKt9.png)
+![Signing up](https://i.imgur.com/4EjlKt9.png){:height="70%" width="70%"}
 ![Posting](https://i.imgur.com/G1U7kqe.png)
 
 Forms for signining up, logging in and posting are done using **Formik** and **yup** object schema validation. User authentication is provided safely by **Firebase Authentication**.
@@ -36,7 +39,7 @@ Posts shown up on main page are sorted depending on user preferences he can choo
 
 ### Following
 
-![Following](https://i.imgur.com/uiCYUpn.png)
+![Following](https://i.imgur.com/uiCYUpn.png){:height="50%" width="50%"}
 
 Observe users for getting real-time notification about new activity.
 
