@@ -1,44 +1,87 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
+  <h1>Postuj</h1>
 
-## Available Scripts
+![Alt Text](https://i.imgur.com/ioBWyOp.gif)
 
-In the project directory, you can run:
 
-### `npm start`
+Social community, where anyone can set up an account and start creating posts, like, comment and follow other users with interesting content!. Typescript frontend stuffed with **React**, **Redux** and **Context API** is powered safely with **Firebase** framework.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[![Dependabot badge](https://flat.badgen.net/dependabot/wbkd/webpack-starter?icon=dependabot)](https://dependabot.com/)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+</div>
+<div align="center">
+  <h1>Features</h1>
 
-### `npm test`
+</div>
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Signing up
 
-### `npm run build`
+![Signing up](https://i.imgur.com/eykeQlC.png)
+![Posting](https://i.imgur.com/Wy0elEX.png)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Forms for signining up, logging in and posting are done using **Formik** and **yup** object schema validation. User authentication is provided safely by **Firebase Authentication**.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Posts
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Posts](https://i.imgur.com/Mq692os.png)
 
-### `npm run eject`
+Logged in users can posts interesting content on the platform and attach photos. Other can like posts and make it climb up the ranking to the top of website or add the most interesting posts to Favorite by clicking on ❤ for faster finding. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Sorting
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![Sorting](https://i.imgur.com/5WLicRN.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Posts shown up on main page are sorted depending on user preferences he can choose.
 
-## Learn More
+### Following
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Following](https://i.imgur.com/TQqXap5.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Observe users for getting real-time notification about new activity.
+
+*Note: this feature is work in progress.*
+
+### Theming
+
+![Theming](https://i.imgur.com/lc8tsdH.png)
+
+Theming is done using Context API and css-vars.
+
+
+<div align="center">
+  <h1>Developing</h1>
+
+***Note**: Postuj still developing and website is not suitable for regular use.*
+
+### Installation
+
+```
+npm install
+```
+
+### Start Dev Server
+
+```
+npm start
+```
+
+### Run tests
+
+```
+npm test
+```
+
+### Build Prod Version
+
+```
+npm run build
+```
+
+### Deploy
+
+```
+npm run deploy
+```
+
+</div>
