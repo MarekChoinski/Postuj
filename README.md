@@ -17,20 +17,20 @@ Social community, where anyone can set up an account and start creating posts, l
 ### Signing up
 
 ![Signing up](https://i.imgur.com/eykeQlC.png)
-![Posting](https://i.imgur.com/Wy0elEX.png)
+![Posting](https://i.imgur.com/G1U7kqe.png)
 
 Forms for signining up, logging in and posting are done using **Formik** and **yup** object schema validation. User authentication is provided safely by **Firebase Authentication**.
 
 ### Posts
 
-![Posts](https://i.imgur.com/Mq692os.png)
+![Posts](https://i.imgur.com/RY7sujb.png)
 
 Logged in users can posts interesting content on the platform and attach photos. Other can like posts and make it climb up the ranking to the top of website or add the most interesting posts to Favorite by clicking on ❤ for faster finding. 
 
 
 ### Sorting
 
-![Sorting](https://i.imgur.com/5WLicRN.png)
+![Sorting](https://i.imgur.com/PFysiG5.png)
 
 Posts shown up on main page are sorted depending on user preferences he can choose.
 
@@ -44,7 +44,7 @@ Observe users for getting real-time notification about new activity.
 
 ### Theming
 
-![Theming](https://i.imgur.com/lc8tsdH.png)
+![Theming](https://i.imgur.com/ffrdtFs.png)
 
 Theming is done using Context API and css-vars.
 
