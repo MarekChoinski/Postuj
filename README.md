@@ -1,12 +1,12 @@
 <div align="center">
   <h1>Postuj</h1>
 
-![Alt Text](https://i.imgur.com/ioBWyOp.gif)
 
 
 Social community, where anyone can set up an account and start creating posts, like, comment and follow other users with interesting content!. Typescript frontend stuffed with **React**, **Redux** and **Context API** is powered safely with **Firebase** framework.
 
 [![Dependabot badge](https://flat.badgen.net/dependabot/wbkd/webpack-starter?icon=dependabot)](https://dependabot.com/)
+![Alt Text](https://i.imgur.com/ioBWyOp.gif)
 
 </div>
 <div align="center">
@@ -16,7 +16,7 @@ Social community, where anyone can set up an account and start creating posts, l
 
 ### Signing up
 
-![Signing up](https://i.imgur.com/eykeQlC.png)
+![Signing up](https://i.imgur.com/4EjlKt9.png)
 ![Posting](https://i.imgur.com/G1U7kqe.png)
 
 Forms for signining up, logging in and posting are done using **Formik** and **yup** object schema validation. User authentication is provided safely by **Firebase Authentication**.
@@ -36,7 +36,7 @@ Posts shown up on main page are sorted depending on user preferences he can choo
 
 ### Following
 
-![Following](https://i.imgur.com/TQqXap5.png)
+![Following](https://i.imgur.com/uiCYUpn.png)
 
 Observe users for getting real-time notification about new activity.
 
@@ -51,6 +51,7 @@ Theming is done using Context API and css-vars.
 
 <div align="center">
   <h1>Developing</h1>
+  </div>
 
 ***Note**: Postuj still developing and website is not suitable for regular use.*
 
