@@ -1,13 +1,11 @@
 <div align="center">
   <h1>Postuj</h1>
 
-![main](https://i.imgur.com/qojsMtF.jpg)
-
-<br/><br/>
 Social community, where anyone can set up an account and start creating posts, like, comment and follow other users with interesting content!. Typescript frontend stuffed with **React**, **Redux** and **Context API** is powered safely with **Firebase** framework.
 
 [![Dependabot badge](https://flat.badgen.net/dependabot/wbkd/webpack-starter?icon=dependabot)](https://dependabot.com/)
 
+![main](https://i.imgur.com/qojsMtF.jpg)
 
 
 </div>
