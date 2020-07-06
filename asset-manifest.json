@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.6ea34987.chunk.css",
-    "main.js": "/static/js/main.cb79b12e.chunk.js",
-    "main.js.map": "/static/js/main.cb79b12e.chunk.js.map",
+    "main.js": "/static/js/main.34e4531d.chunk.js",
+    "main.js.map": "/static/js/main.34e4531d.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.8075126d.js",
     "runtime-main.js.map": "/static/js/runtime-main.8075126d.js.map",
-    "static/js/2.369c2847.chunk.js": "/static/js/2.369c2847.chunk.js",
-    "static/js/2.369c2847.chunk.js.map": "/static/js/2.369c2847.chunk.js.map",
+    "static/js/2.8d4f6196.chunk.js": "/static/js/2.8d4f6196.chunk.js",
+    "static/js/2.8d4f6196.chunk.js.map": "/static/js/2.8d4f6196.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.c27b9e009e84d9822489ee5aa02304ed.js": "/precache-manifest.c27b9e009e84d9822489ee5aa02304ed.js",
+    "precache-manifest.d07f97ac18972258077a04da8414a6a4.js": "/precache-manifest.d07f97ac18972258077a04da8414a6a4.js",
     "service-worker.js": "/service-worker.js",
     "static/css/main.6ea34987.chunk.css.map": "/static/css/main.6ea34987.chunk.css.map",
-    "static/js/2.369c2847.chunk.js.LICENSE.txt": "/static/js/2.369c2847.chunk.js.LICENSE.txt",
+    "static/js/2.8d4f6196.chunk.js.LICENSE.txt": "/static/js/2.8d4f6196.chunk.js.LICENSE.txt",
     "static/media/add_post_form_camera.60f0926c.svg": "/static/media/add_post_form_camera.60f0926c.svg",
     "static/media/observed_popup-icon_close.5bb294ba.svg": "/static/media/observed_popup-icon_close.5bb294ba.svg",
     "static/media/post-icon_add_to_favorite.042aa417.svg": "/static/media/post-icon_add_to_favorite.042aa417.svg",
@@ -19,12 +19,13 @@
     "static/media/post-icon_like.ca3efbf7.svg": "/static/media/post-icon_like.ca3efbf7.svg",
     "static/media/theme_dark.1ad14ac7.svg": "/static/media/theme_dark.1ad14ac7.svg",
     "static/media/theme_light.16c41030.svg": "/static/media/theme_light.16c41030.svg",
-    "static/media/theme_mood.4582a368.svg": "/static/media/theme_mood.4582a368.svg"
+    "static/media/theme_mood.4582a368.svg": "/static/media/theme_mood.4582a368.svg",
+    "static/media/thumbnail.jpg": "/static/media/thumbnail.e48b2658.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.8075126d.js",
-    "static/js/2.369c2847.chunk.js",
+    "static/js/2.8d4f6196.chunk.js",
     "static/css/main.6ea34987.chunk.css",
-    "static/js/main.cb79b12e.chunk.js"
+    "static/js/main.34e4531d.chunk.js"
   ]
 }
